@@ -15,10 +15,13 @@ public class Player_Input : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 nextVec = inputVec.normalized * Time.deltaTime * speed;
-        rigid.MovePosition(rigid.position + nextVec);
+        Vector3 forVec = Vector3.forward * Time.deltaTime * speed;
+        rigid.MovePosition(rigid.position + nextVec + forVec);
     }
+
     void OnMove(InputValue input)
     {
         inputVec = input.Get<Vector2>();
     }
+    
 }
