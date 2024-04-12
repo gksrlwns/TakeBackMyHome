@@ -6,6 +6,8 @@ using UnityEngine;
 public class Soldier : MonoBehaviour
 {
     public float speed;
+    public Vector3 newPos;
+    public Player_Input player;
     Rigidbody rigid;
 
     private void Awake()
@@ -14,8 +16,7 @@ public class Soldier : MonoBehaviour
     }
     private void Update()
     {
-        //Vector3 dir = GameManager.instance.transform.position - transform.position;
-        //dir = dir.normalized;
-        //rigid.MovePosition(dir * speed * Time.deltaTime);
+        Vector3 dir = player.transform.TransformDirection(player.transform.position);
+        rigid.velocity = dir * speed * Time.deltaTime;
     }
 }

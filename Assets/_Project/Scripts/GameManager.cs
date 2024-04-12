@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public PoolManager poolManager;
     public Player_Input player;
 
+    int count;
 
     private void Awake()
     {
@@ -21,8 +22,12 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             GameObject obj =  poolManager.GetObject(0);
+            var sol = obj.GetComponent<Soldier>();
+            sol.player = player;
             obj.transform.parent = player.transform;
-            obj.transform.position = player.transform.position;
+            obj.transform.position = player.spawnPos[count].position;
+            count++;
+            if(count >= player.spawnPos.Length) count = 0;
         }
     }
 }
