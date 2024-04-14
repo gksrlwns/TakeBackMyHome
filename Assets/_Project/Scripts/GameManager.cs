@@ -24,10 +24,9 @@ public class GameManager : MonoBehaviour
             GameObject obj =  poolManager.GetObject(0);
             var sol = obj.GetComponent<Soldier>();
             sol.player = player;
-            obj.transform.parent = player.transform;
-            obj.transform.position = player.spawnPos[count].position;
-            count++;
-            if(count >= player.spawnPos.Length) count = 0;
+            player.count++;
+            obj.transform.parent = player.soldierTr;
+            obj.transform.position = player.EnterPoint();
         }
     }
 }

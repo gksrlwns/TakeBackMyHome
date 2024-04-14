@@ -16,7 +16,15 @@ public class Soldier : MonoBehaviour
     }
     private void Update()
     {
-        Vector3 dir = player.transform.TransformDirection(player.transform.position);
-        rigid.velocity = dir * speed * Time.deltaTime;
+        Vector3 dir = player.transform.position - transform.position;
+        rigid.AddForce(dir.normalized, ForceMode.Impulse);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Obstacle"))
+        {
+
+        }
     }
 }
