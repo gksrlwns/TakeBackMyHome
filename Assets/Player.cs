@@ -34,6 +34,21 @@ public class Player : MonoBehaviour
 
         Gizmos.matrix = matrix;
         Gizmos.DrawCube(spawnPointBounds.center, spawnPointBounds.size);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(spawnPointBounds.max, 0.1f);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(spawnPointBounds.min, 0.1f);
+
+        Gizmos.color = Color.yellow;
+        Vector3 pos = new Vector3(spawnPointBounds.extents.x, spawnPointBounds.extents.y, spawnPointBounds.extents.z);
+        Gizmos.DrawSphere(pos, 0.1f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(new Vector3(-spawnPointBounds.extents.x, spawnPointBounds.extents.y, spawnPointBounds.extents.z), 0.1f);
+
+
     }
 
     //Soldier의 수에 따라 Bounds의 크기를 키우고 Bounds의 끝에 생성되도록 하면 될 듯
@@ -51,7 +66,7 @@ public class Player : MonoBehaviour
         //float randomPointY = transform.position.y + enterPointBounds.center.y + UnityEngine.Random.Range(enterPointBounds.extents.y * -0.5f, enterPointBounds.extents.y * 0.5f);
         float randomPointZ = transform.position.z + spawnPointBounds.center.z + UnityEngine.Random.Range(spawnPointBounds.extents.z * -0.5f, spawnPointBounds.extents.z * 0.5f);
 
-        Vector3 spawnPos = new Vector3(randomPointX, 1f, randomPointZ);
+        Vector3 spawnPos = new Vector3(randomPointX, 0.5f, randomPointZ);
         return spawnPos;
     }
 
