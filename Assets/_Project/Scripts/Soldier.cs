@@ -7,7 +7,7 @@ public class Soldier : MonoBehaviour
 {
     public float speed;
     public Vector3 newPos;
-    public Player_Input player;
+    public Player player;
     Rigidbody rigid;
 
     private void Awake()

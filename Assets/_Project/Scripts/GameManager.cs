@@ -6,9 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public PoolManager poolManager;
-    public Player_Input player;
+    public Player player;
 
-    int count;
+    int count = 2;
 
     private void Awake()
     {
@@ -21,12 +21,17 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject obj =  poolManager.GetObject(0);
-            var sol = obj.GetComponent<Soldier>();
-            sol.player = player;
-            player.count++;
-            obj.transform.parent = player.soldierTr;
-            obj.transform.position = player.EnterPoint();
+            for(int i = 0; i < count; i++)
+            {
+                GameObject obj = poolManager.GetObject(0);
+                var sol = obj.GetComponent<Soldier>();
+                sol.player = player;
+                player.count++;
+                obj.transform.parent = player.soldierTr;
+                obj.transform.position = player.SpawnPoint();
+            }
+            count = 2 * count + 1;
+            
         }
     }
 }
