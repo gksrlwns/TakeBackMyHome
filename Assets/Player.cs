@@ -13,8 +13,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Check());
+        
     }
+
     IEnumerator Check()
     {
         Debug.Log($"Center : {spawnPointBounds.center}");

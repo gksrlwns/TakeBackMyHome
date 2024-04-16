@@ -756,7 +756,7 @@ MonoBehaviour:
   count: 0
   spawnPointBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 10, y: 0, z: 10}
+    m_Extent: {x: 1, y: 0, z: 1}
 --- !u!1 &993880673
 GameObject:
   m_ObjectHideFlags: 0

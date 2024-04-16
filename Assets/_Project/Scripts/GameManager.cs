@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
                 obj.transform.parent = player.soldierTr;
                 obj.transform.position = player.SpawnPoint();
             }
-            count = 2 * count + 1;
+            count += 10;
             
         }
     }
