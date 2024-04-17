@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        
+        StartCoroutine(Check());
     }
 
     IEnumerator Check()
@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     {
         Color color = Color.green;
         color.g = 0.8f;
-        Gizmos.color = Color.green;
         Matrix4x4 matrix = transform.localToWorldMatrix;
         matrix.SetTRS(matrix.GetPosition(), matrix.rotation, Vector3.one);
 
@@ -64,7 +63,6 @@ public class Player : MonoBehaviour
     public Vector3 SpawnPoint()
     {
         float randomPointX = transform.position.x + spawnPointBounds.center.x + UnityEngine.Random.Range(spawnPointBounds.extents.x * -0.5f, spawnPointBounds.extents.x * 0.5f);
-        //float randomPointY = transform.position.y + enterPointBounds.center.y + UnityEngine.Random.Range(enterPointBounds.extents.y * -0.5f, enterPointBounds.extents.y * 0.5f);
         float randomPointZ = transform.position.z + spawnPointBounds.center.z + UnityEngine.Random.Range(spawnPointBounds.extents.z * -0.5f, spawnPointBounds.extents.z * 0.5f);
 
         Vector3 spawnPos = new Vector3(randomPointX, 0.5f, randomPointZ);

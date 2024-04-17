@@ -33,6 +33,7 @@ public class PoolManager : MonoBehaviour
         if(obj == null)
         {
             obj = Instantiate(prefabs[index]);
+            pools[index].Add(obj);
         }
 
         return obj;
