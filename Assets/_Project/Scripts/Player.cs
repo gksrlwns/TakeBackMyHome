@@ -29,25 +29,12 @@ public class Player : MonoBehaviour
     {
         Color color = Color.green;
         color.g = 0.8f;
-        Matrix4x4 matrix = transform.localToWorldMatrix;
-        matrix.SetTRS(matrix.GetPosition(), matrix.rotation, Vector3.one);
+        Gizmos.color = color;
+        //Matrix4x4 matrix = transform.localToWorldMatrix;
+        //matrix.SetTRS(matrix.GetPosition(), matrix.rotation, Vector3.one);
 
-        Gizmos.matrix = matrix;
+        //Gizmos.matrix = matrix;
         Gizmos.DrawCube(spawnPointBounds.center, spawnPointBounds.size);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(spawnPointBounds.max, 0.1f);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(spawnPointBounds.min, 0.1f);
-
-        Gizmos.color = Color.yellow;
-        Vector3 pos = new Vector3(spawnPointBounds.extents.x, spawnPointBounds.extents.y, spawnPointBounds.extents.z);
-        Gizmos.DrawSphere(pos, 0.1f);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(new Vector3(-spawnPointBounds.extents.x, spawnPointBounds.extents.y, spawnPointBounds.extents.z), 0.1f);
-
 
     }
 

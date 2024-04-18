@@ -17,20 +17,14 @@ public class Soldier : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
     }
-    private void Start()
-    {
 
-    }
     private void Update()
     {
         rigid.velocity = Vector3.zero;
     }
-    IEnumerator AddForce()
+    IEnumerator VelocityZero()
     {
         yield return seconds;
-        Vector3 dir = player.transform.position - transform.position;
-        
-        StartCoroutine(AddForce());
     }
 
     void UnFreezeRotationY()
