@@ -2570,6 +2570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolManager: {fileID: 2102618400}
   player: {fileID: 946644153}
+  stageDb: {fileID: 11400000, guid: 54ec9d6c4b2b6834aa140cef85d0a5fc, type: 2}
 --- !u!1001 &2068704528
 PrefabInstance:
   m_ObjectHideFlags: 0
