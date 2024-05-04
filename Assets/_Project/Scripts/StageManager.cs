@@ -6,42 +6,16 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     [SerializeField] StageDB stageDB;
-    public Dictionary<int, List<StageData>> stageDataDict;
+    [SerializeField] Dictionary<int, List<StageData>> stageDataDict;
     [SerializeField] ObjectData[] objectPrefabs;
-
+    
     private void Awake()
     {
-        List<StageData> list = new List<StageData>();
-        int index = 1;
-        for (int i = 0; i < stageDB.Stage.Count; i++)
-        {
-            Debug.Log("Dictionary 생성");
-            if(index != stageDB.Stage[i].level)
-            {
-                stageDataDict.Add(stageDB.Stage[i].level, list);
-                Debug.Log($"Dictionary 추가 {stageDB.Stage[i].level}");
-                index = stageDB.Stage[i].level;
-                Debug.Log($"Dictionary index 변경 {index}");
-                list.Clear();
-                Debug.Log("List 초기화");
-            }
-
-            StageData stageData = new StageData(stageDB.Stage[i].type, stageDB.Stage[i].type2, stageDB.Stage[i].value);
-            list.Add(stageData);
-            Debug.Log($"StageData List 추가");
-        }
-        
+        StageSeparation();
     }
     private void Start()
     {
-        //for (int i = 0; i < stageDB.Stage.Count; i++)
-        //{
-        //    Debug.Log($"Level : {stageDB.Stage[i].level}, Type : {stageDB.Stage[i].type}, Type 2 : {stageDB.Stage[i].type2}, Value : {stageDB.Stage[i].value}");
-        //}
-        foreach(var item in stageDataDict)
-        {
-            Debug.Log(item.Key + ": " + item.Value);
-        }
+        CreateStage(1);
     }
 
     public void CreateStage(int level)
@@ -53,7 +27,30 @@ public class StageManager : MonoBehaviour
             objectPrefabs[i].DebugData();
         }
     }
+    /// <summary>
+    /// 게임시작 시 한번만 분리하도록 추후에 변경
+    /// </summary>
+    void StageSeparation()
+    {
+        stageDataDict = new Dictionary<int, List<StageData>>();
+        List<StageData> list = new List<StageData>();
+        int index = 1;
+        for (int i = 0; i < stageDB.Stage.Count; i++)
+        {
+            if (index != stageDB.Stage[i].level)
+            {
+                stageDataDict.Add(stageDB.Stage[i].level, list);
+                index = stageDB.Stage[i].level;
+                list.Clear();
+            }
+
+            StageData stageData = new StageData(stageDB.Stage[i].type, stageDB.Stage[i].type2, stageDB.Stage[i].value);
+            list.Add(stageData);
+            if (i.Equals(stageDB.Stage.Count - 1)) stageDataDict.Add(stageDB.Stage[i].level, list);
+        }
+    }
 }
+
 [Serializable]
 public struct StageData
 {

@@ -11,11 +11,6 @@ public class Player : MonoBehaviour
     WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(1);
 
 
-    private void Start()
-    {
-
-    }
-
     IEnumerator Check()
     {
         Debug.Log($"Center : {spawnPointBounds.center}");

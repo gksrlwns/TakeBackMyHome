@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public enum ObstacleType { MovableSpin, BasicSpin, Spike, Hammer, PunchTrap, Barrier };
-    public enum CountType { Add, Multiply };
+    
 
     public static GameManager instance;
     public PoolManager poolManager;

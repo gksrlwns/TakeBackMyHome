@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ObjectData : MonoBehaviour
 {
+    enum ObstacleType { Barrier, Spike, MovableSpin, SpinBlade, Hammer  };
+    enum CountType { Add, Multiply };
+
     public StageData stageData;
 
     public void DebugData()
