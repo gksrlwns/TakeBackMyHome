@@ -7,24 +7,37 @@ public class StageManager : MonoBehaviour
 {
     [SerializeField] StageDB stageDB;
     [SerializeField] Dictionary<int, List<StageData>> stageDataDict;
-    [SerializeField] ObjectData[] objectPrefabs;
+    [SerializeField] GameObject[] obstaclePrefabs;
+    [SerializeField] GameObject countPrefab;
     
     private void Awake()
     {
         StageSeparation();
-    }
-    private void Start()
-    {
         CreateStage(1);
     }
+    
 
     public void CreateStage(int level)
     {
         List<StageData> list = stageDataDict[level];
-        for(int i = 0; i<list.Count; i++)
+        for (int i = 0; i < list.Count; i++)
         {
-            objectPrefabs[i].stageData = list[i];
-            objectPrefabs[i].DebugData();
+            ObjectData objectData = null;
+            if (list[i].type.Equals(1))
+            {
+                objectData = Instantiate(obstaclePrefabs[list[i].type2]).GetComponent<ObjectData>();
+                objectData.SetActiveSelf(0);
+            }
+            else
+            {
+                objectData = Instantiate(countPrefab).GetComponent<ObjectData>();
+                objectData.leftRightObjects[0].GetComponent<CountObject>().count = list[i].value;
+                objectData.SetActiveSelf(0);
+                
+            }
+
+            objectData.DebugData();
+            objectData.SetPosition(i+1);
         }
     }
     /// <summary>
