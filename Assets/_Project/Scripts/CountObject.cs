@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public enum CountType { Add, Min, Mul,Div }
 
 public class CountObject : MonoBehaviour
 {
-    public int count;
+    public int value;
     [SerializeField]
-    private TMP_Text countText;
-    [SerializeField]
-    private CountType countType;
-
+    private TMP_Text valueText;
+    
+    public CountType countType;
 
     private void OnEnable()
     {
-        countText.text = count.ToString();
+        valueText.text = value.ToString();
+    }
+
+    public int CalculateCount(int soldierCount)
+    {
+        int temp = soldierCount;
+        if (value < 10) temp *= value;
+        else temp += value;
+        
+        return temp - soldierCount;
     }
 
 }

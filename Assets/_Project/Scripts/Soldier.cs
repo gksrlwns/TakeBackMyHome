@@ -38,6 +38,7 @@ public class Soldier : MonoBehaviour
         if(other.CompareTag("Obstacle"))
         {
             this.gameObject.SetActive(false);
+            player.soldierCount--;
         }
     }
 }

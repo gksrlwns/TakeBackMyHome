@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PoolManager : MonoBehaviour
 {
     public GameObject[] prefabs;
     public List<GameObject>[] pools;
+    [SerializeField] private int initCount;
 
     private void Awake()
     {
@@ -14,6 +16,7 @@ public class PoolManager : MonoBehaviour
         {
             pools[i] = new List<GameObject>();
         }
+        
     }
 
     public GameObject GetObject(int index)

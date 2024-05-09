@@ -15,7 +15,6 @@ public class StageManager : MonoBehaviour
         StageSeparation();
         CreateStage(1);
     }
-    
 
     public void CreateStage(int level)
     {
@@ -25,18 +24,18 @@ public class StageManager : MonoBehaviour
             ObjectData objectData = null;
             if (list[i].type.Equals(1))
             {
-                objectData = Instantiate(obstaclePrefabs[list[i].type2]).GetComponent<ObjectData>();
-                objectData.SetActiveSelf(0);
+                objectData = Instantiate(obstaclePrefabs[list[i].type2],transform).GetComponent<ObjectData>();
+                objectData.SetActiveSelf(list[i].position);
             }
             else
             {
-                objectData = Instantiate(countPrefab).GetComponent<ObjectData>();
-                objectData.leftRightObjects[0].GetComponent<CountObject>().count = list[i].value;
-                objectData.SetActiveSelf(0);
-                
+                objectData = Instantiate(countPrefab,transform).GetComponent<ObjectData>();
+                objectData.leftRightObjects[0].GetComponent<CountObject>().value = list[i].value;
+                objectData.leftRightObjects[1].GetComponent<CountObject>().value = list[i].value2;
+                objectData.SetActiveSelf(list[i].position);
+
             }
 
-            objectData.DebugData();
             objectData.SetPosition(i+1);
         }
     }
@@ -57,7 +56,7 @@ public class StageManager : MonoBehaviour
                 list.Clear();
             }
 
-            StageData stageData = new StageData(stageDB.Stage[i].type, stageDB.Stage[i].type2, stageDB.Stage[i].value);
+            StageData stageData = new StageData(stageDB.Stage[i].type, stageDB.Stage[i].type2, stageDB.Stage[i].position, stageDB.Stage[i].value, stageDB.Stage[i].value2);
             list.Add(stageData);
             if (i.Equals(stageDB.Stage.Count - 1)) stageDataDict.Add(stageDB.Stage[i].level, list);
         }
@@ -69,12 +68,16 @@ public struct StageData
 {
     public int type;
     public int type2;
+    public int position;
     public int value;
+    public int value2;
 
-    public StageData(int type, int type2, int value)
+    public StageData(int type, int type2, int position, int value, int value2)
     {
         this.type = type;
         this.type2 = type2;
+        this.position = position;
         this.value = value;
+        this.value2 = value2;
     }
 }

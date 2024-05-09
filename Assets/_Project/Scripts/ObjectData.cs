@@ -3,30 +3,36 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum ObstacleType { Barrier, Spike, MovableSpin, SpinBlade, Hammer };
+public enum CountType { Add, Multiply };
+
 public class ObjectData : MonoBehaviour
 {
-    enum ObstacleType { Barrier, Spike, MovableSpin, SpinBlade, Hammer  };
-    enum CountType { Add, Multiply };
+    public ObstacleType obstacle;
 
     public GameObject[] leftRightObjects;
 
-    public StageData stageData;
-    
-    public void DebugData()
-    {
-        Debug.Log($"name : {this.name}");
-        Debug.Log($"type : {stageData.type}");
-        Debug.Log($"type2: {stageData.type2}");
-        Debug.Log($"value: {stageData.value}");
-    }
-    
     public void SetPosition(int index)
     {
-        transform.position = new Vector3(0 , 0, index * 12f );
+        transform.position = new Vector3(0 , 0, index * 16f );
     }
 
     public void SetActiveSelf(int index)
     {
+        if (leftRightObjects.Length.Equals(1))
+        {
+            leftRightObjects[0].SetActive(true);
+            return;
+        }
+        if(index.Equals(2))
+        {
+            for(int i = 0; i < leftRightObjects.Length; i++)
+            {
+                leftRightObjects[i].SetActive(true);
+            }
+            return;
+        }
+
         for (int i = index; i < leftRightObjects.Length; i += 2)
         {
             leftRightObjects[i].SetActive(true);

@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4282926227225264101}
   m_Layer: 0
   m_Name: Count Object
-  m_TagString: Untagged
+  m_TagString: Count
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +203,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -221,9 +221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e237947ede86554bb4a487de5f00b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countText: {fileID: 2091115630943961828}
+  value: 0
+  valueText: {fileID: 2091115630943961828}
   countType: 0
-  count: 0
 --- !u!1 &8427563937452877906
 GameObject:
   m_ObjectHideFlags: 0

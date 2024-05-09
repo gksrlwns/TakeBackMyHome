@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Transform soldierTr;
-    public int count;
+    public int soldierCount;
 
     [SerializeField] Bounds spawnPointBounds;
     WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(1);
@@ -55,8 +55,8 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Count"))
         {
-            int addCount = other.GetComponent<CountObject>().count;
-            count += addCount;
+            int addCount = other.GetComponent<CountObject>().CalculateCount(soldierCount);
+            soldierCount += addCount;
             for (int i = 0; i < addCount; i++)
             {
                 GameObject obj = GameManager.instance.poolManager.GetObject(0);
@@ -65,7 +65,6 @@ public class Player : MonoBehaviour
                 obj.transform.parent = soldierTr;
                 obj.transform.position = SpawnPoint();
             }
-
         }
     }
 }
