@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,16 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
+    [Serializable]
+    public class PoolType
+    {
+        public int size;
+        public GameObject prefab;
+    }
     public GameObject[] prefabs;
     public List<GameObject>[] pools;
     [SerializeField] private int initCount;
+    [SerializeField] private PoolType[] poolTypes;
 
     private void Awake()
     {
