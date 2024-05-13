@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Transform soldierTr;
     public int soldierCount;
 
+    [SerializeField] Transform soldierTr;
     [SerializeField] Bounds spawnPointBounds;
     WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(1);
 
@@ -33,15 +33,6 @@ public class Player : MonoBehaviour
 
     }
 
-    //Soldier의 수에 따라 Bounds의 크기를 키우고 Bounds의 끝에 생성되도록 하면 될 듯
-    public Vector3 SpawnPoint2()
-    {
-        
-
-        Vector3 spawnPos = new Vector3();
-        return spawnPos;
-    }
-
     public Vector3 SpawnPoint()
     {
         float randomPointX = transform.position.x + spawnPointBounds.center.x + UnityEngine.Random.Range(spawnPointBounds.extents.x * -0.5f, spawnPointBounds.extents.x * 0.5f);
@@ -51,20 +42,25 @@ public class Player : MonoBehaviour
         return spawnPos;
     }
 
+    public void CreateSoldier(int count)
+    {
+        for(int i = 0; i < count; i++)
+        {
+            GameObject obj = PoolManager.instance.GetObject(PoolType.Soldier, true);
+            obj.transform.parent = soldierTr;
+            var soldier = obj.GetComponent<Soldier>();
+            soldier.player = this;
+            obj.transform.position = SpawnPoint();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Count"))
         {
             int addCount = other.GetComponent<CountObject>().CalculateCount(soldierCount);
             soldierCount += addCount;
-            for (int i = 0; i < addCount; i++)
-            {
-                GameObject obj = GameManager.instance.poolManager.GetObject(0);
-                var sol = obj.GetComponent<Soldier>();
-                sol.player = this;
-                obj.transform.parent = soldierTr;
-                obj.transform.position = SpawnPoint();
-            }
+            CreateSoldier(addCount);
         }
     }
 }

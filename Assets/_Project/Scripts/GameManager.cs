@@ -5,38 +5,27 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
-
     public static GameManager instance;
-    public PoolManager poolManager;
     public Player player;
 
-    int count = 2;
+    [SerializeField]int startingSoldierCount = 5;
 
     private void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        
+        if (instance == null) instance = this;
+    }
+
+    private void Start()
+    {
+        player.CreateSoldier(startingSoldierCount);
     }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            for(int i = 0; i < count; i++)
-            {
-                GameObject obj = poolManager.GetObject(0);
-                var sol = obj.GetComponent<Soldier>();
-                sol.player = player;
-                player.soldierCount++;
-                obj.transform.parent = player.soldierTr;
-                obj.transform.position = player.SpawnPoint();
-            }
-            count += 10;
-            
+            GameObject obj = PoolManager.instance.GetObject(PoolType.Zombie);
+            obj.transform.position = Vector3.zero;
         }
     }
 }

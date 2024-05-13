@@ -37,7 +37,7 @@ public class Soldier : MonoBehaviour
     {
         if(other.CompareTag("Obstacle"))
         {
-            this.gameObject.SetActive(false);
+            PoolManager.instance.ReturnObject(PoolType.Soldier, gameObject);
             player.soldierCount--;
         }
     }
