@@ -21,6 +21,7 @@ public class PoolManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        if (GameManager.instance.isStop) return;
         poolQueues = new Queue<GameObject>[poolDatas.Length];
         for (int i = 0; i < poolQueues.Length; i++)
         {
