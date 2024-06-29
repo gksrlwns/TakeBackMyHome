@@ -1395,10 +1395,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3546905436692806117, guid: a72bd89edf3efd844a552eb7411dbc3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6072094244188605044, guid: a72bd89edf3efd844a552eb7411dbc3e,
         type: 3}
       propertyPath: m_Name
       value: MovableSpin Object Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072094244188605044, guid: a72bd89edf3efd844a552eb7411dbc3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6096276231091669706, guid: a72bd89edf3efd844a552eb7411dbc3e,
         type: 3}
@@ -1602,17 +1612,22 @@ PrefabInstance:
     - target: {fileID: 4528082530323918410, guid: f519cdb80585906489099879cb29d5ea,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4939757654659355205, guid: f519cdb80585906489099879cb29d5ea,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6346548810766670703, guid: f519cdb80585906489099879cb29d5ea,
         type: 3}
       propertyPath: m_Name
       value: Hammer Object Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346548810766670703, guid: f519cdb80585906489099879cb29d5ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9144180515515732294, guid: f519cdb80585906489099879cb29d5ea,
         type: 3}
@@ -1893,10 +1908,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3304330873148050882, guid: b0fe55f887e440b4a969145aea348baa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4417234651763877470, guid: b0fe55f887e440b4a969145aea348baa,
         type: 3}
       propertyPath: m_Name
       value: Spike Object Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4976207248921790834, guid: b0fe55f887e440b4a969145aea348baa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
