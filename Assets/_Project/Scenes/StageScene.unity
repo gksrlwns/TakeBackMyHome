@@ -2839,7 +2839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 946644153}
-  isStop: 1
+  isStop: 0
   startingSoldierCount: 5
 --- !u!1 &2085024868
 GameObject:
