@@ -21,7 +21,7 @@ public class ObjectData : MonoBehaviour
 
     public void SetPosition(int index)
     {
-        transform.position = new Vector3(0 , 0, index * 16f );
+        transform.position = new Vector3(0 , 0, index * 20f );
     }
     
     public void SetActiveSelf(ObjectSetActiveType setActiveType)

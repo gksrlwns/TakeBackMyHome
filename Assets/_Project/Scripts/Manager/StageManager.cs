@@ -10,7 +10,10 @@ public class StageManager : MonoBehaviour
     [SerializeField] Dictionary<int, List<StageData>> stageDataDict;
     [SerializeField] GameObject[] obstaclePrefabs;
     [SerializeField] GameObject countPrefab;
+    [SerializeField] GameObject emptyPrefab;
+    [SerializeField] GameObject finishLinePrefab;
     [SerializeField] int level = 1;
+    [SerializeField] int emptyCount = 3;
     
     private void Awake()
     {
@@ -67,7 +70,6 @@ public class StageManager : MonoBehaviour
                 objectData = Instantiate(countPrefab, transform).GetComponent<ObjectData>();
                 objectData.leftRightObjects[0].GetComponent<CountObject>().value = list[i].value;
                 objectData.leftRightObjects[1].GetComponent<CountObject>().value = list[i].value2;
-                objectData.SetActiveSelf((ObjectSetActiveType)list[i].position);
             }
             //1 : ObstacleObject
             else
@@ -75,11 +77,19 @@ public class StageManager : MonoBehaviour
                 objectData = Instantiate(obstaclePrefabs[list[i].type2], transform).GetComponent<ObjectData>();
                 objectData.obstacle = (ObstacleType)list[i].type2;
                 objectData.value = list[i].value;
-                objectData.SetActiveSelf((ObjectSetActiveType)list[i].position);
             }
+            objectData.SetActiveSelf((ObjectSetActiveType)list[i].position);
 
             objectData.SetPosition(i+1);
         }
+        for(int i = 1; i <= emptyCount; i++)
+        {
+            objectData = Instantiate(emptyPrefab, transform).AddComponent<ObjectData>().GetComponent<ObjectData>();
+            objectData.SetPosition(list.Count + i);
+        }
+
+        objectData = Instantiate(finishLinePrefab, transform).GetComponent<ObjectData>();
+        objectData.SetPosition(list.Count + emptyCount + 1);
     }
     /// <summary>
     /// StageDB에는 모든 Stage에 대한 Data가 남겨있으므로 게임을 시작시 Level에 맞춰 Dictionary로 관리
