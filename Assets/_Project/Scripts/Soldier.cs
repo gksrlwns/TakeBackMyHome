@@ -5,7 +5,12 @@ using UnityEngine;
 
 public class Soldier : MonoBehaviour
 {
-    public float speed;
+    [Header("Soldier Status Info")]
+    [SerializeField] float moveSpeed;
+    [SerializeField] float attackSpeed;
+    [SerializeField] float attackRange;
+
+    [Header("etc")]
     public Vector3 newPos;
     public Player player;
     WaitForSecondsRealtime seconds = new WaitForSecondsRealtime(3f);
@@ -38,6 +43,7 @@ public class Soldier : MonoBehaviour
         if(other.CompareTag("Obstacle"))
         {
             PoolManager.instance.ReturnObject(PoolType.Soldier, gameObject);
+            player.soldierList.Remove(this);
             player.soldierCount--;
         }
     }

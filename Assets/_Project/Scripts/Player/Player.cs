@@ -5,21 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int soldierCount;
-
+    public List<Soldier> soldierList;
     [SerializeField] Transform soldierTr;
     [SerializeField] Bounds spawnPointBounds;
     WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(1);
 
 
-    IEnumerator Check()
+    private void Awake()
     {
-        Debug.Log($"Center : {spawnPointBounds.center}");
-        Debug.Log($"Extends : {spawnPointBounds.extents}");
-        Debug.Log($"Max : {spawnPointBounds.max}");
-        Debug.Log($"Min : {spawnPointBounds.min}");
-        yield return waitTime;
-        StartCoroutine(Check());
+        soldierList = new List<Soldier>();
     }
+
     private void OnDrawGizmos()
     {
         Color color = Color.green;
@@ -47,11 +43,22 @@ public class Player : MonoBehaviour
         for(int i = 0; i < count; i++)
         {
             GameObject obj = PoolManager.instance.GetObject(PoolType.Soldier, true);
+            
             obj.transform.parent = soldierTr;
             var soldier = obj.GetComponent<Soldier>();
+            soldierList.Add(soldier);
             soldier.player = this;
             obj.transform.position = SpawnPoint();
         }
+    }
+    IEnumerator Check()
+    {
+        Debug.Log($"Center : {spawnPointBounds.center}");
+        Debug.Log($"Extends : {spawnPointBounds.extents}");
+        Debug.Log($"Max : {spawnPointBounds.max}");
+        Debug.Log($"Min : {spawnPointBounds.min}");
+        yield return waitTime;
+        StartCoroutine(Check());
     }
 
     private void OnTriggerEnter(Collider other)
