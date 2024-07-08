@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed;
     private Vector2 inputVec;
+    
 
     private void FixedUpdate()
     {

@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public List<Soldier> soldierList;
     [SerializeField] Transform soldierTr;
     [SerializeField] Bounds spawnPointBounds;
+    public Vector3 targetPos;
+    public Vector3 soldierFirstPos;
     WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(1);
 
 

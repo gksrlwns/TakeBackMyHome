@@ -1220,10 +1220,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soldierCount: 0
+  soldierList: []
   soldierTr: {fileID: 1054954605}
   spawnPointBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1, y: 0, z: 1}
+  targetPos: {x: 0, y: 0, z: 0}
+  soldierFirstPos: {x: 0, y: 0, z: 0}
 --- !u!4 &956898216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 893912579487495670, guid: 816e60df4bc0142b580d4ff43f6035d0,
@@ -2735,11 +2738,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1082338663443445926, guid: 9a2bfe6de1604b541a35e4ce1d25f039, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1830450100213946385, guid: 9a2bfe6de1604b541a35e4ce1d25f039,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 895750028046951655}
   m_SourcePrefab: {fileID: 100100000, guid: 9a2bfe6de1604b541a35e4ce1d25f039, type: 3}
+--- !u!1 &895750028046951653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1830450100213946385, guid: 9a2bfe6de1604b541a35e4ce1d25f039,
+    type: 3}
+  m_PrefabInstance: {fileID: 895750028046951652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &895750028046951654 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3768346274771084806, guid: 9a2bfe6de1604b541a35e4ce1d25f039,
+    type: 3}
+  m_PrefabInstance: {fileID: 895750028046951652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &895750028046951655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895750028046951653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9656474fe6665d4e8760fe0ce0254b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacle: 0
+  position: 0
+  leftRightObjects: []
+  value: 0
+  finishPos: {fileID: 895750028046951654}
+  soldierFirstPos: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
