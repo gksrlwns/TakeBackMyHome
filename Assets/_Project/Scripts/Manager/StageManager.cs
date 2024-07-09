@@ -88,7 +88,7 @@ public class StageManager : MonoBehaviour
             objectData.SetPosition(list.Count + i);
         }
 
-        objectData = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
+        objectData = Instantiate(finishLinePrefab, transform).GetComponent<ObjectData>();
         objectData.SetPosition(list.Count + emptyCount + 1);
         
     }
