@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class Soldier : MonoBehaviour
 {
-    [Header("Soldier Status Info")]
-    [SerializeField] float moveSpeed;
-    [SerializeField] float attackSpeed;
+    SoldierData soldierData;
+
+    [Header("Zombie Status Info")]
+    [SerializeField] float maxHp;
     [SerializeField] float attackRange;
+    [SerializeField] float attackSpeed;
+    [SerializeField] float moveSpeed;
+    public float curHp;
+
+    
 
     [Header("etc")]
     public Vector3 newPos;
@@ -26,6 +32,13 @@ public class Soldier : MonoBehaviour
     private void Update()
     {
         rigid.velocity = Vector3.zero;
+    }
+    public void Init()
+    {
+        maxHp = soldierData.MaxHp;
+        attackRange = soldierData.AttackRange;
+        attackSpeed = soldierData.AttackSpeed;
+        moveSpeed = soldierData.MoveSpeed;
     }
     IEnumerator VelocityZero()
     {

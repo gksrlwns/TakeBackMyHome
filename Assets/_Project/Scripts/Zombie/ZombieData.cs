@@ -8,10 +8,12 @@ public class ZombieData : ScriptableObject
     [SerializeField] float damage;
     [SerializeField] float attackRange;
     [SerializeField] float attackSpeed;
+    [SerializeField] float moveSpeed;
 
     public float MaxHp { get { return maxHp; } set { maxHp = value; } }
     public float Damage { get { return damage; } set { damage = value; } }
-    public float AttackRange { get => attackRange; }
+    public float MoveSpeed { get { return moveSpeed; } set { moveSpeed = value; } }
     public float AttackSpeed { get => attackSpeed; }
+    public float AttackRange { get => attackRange; }
 
 }
