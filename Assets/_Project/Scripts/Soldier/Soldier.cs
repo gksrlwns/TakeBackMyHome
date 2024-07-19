@@ -6,6 +6,7 @@ using UnityEngine;
 public class Soldier : MonoBehaviour
 {
     SoldierData soldierData;
+    SoldierAnimator soldierAnimator;
 
     [Header("Zombie Status Info")]
     [SerializeField] float maxHp;
