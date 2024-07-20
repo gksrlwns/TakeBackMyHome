@@ -5,7 +5,7 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     ZombieData zombieData;
-
+    ZombieAnimator zombieAnimator;
     [Header("Zombie Status Info")]
     [SerializeField] float maxHp;
     [SerializeField] float attackRange;
