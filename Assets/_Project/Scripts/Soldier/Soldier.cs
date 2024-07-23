@@ -5,41 +5,50 @@ using UnityEngine;
 
 public class Soldier : MonoBehaviour
 {
-    SoldierData soldierData;
-    SoldierAnimator soldierAnimator;
+    bool isMove;
 
-    [Header("Zombie Status Info")]
+    [Header("Soldier Status Info")]
+    [SerializeField] SoldierData soldierData;
     [SerializeField] float maxHp;
     [SerializeField] float attackRange;
     [SerializeField] float attackSpeed;
-    [SerializeField] float moveSpeed;
+    [SerializeField] float damage;
     public float curHp;
-
-    
 
     [Header("etc")]
     public Vector3 newPos;
     public Player player;
+
+
     WaitForSecondsRealtime seconds = new WaitForSecondsRealtime(3f);
     CapsuleCollider capsuleCollider;
     Rigidbody rigid;
+    SoldierAnimator soldierAnimator;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        soldierAnimator = GetComponent<SoldierAnimator>();
+    }
+    private void OnEnable()
+    {
+        Init();
+        soldierAnimator.OnMove(true);
     }
 
-    private void Update()
-    {
-        rigid.velocity = Vector3.zero;
-    }
+    private void FixedUpdate() => rigid.velocity = Vector3.zero;
+
     public void Init()
     {
         maxHp = soldierData.MaxHp;
+        damage = soldierData.Damage;
         attackRange = soldierData.AttackRange;
         attackSpeed = soldierData.AttackSpeed;
-        moveSpeed = soldierData.MoveSpeed;
+    }
+    public void Stop()
+    {
+        soldierAnimator.OnMove(false);
     }
     IEnumerator VelocityZero()
     {
@@ -49,7 +58,6 @@ public class Soldier : MonoBehaviour
     void UnFreezeRotationY()
     {
         rigid.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-        
     }
 
     private void OnTriggerEnter(Collider other)

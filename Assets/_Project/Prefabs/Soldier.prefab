@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4904256182057749715}
   - component: {fileID: 5346610831658061765}
   - component: {fileID: 4275416523645527589}
+  - component: {fileID: 928816044928457864}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -106,11 +107,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239dc8a1b7aab2b4297a6ef79ee415e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  attackSpeed: 0
+  soldierData: {fileID: 11400000, guid: c7fa131f999e0b84292048ed455fcbdc, type: 2}
+  maxHp: 0
   attackRange: 0
+  attackSpeed: 0
+  damage: 0
+  curHp: 0
   newPos: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
+--- !u!114 &928816044928457864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991361117519847252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be64ee895546c2d49be16ec04713d077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2702436547524713327}
+  isAttacking: 0
 --- !u!1001 &2702436547532126141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -176,6 +194,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa05473e4d04e834eb7a29b53251c8cf, type: 3}
+--- !u!95 &2702436547524713327 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9514194, guid: aa05473e4d04e834eb7a29b53251c8cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2702436547532126141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2702436547531726777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 403460, guid: aa05473e4d04e834eb7a29b53251c8cf,

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class SoldierAnimator : MonoBehaviour
 {
+    [SerializeField] Animator animator;
     public bool isAttacking;
     Dictionary<SecondsType, WaitForSeconds> waitForSecondsDict;
-    Animator animator;
     enum SecondsType { AttackSpeed, Attack_Anim};
 
 
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         waitForSecondsDict = new Dictionary<SecondsType, WaitForSeconds>();
     }
 
@@ -23,46 +23,46 @@ public class SoldierAnimator : MonoBehaviour
         animator.SetBool("isVictory", false);
     }
 
-    public void OnMove(Vector3 moveVec)
+    public void OnMove(bool isMove)
     {
-        animator.SetFloat("Speed", moveVec.magnitude);
+        animator.SetBool("isMove", isMove);
     }
 
-    public void OnAttack()
-    {
-        StartCoroutine(AttackRoutine());
-    }
+    //public void OnAttack()
+    //{
+    //    StartCoroutine(AttackRoutine());
+    //}
 
-    public void OnRevive()
-    {
-        animator.SetBool("isLive", true);
-    }
-    IEnumerator AttackRoutine()
-    {
-        isAttacking = true;
-        animator.SetTrigger("Attack");
+    //public void OnRevive()
+    //{
+    //    animator.SetBool("isLive", true);
+    //}
+    //IEnumerator AttackRoutine()
+    //{
+    //    isAttacking = true;
+    //    animator.SetTrigger("Attack");
 
-        //Debug.Log("기본 공격 사용");
-        yield return waitForSecondsDict[SecondsType.Attack_Anim];
+    //    //Debug.Log("기본 공격 사용");
+    //    yield return waitForSecondsDict[SecondsType.Attack_Anim];
 
-        yield return waitForSecondsDict[SecondsType.AttackSpeed];
-        isAttacking = false;
-        //animator.SetBool("isAttacking", isAttacking);
-    }
-    public void OnDamaged()
-    {
-        if (!isAttacking)
-        {
-            animator.SetTrigger("Hurt");
-        }
-    }
-    public void OnDead()
-    {
-        animator.SetBool("isLive", false);
-        animator.SetTrigger("Dead");
-    }
-    public void OnVictory()
-    {
-        animator.SetBool("isVictory", true);
-    }
+    //    yield return waitForSecondsDict[SecondsType.AttackSpeed];
+    //    isAttacking = false;
+    //    //animator.SetBool("isAttacking", isAttacking);
+    //}
+    //public void OnDamaged()
+    //{
+    //    if (!isAttacking)
+    //    {
+    //        animator.SetTrigger("Hurt");
+    //    }
+    //}
+    //public void OnDead()
+    //{
+    //    animator.SetBool("isLive", false);
+    //    animator.SetTrigger("Dead");
+    //}
+    //public void OnVictory()
+    //{
+    //    animator.SetBool("isVictory", true);
+    //}
 }

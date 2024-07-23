@@ -10,7 +10,6 @@ public class ZombieAnimator : MonoBehaviour
     enum SecondsType { AttackSpeed, Attack_Anim };
 
 
-
     private void Awake()
     {
         animator = GetComponent<Animator>();

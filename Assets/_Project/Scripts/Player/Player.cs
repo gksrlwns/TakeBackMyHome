@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    [Header("Soldiers Info")]
     public int soldierCount;
     public List<Soldier> soldierList;
     [SerializeField] Transform soldierTr;
+
     [SerializeField] Bounds spawnPointBounds;
     public Vector3 targetPos;
     public Vector3 soldierFirstPos;
@@ -23,12 +26,7 @@ public class Player : MonoBehaviour
         Color color = Color.green;
         color.g = 0.8f;
         Gizmos.color = color;
-        //Matrix4x4 matrix = transform.localToWorldMatrix;
-        //matrix.SetTRS(matrix.GetPosition(), matrix.rotation, Vector3.one);
-
-        //Gizmos.matrix = matrix;
         Gizmos.DrawCube(spawnPointBounds.center, spawnPointBounds.size);
-
     }
 
     public Vector3 SpawnPoint()
