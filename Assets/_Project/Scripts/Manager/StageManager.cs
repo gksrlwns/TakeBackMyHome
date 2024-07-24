@@ -88,9 +88,14 @@ public class StageManager : MonoBehaviour
             objectData.SetPosition(list.Count + i);
         }
 
-        objectData = Instantiate(finishLinePrefab, transform).GetComponent<ObjectData>();
-        objectData.SetPosition(list.Count + emptyCount + 1);
-        
+        FinishObjcet finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
+        finishObjcet.SetPosition(list.Count + emptyCount + 1);
+        GameManager.instance.player.finishObjcet = finishObjcet;
+        //objectData = Instantiate(finishLinePrefab, transform).GetComponent<ObjectData>();
+        //objectData.SetPosition(list.Count + emptyCount + 1);
+
+
+
     }
     /// <summary>
     /// StageDB에는 모든 Stage에 대한 Data가 남겨있으므로 게임을 시작시 Level에 맞춰 Dictionary로 관리

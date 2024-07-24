@@ -10,25 +10,38 @@ public class Player : MonoBehaviour
     public List<Soldier> soldierList;
     [SerializeField] Transform soldierTr;
 
+    [Header("Finish Info")]
+    public FinishObjcet finishObjcet;
+
+    [Header("Player Info")]
+    PlayerController playerController;
+
     [SerializeField] Bounds spawnPointBounds;
     public Vector3 targetPos;
     public Vector3 soldierFirstPos;
+
+    
+
     WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(1);
 
 
     private void Awake()
     {
         soldierList = new List<Soldier>();
+        playerController = GetComponent<PlayerController>();
     }
-
-    private void OnDrawGizmos()
+    #region Sort Soldier
+    public void ArriveDestination()
     {
-        Color color = Color.green;
-        color.g = 0.8f;
-        Gizmos.color = color;
-        Gizmos.DrawCube(spawnPointBounds.center, spawnPointBounds.size);
-    }
+        playerController.isArrive = true;
+        for(int i = 0;  i < soldierList.Count; i++)
+        {
 
+        }
+    }
+    #endregion
+
+    #region Spawn & Create Soldier
     public Vector3 SpawnPoint()
     {
         float randomPointX = transform.position.x + spawnPointBounds.center.x + UnityEngine.Random.Range(spawnPointBounds.extents.x * -0.5f, spawnPointBounds.extents.x * 0.5f);
@@ -51,15 +64,7 @@ public class Player : MonoBehaviour
             obj.transform.position = SpawnPoint();
         }
     }
-    IEnumerator Check()
-    {
-        Debug.Log($"Center : {spawnPointBounds.center}");
-        Debug.Log($"Extends : {spawnPointBounds.extents}");
-        Debug.Log($"Max : {spawnPointBounds.max}");
-        Debug.Log($"Min : {spawnPointBounds.min}");
-        yield return waitTime;
-        StartCoroutine(Check());
-    }
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
@@ -69,5 +74,12 @@ public class Player : MonoBehaviour
             soldierCount += addCount;
             CreateSoldier(addCount);
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Color color = Color.green;
+        color.g = 0.8f;
+        Gizmos.color = color;
+        Gizmos.DrawCube(spawnPointBounds.center, spawnPointBounds.size);
     }
 }

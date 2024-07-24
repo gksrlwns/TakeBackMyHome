@@ -21,14 +21,14 @@ public class Soldier : MonoBehaviour
 
 
     WaitForSecondsRealtime seconds = new WaitForSecondsRealtime(3f);
-    CapsuleCollider capsuleCollider;
+    CapsuleCollider soldierCollider;
     Rigidbody rigid;
     SoldierAnimator soldierAnimator;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        soldierCollider = GetComponent<CapsuleCollider>();
         soldierAnimator = GetComponent<SoldierAnimator>();
     }
     private void OnEnable()
@@ -46,7 +46,27 @@ public class Soldier : MonoBehaviour
         attackRange = soldierData.AttackRange;
         attackSpeed = soldierData.AttackSpeed;
     }
-    public void Stop()
+
+    public void MoveDestination(Transform destination)
+    {
+        soldierCollider.enabled = false;
+        StartCoroutine(Move(destination));
+        soldierCollider.enabled = true;
+    }
+
+    IEnumerator Move(Transform destination)
+    {
+        bool isArrive;
+
+        while (true)
+        {
+            //if (!isArrive) break;
+
+            yield return null;
+        }
+    }
+
+    void Stop()
     {
         soldierAnimator.OnMove(false);
     }

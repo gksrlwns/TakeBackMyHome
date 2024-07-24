@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class FinishObjcet : ObjectData
 {
-    public Transform finishPos;
-    public Transform soldierFirstPos;
+    [SerializeField] Transform FinishPos;
+    [SerializeField] Transform SoldierFirstPos;
+    
+    public Transform finishPos { get => FinishPos; }
+    public Transform soldierFirstPos { get => SoldierFirstPos; }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            GameManager.instance.player.ArriveDestination();
+        }
+    }
 }

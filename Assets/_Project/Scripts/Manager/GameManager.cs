@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Player player;
-    public bool isStop;
+    public bool isPause;
     [SerializeField]int startingSoldierCount = 5;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(isStop) return;
+        if(isPause) return;
         player.CreateSoldier(startingSoldierCount);
     }
 

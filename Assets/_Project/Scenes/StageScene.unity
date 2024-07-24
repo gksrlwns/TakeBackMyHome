@@ -1262,6 +1262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  isArrive: 0
 --- !u!135 &946644151
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1325,6 +1326,7 @@ MonoBehaviour:
   soldierCount: 0
   soldierList: []
   soldierTr: {fileID: 1054954605}
+  finishObjcet: {fileID: 0}
   spawnPointBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1, y: 0, z: 1}
@@ -2829,7 +2831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 946644153}
-  isStop: 0
+  isPause: 0
   startingSoldierCount: 5
 --- !u!1 &2085024868
 GameObject:
