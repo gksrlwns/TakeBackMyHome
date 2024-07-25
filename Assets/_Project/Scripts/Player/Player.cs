@@ -34,9 +34,10 @@ public class Player : MonoBehaviour
     public void ArriveDestination()
     {
         playerController.isArrive = true;
-        for(int i = 0;  i < soldierList.Count; i++)
+        Transform firstDestination = finishObjcet.soldierFirstPos;
+        for (int i = 0;  i < soldierList.Count; i++)
         {
-
+            soldierList[i].MoveDestination(firstDestination);
         }
     }
     #endregion

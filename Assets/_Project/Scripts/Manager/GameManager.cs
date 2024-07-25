@@ -29,4 +29,5 @@ public class GameManager : MonoBehaviour
         //    obj.transform.position = Vector3.zero;
         //}
     }
+
 }

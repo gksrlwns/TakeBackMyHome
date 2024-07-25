@@ -51,16 +51,27 @@ public class Soldier : MonoBehaviour
     {
         soldierCollider.enabled = false;
         StartCoroutine(Move(destination));
-        soldierCollider.enabled = true;
+        //soldierCollider.enabled = true;
     }
 
     IEnumerator Move(Transform destination)
     {
-        bool isArrive;
-
+        bool isArrive = false;
+        float destinationDistance = 0.1f;
+        Vector3 direction = Vector3.zero;
+        float distance = 0f;
         while (true)
         {
-            //if (!isArrive) break;
+            if (isArrive) break;
+            direction = destination.position - transform.position;
+            distance = direction.magnitude;
+
+            if (distance > destinationDistance)
+            {
+                direction.Normalize();
+                transform.Translate(direction * 3f * Time.deltaTime);
+            }
+            else isArrive = true;
 
             yield return null;
         }
