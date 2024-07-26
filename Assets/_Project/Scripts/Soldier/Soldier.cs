@@ -50,6 +50,7 @@ public class Soldier : MonoBehaviour
     public void MoveDestination(Transform destination)
     {
         soldierCollider.enabled = false;
+        Debug.Log($"솔져의 목표 위치 : {destination.position}");
         StartCoroutine(Move(destination));
         //soldierCollider.enabled = true;
     }
@@ -71,7 +72,11 @@ public class Soldier : MonoBehaviour
                 direction.Normalize();
                 transform.Translate(direction * 3f * Time.deltaTime);
             }
-            else isArrive = true;
+            else
+            {
+                isArrive = true;
+                transform.position = destination.position;
+            }
 
             yield return null;
         }

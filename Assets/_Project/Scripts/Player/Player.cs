@@ -35,8 +35,11 @@ public class Player : MonoBehaviour
     {
         playerController.isArrive = true;
         Transform firstDestination = finishObjcet.soldierFirstPos;
+        float tempX = firstDestination.position.x;
         for (int i = 0;  i < soldierList.Count; i++)
         {
+            firstDestination.position = new Vector3(tempX + (float)i, firstDestination.position.y, firstDestination.position.z);
+            Debug.Log(firstDestination.position);
             soldierList[i].MoveDestination(firstDestination);
         }
     }
@@ -48,7 +51,7 @@ public class Player : MonoBehaviour
         float randomPointX = transform.position.x + spawnPointBounds.center.x + UnityEngine.Random.Range(spawnPointBounds.extents.x * -0.5f, spawnPointBounds.extents.x * 0.5f);
         float randomPointZ = transform.position.z + spawnPointBounds.center.z + UnityEngine.Random.Range(spawnPointBounds.extents.z * -0.5f, spawnPointBounds.extents.z * 0.5f);
 
-        Vector3 spawnPos = new Vector3(randomPointX, 0.5f, randomPointZ);
+        Vector3 spawnPos = new Vector3(randomPointX, 0.6f, randomPointZ);
         return spawnPos;
     }
 
