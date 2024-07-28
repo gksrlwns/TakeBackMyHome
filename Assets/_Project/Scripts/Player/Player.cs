@@ -34,13 +34,14 @@ public class Player : MonoBehaviour
     public void ArriveDestination()
     {
         playerController.isArrive = true;
-        Transform firstDestination = finishObjcet.soldierFirstPos;
-        float tempX = firstDestination.position.x;
+        Vector3 soldierFirstPos = finishObjcet.soldierFirstPos.position;
         for (int i = 0;  i < soldierList.Count; i++)
         {
-            firstDestination.position = new Vector3(tempX + (float)i, firstDestination.position.y, firstDestination.position.z);
-            Debug.Log(firstDestination.position);
-            soldierList[i].MoveDestination(firstDestination);
+            //10칸을 맞추기 위함
+            Vector3 soldierPos = new Vector3(soldierFirstPos.x + (i % 10), soldierFirstPos.y, soldierFirstPos.z - (i / 10));
+            
+            Debug.Log(soldierPos);
+            soldierList[i].MoveDestination(soldierPos);
         }
     }
     #endregion

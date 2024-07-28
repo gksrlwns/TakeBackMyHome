@@ -47,15 +47,14 @@ public class Soldier : MonoBehaviour
         attackSpeed = soldierData.AttackSpeed;
     }
 
-    public void MoveDestination(Transform destination)
+    public void MoveDestination(Vector3 destination)
     {
         soldierCollider.enabled = false;
-        Debug.Log($"솔져의 목표 위치 : {destination.position}");
+        Debug.Log($"솔져의 목표 위치 : {destination}");
         StartCoroutine(Move(destination));
-        //soldierCollider.enabled = true;
     }
 
-    IEnumerator Move(Transform destination)
+    IEnumerator Move(Vector3 destination)
     {
         bool isArrive = false;
         float destinationDistance = 0.1f;
@@ -64,7 +63,7 @@ public class Soldier : MonoBehaviour
         while (true)
         {
             if (isArrive) break;
-            direction = destination.position - transform.position;
+            direction = destination - transform.position;
             distance = direction.magnitude;
 
             if (distance > destinationDistance)
@@ -75,9 +74,11 @@ public class Soldier : MonoBehaviour
             else
             {
                 isArrive = true;
-                transform.position = destination.position;
+                //위치 보정
+                transform.position = destination;
+                soldierCollider.enabled = true;
+                Stop();
             }
-
             yield return null;
         }
     }

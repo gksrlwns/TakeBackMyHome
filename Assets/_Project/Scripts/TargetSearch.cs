@@ -11,9 +11,7 @@ public class TargetSearch : MonoBehaviour
     //public RaycastHit2D[] hits;
     [SerializeField] Collider2D[] colliders;
     [SerializeField] LayerMask targetLayer;
-    [SerializeField] LayerMask characterLayer;
     public GameObject target;
-    public Transform[] targets;
 
     private void Update()
     {
@@ -29,10 +27,10 @@ public class TargetSearch : MonoBehaviour
         float shortestDistance = Mathf.Infinity;
         for (int i = 0; i < colliders.Length; i++)
         {
-            float distanceToMonster = Vector2.Distance(transform.position, colliders[i].transform.position);
-            if (distanceToMonster < shortestDistance)
+            float distanceToTarget = Vector2.Distance(transform.position, colliders[i].transform.position);
+            if (distanceToTarget < shortestDistance)
             {
-                shortestDistance = distanceToMonster;
+                shortestDistance = distanceToTarget;
                 nearTarget = colliders[i].gameObject;
             }
         }
@@ -46,29 +44,7 @@ public class TargetSearch : MonoBehaviour
             return null;
         }
     }
-
-    public GameObject[] MonstersInRange(float range)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range, targetLayer);
-        GameObject[] monsters = new GameObject[colliders.Length];
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            monsters[i] = colliders[i].GetComponent<GameObject>();
-        }
-
-        return monsters;
-    }
-    public Character[] CharactersInRange(float range)
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range, characterLayer);
-        Character[] characters = new Character[colliders.Length];
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            characters[i] = colliders[i].GetComponent<Character>();
-        }
-
-        return characters;
-    }
+    
     //Transform NearTarget()
     //{
     //    Transform target = null;

@@ -680,7 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1569097084}
   isPause: 0
-  startingSoldierCount: 5
+  startingSoldierCount: 1
 --- !u!1 &1012283329
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if(GameManager.instance.isPause) return;
+        if(GameManager.instance.isPause) return;
         if (isArrive) return;
         Vector3 nextVec = inputVec.normalized * Time.deltaTime * speed * 3f;
         Vector3 forVec = Vector3.forward * Time.deltaTime * speed;
