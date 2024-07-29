@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     [Header("Player Info")]
     PlayerController playerController;
+    TargetSearch targetSearch;
 
     [SerializeField] Bounds spawnPointBounds;
     public Vector3 targetPos;
@@ -29,11 +30,19 @@ public class Player : MonoBehaviour
     {
         soldierList = new List<Soldier>();
         playerController = GetComponent<PlayerController>();
+        targetSearch = GetComponent<TargetSearch>();
     }
+
+    private void Start()
+    {
+        //targetSearch.enabled = false;
+    }
+
     #region Sort Soldier
     public void ArriveDestination()
     {
         playerController.isArrive = true;
+        //targetSearch.enabled = true;
         Vector3 soldierFirstPos = finishObjcet.soldierFirstPos.position;
         for (int i = 0;  i < soldierList.Count; i++)
         {
@@ -41,7 +50,9 @@ public class Player : MonoBehaviour
             Vector3 soldierPos = new Vector3(soldierFirstPos.x + (i % 10), soldierFirstPos.y, soldierFirstPos.z - (i / 10));
             
             Debug.Log(soldierPos);
+            
             soldierList[i].MoveDestination(soldierPos);
+            soldierList[i].targetSearch = targetSearch;
         }
     }
     #endregion

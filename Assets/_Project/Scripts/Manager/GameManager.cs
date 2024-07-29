@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(isPause) return;
         player.CreateSoldier(startingSoldierCount);
     }
 

@@ -18,13 +18,16 @@ public class Soldier : MonoBehaviour
     [Header("etc")]
     public Vector3 newPos;
     public Player player;
+    [SerializeField] bool isArrive = false;
+    bool isDead = false;
 
 
     WaitForSecondsRealtime seconds = new WaitForSecondsRealtime(3f);
     CapsuleCollider soldierCollider;
     Rigidbody rigid;
     SoldierAnimator soldierAnimator;
-    Transform target;
+    public TargetSearch targetSearch;
+    [SerializeField] Transform target;
 
     private void Awake()
     {
@@ -40,12 +43,24 @@ public class Soldier : MonoBehaviour
 
     private void FixedUpdate() => rigid.velocity = Vector3.zero;
 
+    private void Update()
+    {
+        if (!isArrive) return;
+        if (targetSearch.colliders.Length == 0) return;
+        else target = targetSearch.NearTarget();
+
+        Rotate();
+        Attack();
+    }
+
     public void Init()
     {
         maxHp = soldierData.MaxHp;
         damage = soldierData.Damage;
         attackRange = soldierData.AttackRange;
         attackSpeed = soldierData.AttackSpeed;
+        isArrive = false;
+        isDead = false;
     }
 
     public void MoveDestination(Vector3 destination)
@@ -57,7 +72,6 @@ public class Soldier : MonoBehaviour
 
     IEnumerator Move(Vector3 destination)
     {
-        bool isArrive = false;
         float destinationDistance = 0.1f;
         Vector3 direction = Vector3.zero;
         float distance = 0f;
@@ -86,7 +100,19 @@ public class Soldier : MonoBehaviour
 
     void Rotate()
     {
-        
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0; // 2D 게임에서는 y축 회전 방지
+
+        // 타겟 방향으로 회전하는 목표 회전값 계산
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        // 현재 회전값에서 목표 회전값으로 부드럽게 회전
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f * Time.deltaTime);
+    }
+
+    void Attack()
+    {
+        soldierAnimator.OnAttack();
     }
     void Stop()
     {

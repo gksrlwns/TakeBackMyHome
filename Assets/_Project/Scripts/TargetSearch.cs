@@ -7,23 +7,35 @@ using UnityEngine.TextCore.Text;
 public class TargetSearch : MonoBehaviour
 {
     [Header("TargetSearch Info")]
-    [SerializeField] float searchRange = 5;
-    //public RaycastHit2D[] hits;
-    [SerializeField] Collider2D[] colliders;
+    [SerializeField] float searchRange = 10;
+    public Collider[] colliders;
     [SerializeField] LayerMask targetLayer;
     public GameObject target;
 
-    private void Update()
+    Coroutine searchCoroutine;
+
+    private void OnEnable()
     {
-        //hits = Physics2D.CircleCastAll(transform.position, searchRange, Vector2.zero, 0, targetLayer);
-        colliders = Physics2D.OverlapCircleAll(transform.position, searchRange, LayerMask.NameToLayer("Zombie"));
-        if (colliders.Length != 0) target = NearTarget();
-        else target = null;
+        searchCoroutine = StartCoroutine(SurroundTargetSearch());
     }
 
-    GameObject NearTarget()
+    private void OnDisable()
     {
-        GameObject nearTarget = null;
+        if(searchCoroutine != null) StopCoroutine(searchCoroutine);
+    }
+
+    IEnumerator SurroundTargetSearch()
+    {
+        while(true)
+        {
+            colliders = Physics.OverlapSphere(transform.position, searchRange, targetLayer);
+            yield return null;
+        }
+    }
+
+    public Transform NearTarget()
+    {
+        Transform nearTarget = null;
         float shortestDistance = Mathf.Infinity;
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -31,7 +43,7 @@ public class TargetSearch : MonoBehaviour
             if (distanceToTarget < shortestDistance)
             {
                 shortestDistance = distanceToTarget;
-                nearTarget = colliders[i].gameObject;
+                nearTarget = colliders[i].transform;
             }
         }
 

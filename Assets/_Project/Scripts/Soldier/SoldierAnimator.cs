@@ -28,10 +28,10 @@ public class SoldierAnimator : MonoBehaviour
         animator.SetBool("isMove", isMove);
     }
 
-    //public void OnAttack()
-    //{
-    //    StartCoroutine(AttackRoutine());
-    //}
+    public void OnAttack()
+    {
+        animator.SetTrigger("doAttack");
+    }
 
     //public void OnRevive()
     //{
