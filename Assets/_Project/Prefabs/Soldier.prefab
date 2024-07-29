@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5346610831658061765}
   - component: {fileID: 4275416523645527589}
   - component: {fileID: 928816044928457864}
-  - component: {fileID: -7135010602826076732}
   m_Layer: 6
   m_Name: Soldier
   m_TagString: Untagged
@@ -130,24 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2702436547524713327}
   isAttacking: 0
---- !u!114 &-7135010602826076732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7991361117519847252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca072858e347a24280f7c4189302a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  searchRange: 5
-  colliders: []
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  target: {fileID: 0}
 --- !u!1001 &2702436547532126141
 PrefabInstance:
   m_ObjectHideFlags: 0

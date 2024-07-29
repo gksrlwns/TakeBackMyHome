@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -679,7 +679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1569097084}
-  isPause: 0
+  isPause: 1
   startingSoldierCount: 1
 --- !u!1 &1012283329
 GameObject:
@@ -891,6 +891,7 @@ GameObject:
   - component: {fileID: 1569097085}
   - component: {fileID: 1569097084}
   - component: {fileID: 1569097083}
+  - component: {fileID: 1569097089}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1028,6 +1029,24 @@ Transform:
   - {fileID: 1012283330}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1569097089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569097082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca072858e347a24280f7c4189302a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchRange: 5
+  colliders: []
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  target: {fileID: 0}
 --- !u!1 &2028545016
 GameObject:
   m_ObjectHideFlags: 0

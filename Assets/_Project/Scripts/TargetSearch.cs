@@ -16,7 +16,7 @@ public class TargetSearch : MonoBehaviour
     private void Update()
     {
         //hits = Physics2D.CircleCastAll(transform.position, searchRange, Vector2.zero, 0, targetLayer);
-        colliders = Physics2D.OverlapCircleAll(transform.position, searchRange, targetLayer);
+        colliders = Physics2D.OverlapCircleAll(transform.position, searchRange, LayerMask.NameToLayer("Zombie"));
         if (colliders.Length != 0) target = NearTarget();
         else target = null;
     }

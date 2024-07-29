@@ -24,6 +24,7 @@ public class Soldier : MonoBehaviour
     CapsuleCollider soldierCollider;
     Rigidbody rigid;
     SoldierAnimator soldierAnimator;
+    Transform target;
 
     private void Awake()
     {
@@ -83,6 +84,10 @@ public class Soldier : MonoBehaviour
         }
     }
 
+    void Rotate()
+    {
+        
+    }
     void Stop()
     {
         soldierAnimator.OnMove(false);
