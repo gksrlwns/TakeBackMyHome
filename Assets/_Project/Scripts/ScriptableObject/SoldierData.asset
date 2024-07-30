@@ -15,4 +15,4 @@ MonoBehaviour:
   maxHp: 1
   damage: 1
   attackRange: 1
-  attackSpeed: 1
+  attackSpeed: 2

@@ -20,7 +20,15 @@ public class PoolManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
         //if (GameManager.instance.isPause) return;
         poolQueues = new Queue<GameObject>[poolDatas.Length];
         for (int i = 0; i < poolQueues.Length; i++)

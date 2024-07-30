@@ -21,11 +21,6 @@ public class Player : MonoBehaviour
     public Vector3 targetPos;
     public Vector3 soldierFirstPos;
 
-    
-
-    WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(1);
-
-
     private void Awake()
     {
         soldierList = new List<Soldier>();
@@ -35,14 +30,14 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //targetSearch.enabled = false;
+        targetSearch.enabled = false;
     }
 
     #region Sort Soldier
     public void ArriveDestination()
     {
         playerController.isArrive = true;
-        //targetSearch.enabled = true;
+        targetSearch.enabled = true;
         Vector3 soldierFirstPos = finishObjcet.soldierFirstPos.position;
         for (int i = 0;  i < soldierList.Count; i++)
         {

@@ -29,13 +29,16 @@ public class TargetSearch : MonoBehaviour
         while(true)
         {
             colliders = Physics.OverlapSphere(transform.position, searchRange, targetLayer);
-            yield return null;
+            Debug.Log("Å½»ö...");
+            yield return CoroutineManager.DelaySeconds(2f);
         }
     }
 
     public Transform NearTarget()
     {
+        if (colliders.Length == 0) return null;
         Transform nearTarget = null;
+        Debug.Log("°¡Àå °¡±î¿î Àû Å½»ö..");
         float shortestDistance = Mathf.Infinity;
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -46,33 +49,10 @@ public class TargetSearch : MonoBehaviour
                 nearTarget = colliders[i].transform;
             }
         }
+        
 
-        if (nearTarget && shortestDistance <= searchRange)
-        {
-            return nearTarget;
-        }
-        else
-        {
-            return null;
-        }
+        return nearTarget;
     }
-    
-    //Transform NearTarget()
-    //{
-    //    Transform target = null;
-    //    float shortestDistance = Mathf.Infinity;
-    //    for(int i = 0; i < hits.Length; i++)
-    //    {
-    //        float distanceToMonster = Vector2.Distance(transform.position, hits[i].transform.position);
-    //        if(distanceToMonster < shortestDistance)
-    //        {
-    //            shortestDistance = distanceToMonster;
-    //            target = hits[i].transform;
-    //        }
-    //    }
-    //    return target;
-    //}
-
 
     private void OnDrawGizmos()
     {

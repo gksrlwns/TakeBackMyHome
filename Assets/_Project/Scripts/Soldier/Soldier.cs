@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
+enum SoldierState { Move, Sort, Battle, Dead }
 public class Soldier : MonoBehaviour
 {
-    bool isMove;
-
     [Header("Soldier Status Info")]
+    [SerializeField] SoldierState state;
     [SerializeField] SoldierData soldierData;
     [SerializeField] float maxHp;
     [SerializeField] float attackRange;
     [SerializeField] float attackSpeed;
     [SerializeField] float damage;
+    [SerializeField] Transform bulletPos;
     public float curHp;
 
     [Header("etc")]
     public Vector3 newPos;
     public Player player;
     [SerializeField] bool isArrive = false;
-    bool isDead = false;
 
 
     WaitForSecondsRealtime seconds = new WaitForSecondsRealtime(3f);
@@ -35,6 +35,11 @@ public class Soldier : MonoBehaviour
         soldierCollider = GetComponent<CapsuleCollider>();
         soldierAnimator = GetComponent<SoldierAnimator>();
     }
+    private void Update()
+    {
+        if (state != SoldierState.Battle) return;
+        if (target != null) Rotate();
+    }
     private void OnEnable()
     {
         Init();
@@ -43,16 +48,6 @@ public class Soldier : MonoBehaviour
 
     private void FixedUpdate() => rigid.velocity = Vector3.zero;
 
-    private void Update()
-    {
-        if (!isArrive) return;
-        if (targetSearch.colliders.Length == 0) return;
-        else target = targetSearch.NearTarget();
-
-        Rotate();
-        Attack();
-    }
-
     public void Init()
     {
         maxHp = soldierData.MaxHp;
@@ -60,17 +55,19 @@ public class Soldier : MonoBehaviour
         attackRange = soldierData.AttackRange;
         attackSpeed = soldierData.AttackSpeed;
         isArrive = false;
-        isDead = false;
+        soldierAnimator.OnDead(false);
+        state = SoldierState.Move;
     }
 
     public void MoveDestination(Vector3 destination)
     {
         soldierCollider.enabled = false;
         Debug.Log($"솔져의 목표 위치 : {destination}");
-        StartCoroutine(Move(destination));
+        state = SoldierState.Sort;
+        StartCoroutine(MoveLoop(destination));
     }
 
-    IEnumerator Move(Vector3 destination)
+    IEnumerator MoveLoop(Vector3 destination)
     {
         float destinationDistance = 0.1f;
         Vector3 direction = Vector3.zero;
@@ -93,39 +90,50 @@ public class Soldier : MonoBehaviour
                 transform.position = destination;
                 soldierCollider.enabled = true;
                 Stop();
+                yield break;
             }
             yield return null;
+        }
+    }
+
+    IEnumerator BattleLoop()
+    {
+        while(true)
+        {
+            target = targetSearch.NearTarget();//seconds
+            if (target != null) Attack();
+
+            yield return CoroutineManager.DelaySeconds(attackSpeed);
         }
     }
 
     void Rotate()
     {
         Vector3 direction = target.position - transform.position;
-        direction.y = 0; // 2D 게임에서는 y축 회전 방지
+        direction.y = 0;
 
-        // 타겟 방향으로 회전하는 목표 회전값 계산
         Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        // 현재 회전값에서 목표 회전값으로 부드럽게 회전
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f * Time.deltaTime);
     }
 
     void Attack()
     {
         soldierAnimator.OnAttack();
+        Debug.Log($"{this.name} 공격");
     }
+
     void Stop()
     {
         soldierAnimator.OnMove(false);
-    }
-    IEnumerator VelocityZero()
-    {
-        yield return seconds;
+        state = SoldierState.Battle;
+        StartCoroutine(BattleLoop());
     }
 
-    void UnFreezeRotationY()
+    public void Dead()
     {
-        rigid.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        state = SoldierState.Dead;
+        soldierAnimator.OnDead(true);
     }
 
     private void OnTriggerEnter(Collider other)

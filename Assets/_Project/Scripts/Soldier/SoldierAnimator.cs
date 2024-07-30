@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class SoldierAnimator : MonoBehaviour
@@ -31,6 +32,11 @@ public class SoldierAnimator : MonoBehaviour
     public void OnAttack()
     {
         animator.SetTrigger("doAttack");
+    }
+
+    public void OnDead(bool isDead)
+    {
+        animator.SetBool("isDead", isDead);
     }
 
     //public void OnRevive()
