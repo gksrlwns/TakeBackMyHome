@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 5346610831658061765}
   - component: {fileID: 4275416523645527589}
   - component: {fileID: 928816044928457864}
+  - component: {fileID: 4794444161146914985}
   m_Layer: 6
   m_Name: Soldier
   m_TagString: Untagged
@@ -145,6 +146,7 @@ MonoBehaviour:
   attackRange: 0
   attackSpeed: 0
   damage: 0
+  bulletPos: {fileID: 0}
   curHp: 0
   newPos: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
@@ -165,6 +167,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2702436547524713327}
   isAttacking: 0
+--- !u!114 &4794444161146914985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991361117519847252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e8a3c2d4b73cf439bff0cbe2e8194d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2702436547532126141
 PrefabInstance:
   m_ObjectHideFlags: 0

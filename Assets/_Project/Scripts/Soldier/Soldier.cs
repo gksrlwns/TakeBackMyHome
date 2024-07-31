@@ -23,30 +23,29 @@ public class Soldier : MonoBehaviour
 
 
     WaitForSecondsRealtime seconds = new WaitForSecondsRealtime(3f);
-    CapsuleCollider soldierCollider;
+    
     Rigidbody rigid;
     SoldierAnimator soldierAnimator;
+    SoldierMovement soldierMovement;
+
     public TargetSearch targetSearch;
+
     [SerializeField] Transform target;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
-        soldierCollider = GetComponent<CapsuleCollider>();
         soldierAnimator = GetComponent<SoldierAnimator>();
+        soldierMovement = GetComponent<SoldierMovement>();
     }
-    private void Update()
-    {
-        if (state != SoldierState.Battle) return;
-        if (target != null) Rotate();
-    }
+
     private void OnEnable()
     {
         Init();
         soldierAnimator.OnMove(true);
     }
 
-    private void FixedUpdate() => rigid.velocity = Vector3.zero;
+    
 
     public void Init()
     {
@@ -61,41 +60,13 @@ public class Soldier : MonoBehaviour
 
     public void MoveDestination(Vector3 destination)
     {
-        soldierCollider.enabled = false;
+        
         Debug.Log($"솔져의 목표 위치 : {destination}");
         state = SoldierState.Sort;
-        StartCoroutine(MoveLoop(destination));
+        StartCoroutine(soldierMovement.MoveLoop(destination));
     }
 
-    IEnumerator MoveLoop(Vector3 destination)
-    {
-        float destinationDistance = 0.1f;
-        Vector3 direction = Vector3.zero;
-        float distance = 0f;
-        while (true)
-        {
-            if (isArrive) break;
-            direction = destination - transform.position;
-            distance = direction.magnitude;
-
-            if (distance > destinationDistance)
-            {
-                direction.Normalize();
-                transform.Translate(direction * 3f * Time.deltaTime);
-            }
-            else
-            {
-                isArrive = true;
-                //위치 보정
-                transform.position = destination;
-                soldierCollider.enabled = true;
-                Stop();
-                yield break;
-            }
-            yield return null;
-        }
-    }
-
+   
     IEnumerator BattleLoop()
     {
         while(true)
@@ -107,15 +78,7 @@ public class Soldier : MonoBehaviour
         }
     }
 
-    void Rotate()
-    {
-        Vector3 direction = target.position - transform.position;
-        direction.y = 0;
 
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f * Time.deltaTime);
-    }
 
     void Attack()
     {
@@ -123,12 +86,6 @@ public class Soldier : MonoBehaviour
         Debug.Log($"{this.name} 공격");
     }
 
-    void Stop()
-    {
-        soldierAnimator.OnMove(false);
-        state = SoldierState.Battle;
-        StartCoroutine(BattleLoop());
-    }
 
     public void Dead()
     {
