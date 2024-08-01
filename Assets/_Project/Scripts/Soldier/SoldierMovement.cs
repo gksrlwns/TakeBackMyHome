@@ -7,14 +7,15 @@ public class SoldierMovement : MonoBehaviour
 
     CapsuleCollider soldierCollider;
     SoldierAnimator soldierAnimator;
+    SoldierAttack soldierAttack;
     Rigidbody rigid;
     bool isArrive = false;
     Transform target;
+    float moveSpeed;
 
     private void Awake()
     {
         soldierCollider = GetComponent<CapsuleCollider>();
-        soldierAnimator = GetComponent<SoldierAnimator>();
         rigid = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
@@ -23,7 +24,12 @@ public class SoldierMovement : MonoBehaviour
         //if (state != SoldierState.Battle) return;
         if (target != null) Rotate();
     }
-
+    public void Init(SoldierAnimator _soldierAnimator, SoldierData soldierData, SoldierAttack _soldierAttack)
+    {
+        moveSpeed = soldierData.MoveSpeed;
+        soldierAnimator = _soldierAnimator;
+        soldierAttack = _soldierAttack;
+    }
     public IEnumerator MoveLoop(Vector3 destination)
     {
         float destinationDistance = 0.1f;
@@ -39,7 +45,7 @@ public class SoldierMovement : MonoBehaviour
             if (distance > destinationDistance)
             {
                 direction.Normalize();
-                transform.Translate(direction * 3f * Time.deltaTime);
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
             }
             else
             {
@@ -66,8 +72,12 @@ public class SoldierMovement : MonoBehaviour
     void Stop()
     {
         soldierAnimator.OnMove(false);
-        //state = SoldierState.Battle;
-        //StartCoroutine(BattleLoop());
+        StartCoroutine(soldierAttack.AttackLoop());
+    }
+
+    public void SetTarget(Transform _target)
+    {
+        target = _target;
     }
 
 

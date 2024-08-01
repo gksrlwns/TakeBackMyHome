@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class TargetSearch : MonoBehaviour
 {
     [Header("TargetSearch Info")]
     [SerializeField] float searchRange = 10;
-    public Collider[] colliders;
+    
     [SerializeField] LayerMask targetLayer;
-    public GameObject target;
+    public List<Collider> enemies = new List<Collider>();
+    Collider[] enemiesBuffer = new Collider[100];
 
     Coroutine searchCoroutine;
 
@@ -28,28 +27,37 @@ public class TargetSearch : MonoBehaviour
     {
         while(true)
         {
-            colliders = Physics.OverlapSphere(transform.position, searchRange, targetLayer);
+            enemies.Clear();
+
+            //OverlapSphereNonAlloc을 사용하여 메모리 할당 감소 및 배열을 재사용하여 메모리 사용이 효율적
+            int count = Physics.OverlapSphereNonAlloc(transform.position, searchRange, enemiesBuffer, targetLayer);
+
+            //미리 할당된 배열의 크기보다 커지면 배열의 크기 수정
+            if (enemiesBuffer.Length < count) enemiesBuffer = new Collider[count];
+
+            //자주 변경되는 크기로 인해 배열보다는 동적 배열인 List를 사용
+            for (int i = 0; i < count; i++) enemies.Add(enemiesBuffer[i]);
+
             Debug.Log("탐색...");
-            yield return CoroutineManager.DelaySeconds(2f);
+            yield return CoroutineManager.DelaySeconds(1f);
         }
     }
 
-    public Transform NearTarget()
+    public Transform NearTarget(Transform myPos)
     {
-        if (colliders.Length == 0) return null;
+        if (enemies.Count == 0) return null;
         Transform nearTarget = null;
         Debug.Log("가장 가까운 적 탐색..");
-        float shortestDistance = Mathf.Infinity;
-        for (int i = 0; i < colliders.Length; i++)
+        float shortestDistance = float.MaxValue;
+        for (int i = 0; i < enemies.Count; i++)
         {
-            float distanceToTarget = Vector2.Distance(transform.position, colliders[i].transform.position);
+            float distanceToTarget = (myPos.position - enemies[i].transform.position).sqrMagnitude;
             if (distanceToTarget < shortestDistance)
             {
                 shortestDistance = distanceToTarget;
-                nearTarget = colliders[i].transform;
+                nearTarget = enemies[i].transform;
             }
         }
-        
 
         return nearTarget;
     }

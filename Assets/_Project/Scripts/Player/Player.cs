@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             Debug.Log(soldierPos);
             
             soldierList[i].MoveDestination(soldierPos);
-            soldierList[i].targetSearch = targetSearch;
+            soldierList[i].GetTargetSearch(targetSearch);
         }
     }
     #endregion
