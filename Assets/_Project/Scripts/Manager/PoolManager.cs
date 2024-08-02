@@ -64,8 +64,20 @@ public class PoolManager : MonoBehaviour
 
         return obj;
     }
+    public T GetPool<T>(PoolType poolType, bool isParent = false) where T : Component
+    {
+        GameObject obj = GetObject(poolType, isParent);
 
-    public GameObject GetObject(PoolType poolType, bool isParent = false)
+        if (obj.TryGetComponent(out T component))
+            return component;
+        else
+        {
+            obj.SetActive(false);
+            throw new Exception("컴포넌트 없음");
+        }
+    }
+
+    GameObject GetObject(PoolType poolType, bool isParent = false)
     {
         GameObject obj = null;
         var queue = poolQueues[(int)poolType];
@@ -82,28 +94,7 @@ public class PoolManager : MonoBehaviour
         return obj;
     }
 
-    public T GetPool<T>(PoolType poolType, bool isParent = false) where T : Component
-    {
-        GameObject obj = null;
-        var queue = poolQueues[(int)poolType];
-
-        if (queue.Count <= 0)
-        {
-            PoolData poolData = poolDatas[(int)poolType];
-            CreateObject(poolData, queue, isParent);
-        }
-
-        obj = queue.Dequeue();
-        obj.SetActive(true);
-
-        if (obj.TryGetComponent(out T component))
-            return component;
-        else
-        {
-            obj.SetActive(false);
-            throw new Exception("컴포넌트 없음");
-        }
-    }
+    
 
     public void ReturnObject(PoolType poolType, GameObject gameObject)
     {

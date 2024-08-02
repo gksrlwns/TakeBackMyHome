@@ -66,13 +66,12 @@ public class Player : MonoBehaviour
     {
         for(int i = 0; i < count; i++)
         {
-            GameObject obj = PoolManager.instance.GetObject(PoolType.Soldier, true);
+            Soldier soldier = PoolManager.instance.GetPool<Soldier>(PoolType.Soldier, true);
             
-            obj.transform.parent = soldierTr;
-            var soldier = obj.GetComponent<Soldier>();
+            soldier.transform.parent = soldierTr;
             soldierList.Add(soldier);
             soldier.player = this;
-            obj.transform.position = SpawnPoint();
+            soldier.transform.position = SpawnPoint();
         }
     }
     #endregion

@@ -6,7 +6,6 @@ public class SoldierAttack : MonoBehaviour
 {
     [Header("Projectile Info")]
     [SerializeField] Transform projectilePos;
-    [SerializeField] GameObject projectilePrefab;
     
     float attackSpeed;
     float damage;
@@ -41,7 +40,10 @@ public class SoldierAttack : MonoBehaviour
     {
         soldierAnimator.OnAttack();
         Debug.Log($"{this.name} АјАн");
-        var projectile = PoolManager.instance.GetObject(PoolType.Projectile);
+        var projectile = PoolManager.instance.GetPool<Projectile>(PoolType.Projectile);
+        projectile.SetProjectile(damage, projectilePos.position, target);
+        projectile.LaunchProjectile();
+        
     }
 
 
