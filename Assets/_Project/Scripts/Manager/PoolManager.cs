@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PoolType { Soldier, Zombie }
+public enum PoolType { Soldier, Zombie, Projectile }
 
 public class PoolManager : MonoBehaviour
 {
@@ -80,6 +80,29 @@ public class PoolManager : MonoBehaviour
         obj.SetActive(true);
 
         return obj;
+    }
+
+    public T GetPool<T>(PoolType poolType, bool isParent = false) where T : Component
+    {
+        GameObject obj = null;
+        var queue = poolQueues[(int)poolType];
+
+        if (queue.Count <= 0)
+        {
+            PoolData poolData = poolDatas[(int)poolType];
+            CreateObject(poolData, queue, isParent);
+        }
+
+        obj = queue.Dequeue();
+        obj.SetActive(true);
+
+        if (obj.TryGetComponent(out T component))
+            return component;
+        else
+        {
+            obj.SetActive(false);
+            throw new Exception("컴포넌트 없음");
+        }
     }
 
     public void ReturnObject(PoolType poolType, GameObject gameObject)

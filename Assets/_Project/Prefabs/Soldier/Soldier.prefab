@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7234624069227399226}
   m_Layer: 6
-  m_Name: BulletPos
+  m_Name: ProjectilePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,11 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239dc8a1b7aab2b4297a6ef79ee415e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
   soldierData: {fileID: 11400000, guid: c7fa131f999e0b84292048ed455fcbdc, type: 2}
-  bulletPos: {fileID: 0}
-  curHp: 0
-  newPos: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   target: {fileID: 0}
 --- !u!114 &928816044928457864
@@ -186,6 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f87f85841602e4a891c52cb6e0399d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePos: {fileID: 0}
+  projectilePrefab: {fileID: 0}
 --- !u!1001 &2702436547532126141
 PrefabInstance:
   m_ObjectHideFlags: 0

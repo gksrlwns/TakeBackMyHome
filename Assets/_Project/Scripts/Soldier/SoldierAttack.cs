@@ -9,6 +9,7 @@ public class SoldierAttack : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     
     float attackSpeed;
+    float damage;
 
     Transform target;
 
@@ -16,12 +17,12 @@ public class SoldierAttack : MonoBehaviour
     SoldierAnimator soldierAnimator;
     SoldierMovement soldierMovement;
 
-
     public void Init(SoldierAnimator _soldierAnimator, SoldierData soldierData, SoldierMovement _soldierMovement)
     {
         soldierMovement = _soldierMovement;
         soldierAnimator = _soldierAnimator;
         attackSpeed = soldierData.AttackSpeed;
+        damage = soldierData.Damage;
     }
 
     public IEnumerator AttackLoop()
@@ -40,8 +41,10 @@ public class SoldierAttack : MonoBehaviour
     {
         soldierAnimator.OnAttack();
         Debug.Log($"{this.name} АјАн");
+        var projectile = PoolManager.instance.GetObject(PoolType.Projectile);
     }
-    
+
+
     public void GetTargetSearch(TargetSearch _targetSearch)
     {
         targetSearch = _targetSearch;
