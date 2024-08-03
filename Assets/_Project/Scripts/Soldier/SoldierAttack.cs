@@ -10,7 +10,7 @@ public class SoldierAttack : MonoBehaviour
     float attackSpeed;
     float damage;
 
-    Transform target;
+    [SerializeField] Transform target;
 
     TargetSearch targetSearch;
     SoldierAnimator soldierAnimator;
@@ -41,7 +41,7 @@ public class SoldierAttack : MonoBehaviour
         soldierAnimator.OnAttack();
         Debug.Log($"{this.name} АјАн");
         var projectile = PoolManager.instance.GetPool<Projectile>(PoolType.Projectile);
-        projectile.SetProjectile(damage, projectilePos.position, target);
+        projectile.SetProjectile(damage, projectilePos, target);
         projectile.LaunchProjectile();
         
     }

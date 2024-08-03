@@ -8,6 +8,7 @@ TagManager:
   - Count
   - FxTemporaire
   - Obstcales
+  - Zombie
   layers:
   - Default
   - TransparentFX

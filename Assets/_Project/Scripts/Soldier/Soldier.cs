@@ -14,8 +14,6 @@ public class Soldier : MonoBehaviour
     SoldierMovement soldierMovement;
     SoldierAttack soldierAttack;
 
-    [SerializeField] Transform target;
-
     private void Awake()
     {
         soldierAnimator = GetComponent<SoldierAnimator>();
