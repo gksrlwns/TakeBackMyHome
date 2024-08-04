@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierHealth : Health
+public class SoldierHealth : BaseHealth
 {
     public void Init(SoldierData soldierData)
     {
         maxHp = soldierData.MaxHp;
     }
 
-    protected override void OnDamaged()
+    public override void SufferDamage(float damgage)
     {
-        base.OnDamaged();
+        base.SufferDamage(damgage);
 
     }
 

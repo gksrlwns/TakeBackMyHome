@@ -51,6 +51,7 @@ public class TargetSearch : MonoBehaviour
         float shortestDistance = float.MaxValue;
         for (int i = 0; i < enemies.Count; i++)
         {
+            if (!CheckExistEnemyCollider(enemies[i])) continue;
             float distanceToTarget = (myPos.position - enemies[i].transform.position).sqrMagnitude;
             if (distanceToTarget < shortestDistance)
             {
@@ -60,6 +61,18 @@ public class TargetSearch : MonoBehaviour
         }
 
         return nearTarget;
+    }
+
+    /// <summary>
+    /// MissingReferenceException 에러 해결을 위한 함수
+    /// Collider가 파괴되었음에도 참조하려고 하여 발생하는 에러
+    /// </summary>
+    /// <param name="collider"></param>
+    /// <returns></returns>
+    bool CheckExistEnemyCollider(Collider collider)
+    {
+        if (collider == null || collider.gameObject == null) return false;
+        else return true;
     }
 
     private void OnDrawGizmos()

@@ -46,6 +46,7 @@ public class Projectile : MonoBehaviour
         if(other.CompareTag("Zombie"))
         {
             var zombie = other.GetComponent<Zombie>();
+            zombie.SufferDamage(damage);
         }
     }
 }

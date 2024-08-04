@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : MonoBehaviour
+public class Zombie : BaseHealth
 {
-    ZombieData zombieData;
+    
     ZombieAnimator zombieAnimator;
     [Header("Zombie Status Info")]
-    [SerializeField] float maxHp;
+    [SerializeField] ZombieData zombieData;
     [SerializeField] float attackRange;
     [SerializeField] float attackSpeed;
     [SerializeField] float moveSpeed;
-    public float curHp;
 
     public void Init()
     {
@@ -19,5 +18,15 @@ public class Zombie : MonoBehaviour
         attackRange = zombieData.AttackRange;
         attackSpeed = zombieData.AttackSpeed;
         moveSpeed = zombieData.MoveSpeed;
+    }
+
+    public override void SufferDamage(float damgage)
+    {
+        base.SufferDamage(damgage);
+    }
+
+    protected override void Dead()
+    {
+        base.Dead();
     }
 }
