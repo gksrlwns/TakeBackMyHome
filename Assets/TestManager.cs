@@ -10,8 +10,15 @@ public class TestManager : MonoBehaviour
     {
         FinishObjcet finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
         finishObjcet.SetPosition(2);
-        GameManager.instance.player.finishObjcet = finishObjcet;
+        finishObjcet.NavMeshSetUp();
     }
 
-    
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            GameManager.instance.player.soldierList[0].GetComponent<SoldierHealth>().SufferDamage(1);
+        }
+    }
+
 }

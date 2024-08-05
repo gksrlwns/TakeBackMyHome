@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public enum ObstacleType { Barrier,Barrier2, Spike, MovableSpin, SpinBlade, Hammer };
 public enum CountType { Add, Multiply };
-
 public enum ObjectSetActiveType {Left, Rigth, Both };
 
 public class ObjectData : MonoBehaviour
@@ -19,11 +14,8 @@ public class ObjectData : MonoBehaviour
 
     public int value;
 
-    public void SetPosition(int index)
-    {
-        transform.position = new Vector3(0 , 0, index * 20f );
-    }
-    
+    public void SetPosition(int index) => transform.position = new Vector3(0, 0, index * 20f);
+
     public void SetActiveSelf(ObjectSetActiveType setActiveType)
     {
         switch (setActiveType)

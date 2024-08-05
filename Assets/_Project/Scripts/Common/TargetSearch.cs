@@ -42,6 +42,18 @@ public class TargetSearch : MonoBehaviour
             yield return CoroutineManager.DelaySeconds(1f);
         }
     }
+    /// <summary>
+    /// Transform이 아닌 Component를 가져와야 하는 경우 사용
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="myPos"></param>
+    /// <returns></returns>
+    public T NearTarget<T>(Transform myPos) where T : Component
+    {
+        Transform nearTarget = NearTarget(myPos);
+        if(nearTarget == null) return null;
+        return nearTarget.GetComponent<T>();
+    }
 
     public Transform NearTarget(Transform myPos)
     {

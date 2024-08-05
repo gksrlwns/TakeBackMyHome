@@ -1,25 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoldierAttack : MonoBehaviour
 {
     [Header("Projectile Info")]
     [SerializeField] Transform projectilePos;
-    
-    float attackSpeed;
-    float damage;
-
     [SerializeField] Transform target;
 
+    float attackSpeed;
+    float damage;
+    
     TargetSearch targetSearch;
     SoldierAnimator soldierAnimator;
     SoldierMovement soldierMovement;
 
-    public void Init(SoldierAnimator _soldierAnimator, SoldierData soldierData, SoldierMovement _soldierMovement)
+    public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierMovement _soldierMovement)
     {
         soldierMovement = _soldierMovement;
         soldierAnimator = _soldierAnimator;
+    }
+
+    public void InitializeSetUp(SoldierData soldierData)
+    {
         attackSpeed = soldierData.AttackSpeed;
         damage = soldierData.Damage;
     }
@@ -46,10 +48,5 @@ public class SoldierAttack : MonoBehaviour
         
     }
 
-
-    public void GetTargetSearch(TargetSearch _targetSearch)
-    {
-        targetSearch = _targetSearch;
-    }
-
+    public void GetTargetSearch(TargetSearch _targetSearch) => targetSearch = _targetSearch;
 }

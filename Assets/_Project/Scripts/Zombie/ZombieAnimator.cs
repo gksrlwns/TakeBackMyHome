@@ -2,63 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieAnimator : MonoBehaviour
+public class ZombieAnimator : BaseAnimator
 {
-    public bool isAttacking;
-    Dictionary<SecondsType, WaitForSeconds> waitForSecondsDict;
-    Animator animator;
-    enum SecondsType { AttackSpeed, Attack_Anim };
-
-
-    private void Awake()
+    public override void OnAttack()
     {
-        animator = GetComponent<Animator>();
-        waitForSecondsDict = new Dictionary<SecondsType, WaitForSeconds>();
+        base.OnAttack();
     }
 
-    public void OnInitAnimation()
+    public override void OnDead(bool isDead)
     {
-        animator.SetBool("isLive", true);
-        animator.SetBool("isVictory", false);
+        base.OnDead(isDead);
     }
 
-    public void OnMove(Vector3 moveVec)
+    public override void OnMove(bool isMove)
     {
-        animator.SetFloat("Speed", moveVec.magnitude);
+        base.OnMove(isMove);
     }
-
-    public void OnAttack()
-    {
-        StartCoroutine(AttackRoutine());
-    }
-
-    public void OnRevive()
-    {
-        animator.SetBool("isLive", true);
-    }
-    IEnumerator AttackRoutine()
-    {
-        isAttacking = true;
-        animator.SetTrigger("Attack");
-
-        //Debug.Log("기본 공격 사용");
-        yield return waitForSecondsDict[SecondsType.Attack_Anim];
-
-        yield return waitForSecondsDict[SecondsType.AttackSpeed];
-        isAttacking = false;
-        //animator.SetBool("isAttacking", isAttacking);
-    }
-    public void OnDamaged()
-    {
-        if (!isAttacking)
-        {
-            animator.SetTrigger("Hurt");
-        }
-    }
-    public void OnDead()
-    {
-        animator.SetBool("isLive", false);
-        animator.SetTrigger("Dead");
-    }
-    
 }

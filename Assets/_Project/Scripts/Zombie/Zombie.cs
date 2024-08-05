@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Zombie : BaseHealth
 {
@@ -11,6 +12,17 @@ public class Zombie : BaseHealth
     [SerializeField] float attackRange;
     [SerializeField] float attackSpeed;
     [SerializeField] float moveSpeed;
+
+    [SerializeField] Soldier target;
+    NavMeshAgent agent;
+    TargetSearch targetSearch;
+
+    private void Awake()
+    {
+        targetSearch = GetComponent<TargetSearch>();
+        zombieAnimator = GetComponent<ZombieAnimator>();
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     public void Init()
     {

@@ -13,37 +13,37 @@ public class Soldier : MonoBehaviour
     SoldierAnimator soldierAnimator;
     SoldierMovement soldierMovement;
     SoldierAttack soldierAttack;
+    SoldierHealth soldierHealth;
+    CapsuleCollider soldierCollider;
+    Rigidbody rigid;
 
     private void Awake()
     {
         soldierAnimator = GetComponent<SoldierAnimator>();
         soldierMovement = GetComponent<SoldierMovement>();
         soldierAttack = GetComponent<SoldierAttack>();
-        soldierAttack.Init(soldierAnimator, soldierData, soldierMovement);
-        soldierMovement.Init(soldierAnimator, soldierData, soldierAttack);
+        soldierHealth = GetComponent<SoldierHealth>();
+        soldierCollider = GetComponent<CapsuleCollider>();
+        rigid = GetComponent<Rigidbody>();
+        soldierAttack.InitializeComponents(soldierAnimator, soldierMovement);
+        soldierMovement.InitializeComponents(soldierAnimator, soldierAttack, rigid, soldierCollider);
+        soldierHealth.InitializeComponents(soldierAnimator,soldierCollider);
     }
-
-    private void OnEnable()
+    private void OnEnable() => InitializeSetUp();
+    void InitializeSetUp()
     {
-        Init();
+        soldierAnimator.InitializeSetUp();
+        soldierAttack.InitializeSetUp(soldierData);
+        soldierMovement.InitializeSetUp(soldierData);
+        soldierHealth.InitializeSetUp(soldierData);
     }
-
-    public void Init()
-    {
-        soldierAnimator.OnDead(false);
-        soldierAnimator.OnMove(true);
-    }
-
     public void MoveDestination(Vector3 destination)
     {
         Debug.Log($"솔져의 목표 위치 : {destination}");
         StartCoroutine(soldierMovement.MoveLoop(destination));
     }
+    public void GetTargetSearch(TargetSearch _targetSearch) => soldierAttack.GetTargetSearch(_targetSearch);
 
-    public void GetTargetSearch(TargetSearch _targetSearch)
-    {
-        soldierAttack.GetTargetSearch(_targetSearch);
-    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Obstacle"))

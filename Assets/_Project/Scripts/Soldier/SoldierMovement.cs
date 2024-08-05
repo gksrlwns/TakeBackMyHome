@@ -1,35 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoldierMovement : MonoBehaviour
 {
-
     CapsuleCollider soldierCollider;
     SoldierAnimator soldierAnimator;
     SoldierAttack soldierAttack;
     Rigidbody rigid;
-    bool isArrive = false;
     Transform target;
+
+    bool isArrive = false;
     float moveSpeed;
 
-    private void Awake()
-    {
-        soldierCollider = GetComponent<CapsuleCollider>();
-        rigid = GetComponent<Rigidbody>();
-    }
     private void FixedUpdate()
     {
         rigid.velocity = Vector3.zero;
-        //if (state != SoldierState.Battle) return;
         if (target != null) Rotate();
     }
-    public void Init(SoldierAnimator _soldierAnimator, SoldierData soldierData, SoldierAttack _soldierAttack)
+    public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierAttack _soldierAttack, Rigidbody _rigid, CapsuleCollider _capsuleCollider)
     {
-        moveSpeed = soldierData.MoveSpeed;
         soldierAnimator = _soldierAnimator;
         soldierAttack = _soldierAttack;
+        rigid = _rigid;
+        soldierCollider = _capsuleCollider;
     }
+    public void InitializeSetUp(SoldierData soldierData) => moveSpeed = soldierData.MoveSpeed;
+
     public IEnumerator MoveLoop(Vector3 destination)
     {
         float destinationDistance = 0.1f;
@@ -75,11 +71,5 @@ public class SoldierMovement : MonoBehaviour
         StartCoroutine(soldierAttack.AttackLoop());
     }
 
-    public void SetTarget(Transform _target)
-    {
-        target = _target;
-    }
-
-
-
+    public void SetTarget(Transform _target) => target = _target;
 }

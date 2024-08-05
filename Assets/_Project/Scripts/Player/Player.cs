@@ -9,15 +9,12 @@ public class Player : MonoBehaviour
     public int soldierCount;
     public List<Soldier> soldierList;
     [SerializeField] Transform soldierTr;
-
-    [Header("Finish Info")]
-    public FinishObjcet finishObjcet;
+    SpawnArea spawnArea;
 
     [Header("Player Info")]
     PlayerController playerController;
     TargetSearch targetSearch;
 
-    [SerializeField] Bounds spawnPointBounds;
     public Vector3 targetPos;
     public Vector3 soldierFirstPos;
 
@@ -25,6 +22,7 @@ public class Player : MonoBehaviour
     {
         soldierList = new List<Soldier>();
         playerController = GetComponent<PlayerController>();
+        spawnArea = GetComponent<SpawnArea>();
         targetSearch = GetComponent<TargetSearch>();
     }
 
@@ -34,11 +32,11 @@ public class Player : MonoBehaviour
     }
 
     #region Sort Soldier
-    public void ArriveDestination()
+    public void ArriveDestination(Vector3 position)
     {
         playerController.isArrive = true;
         targetSearch.enabled = true;
-        Vector3 soldierFirstPos = finishObjcet.soldierFirstPos.position;
+        Vector3 soldierFirstPos = position;
         for (int i = 0;  i < soldierList.Count; i++)
         {
             //10칸을 맞추기 위함
@@ -52,15 +50,7 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    #region Spawn & Create Soldier
-    public Vector3 SpawnPoint()
-    {
-        float randomPointX = transform.position.x + spawnPointBounds.center.x + UnityEngine.Random.Range(spawnPointBounds.extents.x * -0.5f, spawnPointBounds.extents.x * 0.5f);
-        float randomPointZ = transform.position.z + spawnPointBounds.center.z + UnityEngine.Random.Range(spawnPointBounds.extents.z * -0.5f, spawnPointBounds.extents.z * 0.5f);
-
-        Vector3 spawnPos = new Vector3(randomPointX, 0.6f, randomPointZ);
-        return spawnPos;
-    }
+    #region Create Soldier
 
     public void CreateSoldier(int count)
     {
@@ -71,7 +61,7 @@ public class Player : MonoBehaviour
             soldier.transform.parent = soldierTr;
             soldierList.Add(soldier);
             soldier.player = this;
-            soldier.transform.position = SpawnPoint();
+            soldier.transform.position = spawnArea.SpawnPoint();
         }
     }
     #endregion
@@ -85,11 +75,5 @@ public class Player : MonoBehaviour
             CreateSoldier(addCount);
         }
     }
-    private void OnDrawGizmos()
-    {
-        Color color = Color.green;
-        color.g = 0.8f;
-        Gizmos.color = color;
-        Gizmos.DrawCube(spawnPointBounds.center, spawnPointBounds.size);
-    }
+
 }

@@ -1,74 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
-public class SoldierAnimator : MonoBehaviour
+public enum SoldierAnimationName { Death, Run, Shot };
+
+public class SoldierAnimator : BaseAnimator
 {
-    [SerializeField] Animator animator;
-    public bool isAttacking;
-    Dictionary<SecondsType, WaitForSeconds> waitForSecondsDict;
-    enum SecondsType { AttackSpeed, Attack_Anim};
-
-
-
+    public Dictionary<SoldierAnimationName, float> AnimationDeleay;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        waitForSecondsDict = new Dictionary<SecondsType, WaitForSeconds>();
+        AnimationDeleay = new Dictionary<SoldierAnimationName, float>();
     }
-
-    public void OnInitAnimation()
+    //애니메이션의 길이를 미리 캐싱
+    private void Start() => AnimationDeleay.Add(SoldierAnimationName.Death, GetAnimationLength("m_weapon_death_A"));
+    public void InitializeSetUp()
     {
-        animator.SetBool("isLive", true);
-        animator.SetBool("isVictory", false);
+        OnMove(true);
+        OnDead(false);
     }
-
-    public void OnMove(bool isMove)
-    {
-        animator.SetBool("isMove", isMove);
-    }
-
-    public void OnAttack()
-    {
-        animator.SetTrigger("doAttack");
-    }
-
-    public void OnDead(bool isDead)
-    {
-        animator.SetBool("isDead", isDead);
-    }
-
-    //public void OnRevive()
-    //{
-    //    animator.SetBool("isLive", true);
-    //}
-    //IEnumerator AttackRoutine()
-    //{
-    //    isAttacking = true;
-    //    animator.SetTrigger("Attack");
-
-    //    //Debug.Log("기본 공격 사용");
-    //    yield return waitForSecondsDict[SecondsType.Attack_Anim];
-
-    //    yield return waitForSecondsDict[SecondsType.AttackSpeed];
-    //    isAttacking = false;
-    //    //animator.SetBool("isAttacking", isAttacking);
-    //}
-    //public void OnDamaged()
-    //{
-    //    if (!isAttacking)
-    //    {
-    //        animator.SetTrigger("Hurt");
-    //    }
-    //}
-    //public void OnDead()
-    //{
-    //    animator.SetBool("isLive", false);
-    //    animator.SetTrigger("Dead");
-    //}
-    //public void OnVictory()
-    //{
-    //    animator.SetBool("isVictory", true);
-    //}
 }

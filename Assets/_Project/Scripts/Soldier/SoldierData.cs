@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SoldierData", menuName = "ScriptableObjcet/SoldierData", order = 0)]
+[CreateAssetMenu(fileName = "SoldierData", menuName = "ScriptableObjcet/SoldierData")]
 public class SoldierData : ScriptableObject
 {
     [Header("Soldier Status Info")]

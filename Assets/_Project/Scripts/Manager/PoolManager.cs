@@ -20,16 +20,7 @@ public class PoolManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-        //if (GameManager.instance.isPause) return;
+        if (instance == null) instance = this;
         poolQueues = new Queue<GameObject>[poolDatas.Length];
         for (int i = 0; i < poolQueues.Length; i++)
         {
@@ -64,6 +55,14 @@ public class PoolManager : MonoBehaviour
 
         return obj;
     }
+    /// <summary>
+    /// Component를 가져올 수 있도록 구현
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="poolType"></param>
+    /// <param name="isParent"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public T GetPool<T>(PoolType poolType, bool isParent = false) where T : Component
     {
         GameObject obj = GetObject(poolType, isParent);
@@ -93,8 +92,6 @@ public class PoolManager : MonoBehaviour
 
         return obj;
     }
-
-    
 
     public void ReturnObject(PoolType poolType, GameObject gameObject)
     {
