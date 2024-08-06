@@ -5,12 +5,14 @@ using UnityEngine;
 public class TestManager : MonoBehaviour
 {
     [SerializeField] GameObject finishLinePrefab;
+    [SerializeField] float spawnTime = 1;
+    [SerializeField] int spawnMaxCount = 50;
 
     void Start()
     {
         FinishObjcet finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
         finishObjcet.SetPosition(2);
-        finishObjcet.NavMeshSetUp();
+        finishObjcet.InitializeSetUp(spawnMaxCount, spawnTime);
     }
 
     private void Update()

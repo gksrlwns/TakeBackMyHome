@@ -112,7 +112,7 @@ MonoBehaviour:
   isDead: 0
   maxHp: 0
   curHp: 0
-  zombieData: {fileID: 0}
+  zombieData: {fileID: 11400000, guid: b5f29b3988ff9bc438264b3f4303c44e, type: 2}
   attackRange: 0
   attackSpeed: 0
   moveSpeed: 0
@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2203028766456953101}
-  isAttacking: 0
 --- !u!195 &-5409598896973985036
 NavMeshAgent:
   m_ObjectHideFlags: 0

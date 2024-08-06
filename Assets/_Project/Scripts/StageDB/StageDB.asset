@@ -103,6 +103,12 @@ MonoBehaviour:
     position: 0
     value: 0
     value2: 0
+  - level: 1
+    type: 0
+    type2: 0
+    position: 0
+    value: 50
+    value2: 10
   - level: 2
     type: 0
     type2: 0
@@ -193,6 +199,12 @@ MonoBehaviour:
     position: 0
     value: 0
     value2: 0
+  - level: 2
+    type: 0
+    type2: 0
+    position: 0
+    value: 50
+    value2: 10
   - level: 3
     type: 0
     type2: 0
@@ -283,6 +295,12 @@ MonoBehaviour:
     position: 0
     value: 0
     value2: 0
+  - level: 3
+    type: 0
+    type2: 0
+    position: 0
+    value: 100
+    value2: 10
   - level: 4
     type: 0
     type2: 0
@@ -373,6 +391,12 @@ MonoBehaviour:
     position: 0
     value: 0
     value2: 0
+  - level: 4
+    type: 0
+    type2: 5
+    position: 0
+    value: 50
+    value2: 10
   - level: 5
     type: 0
     type2: 0
@@ -463,3 +487,9 @@ MonoBehaviour:
     position: 0
     value: 0
     value2: 0
+  - level: 5
+    type: 0
+    type2: 5
+    position: 0
+    value: 50
+    value2: 10
