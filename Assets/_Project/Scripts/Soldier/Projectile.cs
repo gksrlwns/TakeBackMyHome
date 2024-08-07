@@ -45,8 +45,9 @@ public class Projectile : MonoBehaviour
     {
         if(other.CompareTag("Zombie"))
         {
-            var zombie = other.GetComponent<Zombie>();
+            var zombie = other.GetComponent<ZombieHealth>();
             zombie.SufferDamage(damage);
+            PoolManager.instance.ReturnObject(PoolType.Projectile, gameObject);
         }
     }
 }

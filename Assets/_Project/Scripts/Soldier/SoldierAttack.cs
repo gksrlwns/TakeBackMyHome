@@ -1,18 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class SoldierAttack : MonoBehaviour
+public class SoldierAttack : MonoBehaviour, IAttackable
 {
     [Header("Projectile Info")]
     [SerializeField] Transform projectilePos;
     [SerializeField] Transform target;
-
-    float attackSpeed;
-    float damage;
     
     TargetSearch targetSearch;
     SoldierAnimator soldierAnimator;
     SoldierMovement soldierMovement;
+
+    float attackSpeed;
+    float damage;
 
     public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierMovement _soldierMovement)
     {
@@ -37,16 +37,15 @@ public class SoldierAttack : MonoBehaviour
             yield return CoroutineManager.DelaySeconds(attackSpeed);
         }
     }
-
-    void Attack()
+    public void Attack()
     {
         soldierAnimator.OnAttack();
         Debug.Log($"{this.name} АјАн");
         var projectile = PoolManager.instance.GetPool<Projectile>(PoolType.Projectile);
         projectile.SetProjectile(damage, projectilePos, target);
         projectile.LaunchProjectile();
-        
     }
-
     public void GetTargetSearch(TargetSearch _targetSearch) => targetSearch = _targetSearch;
+
+    
 }

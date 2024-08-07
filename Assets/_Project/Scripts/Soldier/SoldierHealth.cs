@@ -22,7 +22,6 @@ public class SoldierHealth : BaseHealth
     protected override void Dead()
     {
         base.Dead();
-        isDead = true;
         soldierAnimator.OnDead(isDead);
         StartCoroutine(RetunrPool());
     }
@@ -31,7 +30,7 @@ public class SoldierHealth : BaseHealth
     /// </summary>
     IEnumerator RetunrPool()
     {
-        yield return CoroutineManager.DelaySeconds(soldierAnimator.AnimationDeleay[SoldierAnimationName.Death]);
+        yield return CoroutineManager.DelaySeconds(soldierAnimator.GetAnimationSeconds(SoldierAnimationName.m_weapon_death_A));
         PoolManager.instance.ReturnObject(PoolType.Soldier, gameObject);
     }
 

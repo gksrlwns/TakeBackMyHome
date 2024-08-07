@@ -7,6 +7,14 @@ public class BaseAnimator : MonoBehaviour
     {
         animator.SetBool("isMove", isMove);
     }
+    public virtual void OnMove(Vector3 move)
+    {
+        animator.SetFloat("Speed", move.magnitude);
+    }
+    public virtual void OnAttack(bool isAttack)
+    {
+        animator.SetTrigger("isAttacking");
+    }
     public virtual void OnAttack()
     {
         animator.SetTrigger("doAttack");

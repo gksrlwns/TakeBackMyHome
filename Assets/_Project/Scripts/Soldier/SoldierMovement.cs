@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SoldierMovement : MonoBehaviour
+public class SoldierMovement : MonoBehaviour, IMovable
 {
     CapsuleCollider soldierCollider;
     SoldierAnimator soldierAnimator;
@@ -11,6 +11,7 @@ public class SoldierMovement : MonoBehaviour
 
     bool isArrive = false;
     float moveSpeed;
+    Vector3 direction;
 
     private void FixedUpdate()
     {
@@ -29,7 +30,6 @@ public class SoldierMovement : MonoBehaviour
     public IEnumerator MoveLoop(Vector3 destination)
     {
         float destinationDistance = 0.1f;
-        Vector3 direction = Vector3.zero;
         float distance = 0f;
         soldierCollider.enabled = false;
         while (true)
@@ -40,8 +40,7 @@ public class SoldierMovement : MonoBehaviour
 
             if (distance > destinationDistance)
             {
-                direction.Normalize();
-                transform.Translate(direction * moveSpeed * Time.deltaTime);
+                Move();
             }
             else
             {
@@ -55,15 +54,7 @@ public class SoldierMovement : MonoBehaviour
             yield return null;
         }
     }
-    void Rotate()
-    {
-        Vector3 direction = target.position - transform.position;
-        direction.y = 0;
 
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f * Time.deltaTime);
-    }
 
     void Stop()
     {
@@ -72,4 +63,20 @@ public class SoldierMovement : MonoBehaviour
     }
 
     public void SetTarget(Transform _target) => target = _target;
+
+    public void Move()
+    {
+        direction.Normalize();
+        transform.Translate(direction * moveSpeed * Time.deltaTime);
+    }
+
+    public void Rotate()
+    {
+        Vector3 direction = target.position - transform.position;
+        direction.y = 0;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f * Time.deltaTime);
+    }
 }

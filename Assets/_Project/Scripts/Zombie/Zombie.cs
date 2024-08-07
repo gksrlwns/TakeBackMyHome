@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Zombie : BaseHealth
+public class Zombie : MonoBehaviour
 {
     
     ZombieAnimator zombieAnimator;
@@ -14,31 +14,50 @@ public class Zombie : BaseHealth
     [SerializeField] float moveSpeed;
 
     [SerializeField] Soldier target;
-    NavMeshAgent agent;
+
+    CapsuleCollider zombieCollider;
+    ZombieMovement zombieMovement;
+    ZombieAttack zombieAttack;
+    ZombieHealth zombieHealth;
     TargetSearch targetSearch;
+    NavMeshAgent agent;
 
     private void Awake()
     {
         targetSearch = GetComponent<TargetSearch>();
-        zombieAnimator = GetComponent<ZombieAnimator>();
         agent = GetComponent<NavMeshAgent>();
+        zombieCollider = GetComponent<CapsuleCollider>();
+        zombieAnimator = GetComponentInChildren<ZombieAnimator>();
+        zombieMovement = GetComponent<ZombieMovement>();
+        zombieAttack = GetComponent<ZombieAttack>();
+        zombieHealth = GetComponent<ZombieHealth>();
+        agent.enabled = false;
+        zombieAnimator.InitDict();
+        zombieHealth.InitializeComponents(zombieAnimator, zombieCollider);
+        zombieMovement.InitializeComponents(zombieAttack, zombieAnimator,targetSearch ,agent);
+        zombieAttack.InitializeComponents(zombieAnimator, zombieMovement);
     }
 
-    public void Init()
+    public void InitializeSetUp()
     {
-        maxHp = zombieData.MaxHp;
-        attackRange = zombieData.AttackRange;
-        attackSpeed = zombieData.AttackSpeed;
-        moveSpeed = zombieData.MoveSpeed;
+        zombieAnimator.InitializeSetUp();
+        zombieMovement.InitializeSetUp(zombieData);
+        zombieAttack.InitializeSetUp(zombieData);
+        zombieHealth.InitializeSetUp(zombieData);
     }
 
-    public override void SufferDamage(float damgage)
+    private void OnEnable()
     {
-        base.SufferDamage(damgage);
+        InitializeSetUp();
+        StartCoroutine(Emerge());
     }
 
-    protected override void Dead()
+    IEnumerator Emerge()
     {
-        base.Dead();
+        yield return CoroutineManager.DelaySeconds(zombieAnimator.GetAnimationSeconds(ZombieAnimationName.Z_emerge));
+        agent.enabled = true;
+        zombieMovement.isMove = true;
+        StartCoroutine(zombieMovement.CheckNearTargetLoop());
     }
+
 }

@@ -113,7 +113,11 @@ MonoBehaviour:
   value: 0
   soldierFirstPos: {fileID: 5684975250739551378}
   navMeshManager: {fileID: 0}
-  spawnAreas: []
+  spawnArea: {fileID: 0}
+  spawnTime: 1
+  spawnMaxCount: 50
+  spawnCurCount: 0
+  startSpawnCount: 10
 --- !u!114 &8808595660105192060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +211,7 @@ MonoBehaviour:
   spawnPointBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 14, y: 0, z: 5}
+  spawnYPos: 0.83
 --- !u!1 &5684756872512636078
 GameObject:
   m_ObjectHideFlags: 0

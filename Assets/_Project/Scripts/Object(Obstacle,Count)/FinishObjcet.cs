@@ -10,7 +10,7 @@ public class FinishObjcet : ObjectData
     [SerializeField] int spawnMaxCount = 50;
     [SerializeField] int spawnCurCount = 0;
     [SerializeField] int startSpawnCount = 10;
-
+    public int deathCount = 0;
 
     private void Awake()
     {
@@ -22,9 +22,18 @@ public class FinishObjcet : ObjectData
     {
         navMeshManager.LoadNavMesh();
         spawnCurCount = 0;
+        deathCount = 0;
         spawnTime = _spawnTime;
         spawnMaxCount = _spawnMaxCount;
+        
     }
+    void TestSpawnZombie()
+    {
+        Zombie zombie = PoolManager.instance.GetPool<Zombie>(PoolType.Zombie);
+        zombie.transform.position = spawnArea.SpawnPoint();
+        spawnCurCount++;
+    }
+
     IEnumerator SpawnZombie()
     {
         for(int i = 0; i < startSpawnCount; i++)
@@ -48,7 +57,8 @@ public class FinishObjcet : ObjectData
         if(other.CompareTag("Player"))
         {
             GameManager.instance.player.ArriveDestination(soldierFirstPos.position);
-            StartCoroutine(SpawnZombie());
+            TestSpawnZombie();
+            //StartCoroutine(SpawnZombie());
         }
     }
 }
