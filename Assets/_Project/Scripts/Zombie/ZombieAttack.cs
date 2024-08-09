@@ -11,7 +11,7 @@ public class ZombieAttack : MonoBehaviour, IAttackable
 
     float attackSpeed;
     float attackRange;
-    float damage;
+    public float damage;
     public bool isAttacking;
 
     public void InitializeComponents(ZombieAnimator _zombieAnimator, ZombieMovement _zombieMovement)
@@ -23,12 +23,9 @@ public class ZombieAttack : MonoBehaviour, IAttackable
     {
         attackRange = _zombieData.AttackRange;
         attackSpeed = _zombieData.AttackSpeed;
+        damage = _zombieData.Damage;
     }
-
-    private void Update()
-    {
-        
-    }
+    
     IEnumerator Attacking()
     {
         isAttacking = true;
@@ -47,6 +44,7 @@ public class ZombieAttack : MonoBehaviour, IAttackable
     /// </summary>
     public void Attack()
     {
+        if (!target) return;
         target.SufferDamage(damage);
     }
     public void SetTarget(SoldierHealth soldier) => target = soldier;

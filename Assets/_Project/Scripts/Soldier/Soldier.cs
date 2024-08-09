@@ -25,9 +25,9 @@ public class Soldier : MonoBehaviour
         soldierHealth = GetComponent<SoldierHealth>();
         soldierCollider = GetComponent<CapsuleCollider>();
         rigid = GetComponent<Rigidbody>();
-        soldierAttack.InitializeComponents(soldierAnimator, soldierMovement);
+        soldierAttack.InitializeComponents(soldierAnimator, soldierHealth,soldierMovement);
         soldierMovement.InitializeComponents(soldierAnimator, soldierAttack, rigid, soldierCollider);
-        soldierHealth.InitializeComponents(soldierAnimator,soldierCollider);
+        soldierHealth.InitializeComponents(soldierAnimator,soldierAttack ,soldierCollider);
     }
     private void OnEnable() => InitializeSetUp();
     void InitializeSetUp()

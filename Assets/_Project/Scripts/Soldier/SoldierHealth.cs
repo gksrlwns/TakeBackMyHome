@@ -4,11 +4,12 @@ using UnityEngine;
 public class SoldierHealth : BaseHealth
 {
     SoldierAnimator soldierAnimator;
-
-    public void InitializeComponents(SoldierAnimator _soldierAnimator,CapsuleCollider _capsuleCollider)
+    SoldierAttack soldierAttack;
+    public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierAttack _soldierAttack, CapsuleCollider _capsuleCollider)
     {
         soldierAnimator = _soldierAnimator;
         myCollider = _capsuleCollider;
+        soldierAttack = _soldierAttack;
     }
     public void InitializeSetUp(SoldierData soldierData)
     {
@@ -22,6 +23,7 @@ public class SoldierHealth : BaseHealth
     protected override void Dead()
     {
         base.Dead();
+        soldierAttack.GetIsDead();
         soldierAnimator.OnDead(isDead);
         StartCoroutine(RetunrPool());
     }

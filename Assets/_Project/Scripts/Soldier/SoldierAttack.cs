@@ -10,14 +10,16 @@ public class SoldierAttack : MonoBehaviour, IAttackable
     TargetSearch targetSearch;
     SoldierAnimator soldierAnimator;
     SoldierMovement soldierMovement;
+    SoldierHealth soldierHealth;
 
     float attackSpeed;
     float damage;
 
-    public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierMovement _soldierMovement)
+    public void InitializeComponents(SoldierAnimator _soldierAnimator,SoldierHealth _soldierHealth , SoldierMovement _soldierMovement)
     {
         soldierMovement = _soldierMovement;
         soldierAnimator = _soldierAnimator;
+        soldierHealth = _soldierHealth;
     }
 
     public void InitializeSetUp(SoldierData soldierData)
@@ -39,6 +41,7 @@ public class SoldierAttack : MonoBehaviour, IAttackable
     }
     public void Attack()
     {
+        if (soldierHealth.isDead) return;
         soldierAnimator.OnAttack();
         Debug.Log($"{this.name} АјАн");
         var projectile = PoolManager.instance.GetPool<Projectile>(PoolType.Projectile);
@@ -47,5 +50,8 @@ public class SoldierAttack : MonoBehaviour, IAttackable
     }
     public void GetTargetSearch(TargetSearch _targetSearch) => targetSearch = _targetSearch;
 
-    
+    public void GetIsDead()
+    {
+        StopAllCoroutines();
+    }
 }

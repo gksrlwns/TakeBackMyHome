@@ -8,7 +8,7 @@ public class ZombieAnimator : BaseAnimator
     Dictionary<ZombieAnimationName, float> animationDeleayDict;
     private void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
     }
     public void InitializeSetUp()
     {

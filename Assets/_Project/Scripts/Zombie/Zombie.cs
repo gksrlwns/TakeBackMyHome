@@ -5,17 +5,12 @@ using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour
 {
-    
-    ZombieAnimator zombieAnimator;
     [Header("Zombie Status Info")]
     [SerializeField] ZombieData zombieData;
-    [SerializeField] float attackRange;
-    [SerializeField] float attackSpeed;
-    [SerializeField] float moveSpeed;
-
     [SerializeField] Soldier target;
 
     CapsuleCollider zombieCollider;
+    ZombieAnimator zombieAnimator;
     ZombieMovement zombieMovement;
     ZombieAttack zombieAttack;
     ZombieHealth zombieHealth;
@@ -33,7 +28,7 @@ public class Zombie : MonoBehaviour
         zombieHealth = GetComponent<ZombieHealth>();
         agent.enabled = false;
         zombieAnimator.InitDict();
-        zombieHealth.InitializeComponents(zombieAnimator, zombieCollider);
+        zombieHealth.InitializeComponents(zombieAnimator, zombieCollider, agent);
         zombieMovement.InitializeComponents(zombieAttack, zombieAnimator,targetSearch ,agent);
         zombieAttack.InitializeComponents(zombieAnimator, zombieMovement);
     }
@@ -56,7 +51,6 @@ public class Zombie : MonoBehaviour
     {
         yield return CoroutineManager.DelaySeconds(zombieAnimator.GetAnimationSeconds(ZombieAnimationName.Z_emerge));
         agent.enabled = true;
-        zombieMovement.isMove = true;
         StartCoroutine(zombieMovement.CheckNearTargetLoop());
     }
 

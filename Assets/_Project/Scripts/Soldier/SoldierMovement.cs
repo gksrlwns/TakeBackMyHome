@@ -25,7 +25,11 @@ public class SoldierMovement : MonoBehaviour, IMovable
         rigid = _rigid;
         soldierCollider = _capsuleCollider;
     }
-    public void InitializeSetUp(SoldierData soldierData) => moveSpeed = soldierData.MoveSpeed;
+    public void InitializeSetUp(SoldierData soldierData)
+    {
+        moveSpeed = soldierData.MoveSpeed;
+        rigid.isKinematic = false;
+    }
 
     public IEnumerator MoveLoop(Vector3 destination)
     {
@@ -59,6 +63,7 @@ public class SoldierMovement : MonoBehaviour, IMovable
     void Stop()
     {
         soldierAnimator.OnMove(false);
+        rigid.isKinematic = true;
         StartCoroutine(soldierAttack.AttackLoop());
     }
 
@@ -76,7 +81,8 @@ public class SoldierMovement : MonoBehaviour, IMovable
         direction.y = 0;
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = targetRotation;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5f * Time.deltaTime);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 20f * Time.deltaTime);
     }
 }

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7411009452580202154}
   - component: {fileID: 3355180576094260559}
-  - component: {fileID: -4904256182057749715}
   - component: {fileID: 5346610831658061765}
   - component: {fileID: 3885055379682749637}
   - component: {fileID: 7887473081512875757}
@@ -19,6 +18,7 @@ GameObject:
   - component: {fileID: 8693620793198236747}
   - component: {fileID: 8781104090012884107}
   - component: {fileID: -5409598896973985036}
+  - component: {fileID: 1469775755532690207}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Zombie
@@ -50,33 +50,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7991361117519847252}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &-4904256182057749715
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7991361117519847252}
-  serializedVersion: 4
-  m_Mass: 0.1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
 --- !u!136 &5346610831658061765
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -113,9 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieData: {fileID: 11400000, guid: b5f29b3988ff9bc438264b3f4303c44e, type: 2}
-  attackRange: 0
-  attackSpeed: 0
-  moveSpeed: 0
   target: {fileID: 0}
 --- !u!114 &7887473081512875757
 MonoBehaviour:
@@ -129,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420d951b95830b1499757348f835afd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMove: 0
 --- !u!114 &1183618151307453352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 315e134b3b30f1646823425be6479420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   isAttacking: 0
 --- !u!114 &2994165627948444121
 MonoBehaviour:
@@ -155,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e3b32f138f2da848b94d0c617b85e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2203028766456953101}
+  animator: {fileID: 1469775755532690207}
 --- !u!114 &8693620793198236747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +180,27 @@ NavMeshAgent:
   m_BaseOffset: 0.84
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &1469775755532690207
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991361117519847252}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a1aade9bc7779e24b8219a8ceb948e08, type: 3}
+  m_Controller: {fileID: 9100000, guid: 2a5ae2852fd0145438ca103e5684638a, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2203028766449480717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -582,7 +573,8 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 2a5ae2852fd0145438ca103e5684638a, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9571584, guid: e7d16897c7e623049889ee327d7ec1c9, type: 3}
     m_RemovedGameObjects:
     - {fileID: 170128, guid: e7d16897c7e623049889ee327d7ec1c9, type: 3}
     - {fileID: 189444, guid: e7d16897c7e623049889ee327d7ec1c9, type: 3}
@@ -611,12 +603,6 @@ PrefabInstance:
 --- !u!4 &2203028766449941121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 462476, guid: e7d16897c7e623049889ee327d7ec1c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 2203028766449480717}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2203028766456953101 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9571584, guid: e7d16897c7e623049889ee327d7ec1c9,
     type: 3}
   m_PrefabInstance: {fileID: 2203028766449480717}
   m_PrefabAsset: {fileID: 0}

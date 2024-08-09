@@ -12,7 +12,6 @@ public class ZombieMovement : MonoBehaviour, IMovable
     TargetSearch targetSearch;
     SoldierHealth target;
 
-    public bool isMove;
     float attackRange;
     Vector3 direction;
 
@@ -31,7 +30,7 @@ public class ZombieMovement : MonoBehaviour, IMovable
 
     private void Update()
     {
-        if (!isMove) return;
+        if (!agent.enabled) return;
         Move();
     }
     
@@ -47,20 +46,48 @@ public class ZombieMovement : MonoBehaviour, IMovable
     }
     public void Move()
     {
-        zombieAnimator.OnMove(agent.velocity);
-        if (target == null) direction = GameManager.instance.player.transform.position;
-        else direction = target.transform.position;
-        agent.SetDestination(direction);
-        if (agent.remainingDistance <= attackRange && agent.remainingDistance != 0)
+        if (agent.isOnNavMesh)
         {
-            agent.isStopped = true;
-            zombieAttack.AttackMotion();
+            zombieAnimator.OnMove(agent.velocity);
+            if (target == null) direction = GameManager.instance.player.transform.position + new Vector3(0,0,-5f);
+            else direction = target.transform.position;
+            agent.SetDestination(direction);
+            if (agent.remainingDistance > 0.1f && agent.remainingDistance <= attackRange)
+            {
+                agent.isStopped = true;
+                zombieAttack.AttackMotion();
+            }
+            else
+            {
+                agent.isStopped = false;
+            }
         }
         else
         {
-            agent.isStopped = false;
+            Debug.LogWarning("Cannot move agent because it is not on the NavMesh.");
         }
-        Debug.Log($"{agent.velocity}, {agent.remainingDistance}");
+        //zombieAnimator.OnMove(agent.velocity);
+        //if (target == null) direction = GameManager.instance.player.transform.position;
+        //else direction = target.transform.position;
+        //if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
+        //{
+        //    //agent.Warp(hit.position); // NavMesh 위로 에이전트 이동
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Zombie is not on the NavMesh!");
+        //    return;
+        //}
+        //agent.SetDestination(direction);
+        //if (agent.remainingDistance > 0 && agent.remainingDistance <= attackRange)
+        //{
+        //    agent.isStopped = true;
+        //    zombieAttack.AttackMotion();
+        //}
+        //else
+        //{
+        //    agent.isStopped = false;
+        //}
     }
 
 

@@ -7,7 +7,7 @@ public class FinishObjcet : ObjectData
     [SerializeField] NavMeshManager navMeshManager;
     [SerializeField] SpawnArea spawnArea;
     [SerializeField] float spawnTime = 1 ;
-    [SerializeField] int spawnMaxCount = 50;
+    [SerializeField] int spawnMaxCount = 30;
     [SerializeField] int spawnCurCount = 0;
     [SerializeField] int startSpawnCount = 10;
     public int deathCount = 0;
@@ -57,8 +57,8 @@ public class FinishObjcet : ObjectData
         if(other.CompareTag("Player"))
         {
             GameManager.instance.player.ArriveDestination(soldierFirstPos.position);
-            TestSpawnZombie();
-            //StartCoroutine(SpawnZombie());
+            StartCoroutine(SpawnZombie());
+            //TestSpawnZombie();
         }
     }
 }
