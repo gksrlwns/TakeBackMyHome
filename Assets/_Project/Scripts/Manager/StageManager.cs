@@ -78,6 +78,7 @@ public class StageManager : MonoBehaviour
                 objectData.obstacle = (ObstacleType)list[i].type2;
                 objectData.value = list[i].value;
             }
+
             objectData.SetActiveSelf((ObjectSetActiveType)list[i].position);
 
             objectData.SetPosition(i+1);
@@ -90,7 +91,7 @@ public class StageManager : MonoBehaviour
 
         FinishObjcet finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
         finishObjcet.SetPosition(list.Count + emptyCount + 1);
-        //finishObjcet.InitializeSetUp();
+        finishObjcet.InitializeSetUp(list[list.Count-1].value, level);
     }
     /// <summary>
     /// StageDB에는 모든 Stage에 대한 Data가 남겨있으므로 게임을 시작시 Level에 맞춰 Dictionary로 관리

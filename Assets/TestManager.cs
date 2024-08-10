@@ -8,7 +8,7 @@ public class TestManager : MonoBehaviour
     public bool isPause;
     [SerializeField] int startingSoldierCount = 5;
     [SerializeField] GameObject finishLinePrefab;
-    [SerializeField] float spawnTime = 1;
+    [SerializeField] int stageLevel = 1;
     [SerializeField] int spawnMaxCount = 50;
     [SerializeField] SpawnArea spawnArea;
     //[SerializeField] FinishObjcet finishObjcet;
@@ -26,7 +26,7 @@ public class TestManager : MonoBehaviour
         //zom.transform.position = spawnArea.SpawnPoint();
         player.CreateSoldier(startingSoldierCount);
         FinishObjcet finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
-        finishObjcet.InitializeSetUp(spawnMaxCount, spawnTime);
+        finishObjcet.InitializeSetUp(spawnMaxCount, stageLevel);
         finishObjcet.SetPosition(2);
 
     }

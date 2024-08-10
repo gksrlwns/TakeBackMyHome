@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PoolType { Soldier, Zombie, Projectile }
+public enum PoolType { Soldier, ZombieA, ZombieB, ZombieRun, Projectile }
 
 public class PoolManager : MonoBehaviour
 {

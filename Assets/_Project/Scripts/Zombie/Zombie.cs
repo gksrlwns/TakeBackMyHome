@@ -14,6 +14,7 @@ public class Zombie : MonoBehaviour
     ZombieMovement zombieMovement;
     ZombieAttack zombieAttack;
     ZombieHealth zombieHealth;
+    ZombieCustomizing zombieCustomizing;
     TargetSearch targetSearch;
     NavMeshAgent agent;
 
@@ -22,10 +23,11 @@ public class Zombie : MonoBehaviour
         targetSearch = GetComponent<TargetSearch>();
         agent = GetComponent<NavMeshAgent>();
         zombieCollider = GetComponent<CapsuleCollider>();
-        zombieAnimator = GetComponentInChildren<ZombieAnimator>();
+        zombieAnimator = GetComponent<ZombieAnimator>();
         zombieMovement = GetComponent<ZombieMovement>();
         zombieAttack = GetComponent<ZombieAttack>();
         zombieHealth = GetComponent<ZombieHealth>();
+        zombieCustomizing = GetComponentInChildren<ZombieCustomizing>();
         agent.enabled = false;
         zombieAnimator.InitDict();
         zombieHealth.InitializeComponents(zombieAnimator, zombieCollider, agent);
@@ -36,9 +38,11 @@ public class Zombie : MonoBehaviour
     public void InitializeSetUp()
     {
         zombieAnimator.InitializeSetUp();
+        zombieCustomizing.InitializeSetUp();
         zombieMovement.InitializeSetUp(zombieData);
         zombieAttack.InitializeSetUp(zombieData);
         zombieHealth.InitializeSetUp(zombieData);
+        zombieCustomizing.SetZombieCustomizing();
     }
 
     private void OnEnable()
@@ -53,5 +57,7 @@ public class Zombie : MonoBehaviour
         agent.enabled = true;
         StartCoroutine(zombieMovement.CheckNearTargetLoop());
     }
+
+    public void GetEndPoint(Transform endPoint) => zombieMovement.GetEndPoint(endPoint);
 
 }

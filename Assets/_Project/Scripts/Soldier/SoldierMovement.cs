@@ -6,6 +6,7 @@ public class SoldierMovement : MonoBehaviour, IMovable
     CapsuleCollider soldierCollider;
     SoldierAnimator soldierAnimator;
     SoldierAttack soldierAttack;
+    SoldierHealth soldierHealth;
     Rigidbody rigid;
     Transform target;
 
@@ -15,15 +16,17 @@ public class SoldierMovement : MonoBehaviour, IMovable
 
     private void FixedUpdate()
     {
-        rigid.velocity = Vector3.zero;
+        if(soldierHealth.isDead) return;
+        if(!isArrive) rigid.velocity = Vector3.zero;
         if (target != null) Rotate();
     }
-    public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierAttack _soldierAttack, Rigidbody _rigid, CapsuleCollider _capsuleCollider)
+    public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierAttack _soldierAttack,SoldierHealth _soldierHealth , Rigidbody _rigid, CapsuleCollider _capsuleCollider)
     {
         soldierAnimator = _soldierAnimator;
         soldierAttack = _soldierAttack;
         rigid = _rigid;
         soldierCollider = _capsuleCollider;
+        soldierHealth = _soldierHealth;
     }
     public void InitializeSetUp(SoldierData soldierData)
     {

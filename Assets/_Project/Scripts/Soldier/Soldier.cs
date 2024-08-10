@@ -26,7 +26,7 @@ public class Soldier : MonoBehaviour
         soldierCollider = GetComponent<CapsuleCollider>();
         rigid = GetComponent<Rigidbody>();
         soldierAttack.InitializeComponents(soldierAnimator, soldierHealth,soldierMovement);
-        soldierMovement.InitializeComponents(soldierAnimator, soldierAttack, rigid, soldierCollider);
+        soldierMovement.InitializeComponents(soldierAnimator, soldierAttack ,soldierHealth , rigid, soldierCollider);
         soldierHealth.InitializeComponents(soldierAnimator,soldierAttack ,soldierCollider);
     }
     private void OnEnable() => InitializeSetUp();
@@ -39,7 +39,6 @@ public class Soldier : MonoBehaviour
     }
     public void MoveDestination(Vector3 destination)
     {
-        Debug.Log($"솔져의 목표 위치 : {destination}");
         StartCoroutine(soldierMovement.MoveLoop(destination));
     }
     public void GetTargetSearch(TargetSearch _targetSearch) => soldierAttack.GetTargetSearch(_targetSearch);

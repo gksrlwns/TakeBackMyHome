@@ -35,6 +35,6 @@ public class ZombieHealth : BaseHealth
     IEnumerator RetunrPool()
     {
         yield return CoroutineManager.DelaySeconds(zombieAnimator.GetAnimationSeconds(ZombieAnimationName.Z_death_A));
-        PoolManager.instance.ReturnObject(PoolType.Zombie, gameObject);
+        PoolManager.instance.ReturnObject(PoolType.ZombieA, gameObject);
     }
 }

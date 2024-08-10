@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4631532204428644638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7098810639238934117}
+  - component: {fileID: 4304160400694549980}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7098810639238934117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4631532204428644638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4304160400694549980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4631532204428644638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94b8bdb6180c2d4f967688c528f7fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolDatas:
+  - poolType: 0
+    size: 5
+    prefab: {fileID: 7991361117519847252, guid: 3128c927507e3244687fe45d26a174bb,
+      type: 3}
+  - poolType: 1
+    size: 10
+    prefab: {fileID: 7991361117519847252, guid: 0a3a998ed921ac24996138cf3690fec1,
+      type: 3}
+  - poolType: 2
+    size: 10
+    prefab: {fileID: 7991361117519847252, guid: f7c7f6bf4f234f54fb714dc81577f49e,
+      type: 3}
+  - poolType: 3
+    size: 10
+    prefab: {fileID: 7991361117519847252, guid: cb7f25d5e0aa92144b839e1b87a6e383,
+      type: 3}
+  - poolType: 4
+    size: 5
+    prefab: {fileID: 8074715504636270682, guid: e139fe30c711e4249b658e0025764c32,
+      type: 3}
+  poolDataTr: []
