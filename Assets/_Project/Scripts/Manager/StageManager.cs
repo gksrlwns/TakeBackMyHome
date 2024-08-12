@@ -67,9 +67,12 @@ public class StageManager : MonoBehaviour
             //0 : CountObject
             if (list[i].type.Equals(0))
             {
-                objectData = Instantiate(countPrefab, transform).GetComponent<ObjectData>();
-                objectData.leftRightObjects[0].GetComponent<CountObject>().value = list[i].value;
-                objectData.leftRightObjects[1].GetComponent<CountObject>().value = list[i].value2;
+                CountObjcetController countObjcetController = Instantiate(countPrefab,transform).GetComponent<CountObjcetController>();
+                countObjcetController.SetCountValue();
+                objectData = countObjcetController;
+                //objectData = Instantiate(countPrefab, transform).GetComponent<ObjectData>();
+                //objectData.leftRightObjects[0].GetComponent<CountObject>().value = list[i].value;
+                //objectData.leftRightObjects[1].GetComponent<CountObject>().value = list[i].value2;
             }
             //1 : ObstacleObject
             else

@@ -1,7 +1,6 @@
 using UnityEngine;
 
 public enum ObstacleType { Barrier,Barrier2, Spike, MovableSpin, SpinBlade, Hammer };
-public enum CountType { Add, Multiply };
 public enum ObjectSetActiveType {Left, Rigth, Both };
 
 public class ObjectData : MonoBehaviour

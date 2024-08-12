@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public enum CountType { Add, Multiply };
 
 public class CountObject : MonoBehaviour
 {
