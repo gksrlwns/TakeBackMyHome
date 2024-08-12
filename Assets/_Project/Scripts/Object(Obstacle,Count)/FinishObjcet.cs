@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class FinishObjcet : ObjectData
+public class FinishObjcetController : ObjectDataController
 {
     [SerializeField] Transform soldierFirstPos;
     [SerializeField] NavMeshManager navMeshManager;

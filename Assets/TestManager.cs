@@ -25,7 +25,7 @@ public class TestManager : MonoBehaviour
         //var zom = PoolManager.instance.GetPool<Zombie>(PoolType.Zombie);
         //zom.transform.position = spawnArea.SpawnPoint();
         player.CreateSoldier(startingSoldierCount);
-        FinishObjcet finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
+        FinishObjcetController finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcetController>();
         finishObjcet.InitializeSetUp(spawnMaxCount, stageLevel);
         finishObjcet.SetPosition(2);
 

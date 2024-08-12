@@ -1,17 +1,11 @@
 using UnityEngine;
-
-public enum ObstacleType { Barrier,Barrier2, Spike, MovableSpin, SpinBlade, Hammer };
 public enum ObjectSetActiveType {Left, Rigth, Both };
 
-public class ObjectData : MonoBehaviour
+public class ObjectDataController : MonoBehaviour
 {
-    public ObstacleType obstacle;
-
-    public ObjectSetActiveType position;
+    [SerializeField] ObjectSetActiveType position;
 
     public GameObject[] leftRightObjects;
-
-    public int value;
 
     public void SetPosition(int index) => transform.position = new Vector3(0, 0, index * 20f);
 
@@ -21,7 +15,7 @@ public class ObjectData : MonoBehaviour
         {
             case ObjectSetActiveType.Left:
             case ObjectSetActiveType.Rigth:
-                if(obstacle.Equals(ObstacleType.SpinBlade))
+                if(leftRightObjects.Length.Equals(1))
                 {
                     leftRightObjects[0].SetActive(true);
                     break;

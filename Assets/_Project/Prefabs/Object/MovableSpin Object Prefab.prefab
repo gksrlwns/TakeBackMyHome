@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6096276231091669706}
-  - component: {fileID: 3575695019660757505}
+  - component: {fileID: 2669289769049340435}
   m_Layer: 0
   m_Name: MovableSpin Object Prefab
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 266289812314485491}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3575695019660757505
+--- !u!114 &2669289769049340435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,14 +43,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6072094244188605044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da470ad8b4db32847a522353be9744ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ae2be587fd04bbb45a53ee7c9f588250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: 2
   position: 0
   leftRightObjects:
   - {fileID: 3546905436692806117}
   value: 0
+  obstacle: 0
 --- !u!1 &8505184017534601692
 GameObject:
   m_ObjectHideFlags: 0

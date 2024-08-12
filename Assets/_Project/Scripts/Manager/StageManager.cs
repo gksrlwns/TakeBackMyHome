@@ -31,7 +31,7 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 0; i< stageDB.Stage.Count;i++)
         {
-            if(stageDB.Stage[i].type.Equals(0))
+            if(stageDB.Stage[i].objectType.Equals(0))
             {
                 if (stageDB.Stage[i].position > Enum.GetValues(typeof(ObjectSetActiveType)).Length - 1)
                 {
@@ -39,14 +39,14 @@ public class StageManager : MonoBehaviour
                     stageDB.Stage[i].position = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ObjectSetActiveType)).Length - 1);
                 }
             }
-            else if (stageDB.Stage[i].type.Equals(1))
+            else if (stageDB.Stage[i].objectType.Equals(1))
             {
-                if (stageDB.Stage[i].type2 > Enum.GetValues(typeof(ObstacleType)).Length - 1)
+                if (stageDB.Stage[i].obstacleType > Enum.GetValues(typeof(ObstacleType)).Length - 1)
                 {
                     Debug.Log($"{i}번째 Data의 Type2 값이 지정된 값보다 큼");
-                    stageDB.Stage[i].type2 = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ObstacleType)).Length - 1);
+                    stageDB.Stage[i].obstacleType = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ObstacleType)).Length - 1);
                 }
-                if (!stageDB.Stage[i].type2.Equals((int)ObstacleType.Hammer) && stageDB.Stage[i].position > Enum.GetValues(typeof(ObjectSetActiveType)).Length - 2)
+                if (!stageDB.Stage[i].obstacleType.Equals((int)ObstacleType.Hammer) && stageDB.Stage[i].position > Enum.GetValues(typeof(ObjectSetActiveType)).Length - 2)
                 {
                     Debug.Log($"{i}번째 Data의 Position 값이 지정된 값보다 큼");
                     stageDB.Stage[i].position = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ObjectSetActiveType)).Length - 2);
@@ -61,38 +61,35 @@ public class StageManager : MonoBehaviour
     public void CreateStage(int level)
     {
         List<StageData> list = stageDataDict[level];
-        ObjectData objectData;
+        ObjectDataController objectDataController;
         for (int i = 0; i < list.Count; i++)
         {
             //0 : CountObject
-            if (list[i].type.Equals(0))
+            if (list[i].objectType.Equals(0))
             {
                 CountObjcetController countObjcetController = Instantiate(countPrefab,transform).GetComponent<CountObjcetController>();
-                countObjcetController.SetCountValue();
-                objectData = countObjcetController;
-                //objectData = Instantiate(countPrefab, transform).GetComponent<ObjectData>();
-                //objectData.leftRightObjects[0].GetComponent<CountObject>().value = list[i].value;
-                //objectData.leftRightObjects[1].GetComponent<CountObject>().value = list[i].value2;
+                countObjcetController.SetCountValue(list[i].value, list[i].value2);
+                objectDataController = countObjcetController;
             }
             //1 : ObstacleObject
             else
             {
-                objectData = Instantiate(obstaclePrefabs[list[i].type2], transform).GetComponent<ObjectData>();
-                objectData.obstacle = (ObstacleType)list[i].type2;
-                objectData.value = list[i].value;
+                ObstacleObjectController obstacleObjectController = Instantiate(obstaclePrefabs[list[i].obstacleType], transform).GetComponent<ObstacleObjectController>();
+                obstacleObjectController.SetObstacle(list[i].obstacleType, list[i].value);
+                objectDataController = obstacleObjectController;
             }
 
-            objectData.SetActiveSelf((ObjectSetActiveType)list[i].position);
+            objectDataController.SetActiveSelf((ObjectSetActiveType)list[i].position);
 
-            objectData.SetPosition(i+1);
+            objectDataController.SetPosition(i+1);
         }
         for(int i = 1; i <= emptyCount; i++)
         {
-            objectData = Instantiate(emptyPrefab, transform).AddComponent<ObjectData>().GetComponent<ObjectData>();
-            objectData.SetPosition(list.Count + i);
+            objectDataController = Instantiate(emptyPrefab, transform).AddComponent<ObjectDataController>().GetComponent<ObjectDataController>();
+            objectDataController.SetPosition(list.Count + i);
         }
 
-        FinishObjcet finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcet>();
+        FinishObjcetController finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcetController>();
         finishObjcet.SetPosition(list.Count + emptyCount + 1);
         finishObjcet.InitializeSetUp(list[list.Count-1].value, level);
     }
@@ -113,7 +110,7 @@ public class StageManager : MonoBehaviour
                 list.Clear();
             }
 
-            StageData stageData = new StageData(stageDB.Stage[i].type, stageDB.Stage[i].type2, stageDB.Stage[i].position, stageDB.Stage[i].value, stageDB.Stage[i].value2);
+            StageData stageData = new StageData(stageDB.Stage[i].objectType, stageDB.Stage[i].obstacleType, stageDB.Stage[i].position, stageDB.Stage[i].value, stageDB.Stage[i].value2);
             list.Add(stageData);
             if (i.Equals(stageDB.Stage.Count - 1))
             {
@@ -126,16 +123,16 @@ public class StageManager : MonoBehaviour
 [Serializable]
 public struct StageData
 {
-    public int type;
-    public int type2;
+    public int objectType;
+    public int obstacleType;
     public int position;
     public int value;
     public int value2;
 
     public StageData(int type, int type2, int position, int value, int value2)
     {
-        this.type = type;
-        this.type2 = type2;
+        this.objectType = type;
+        this.obstacleType = type2;
         this.position = position;
         this.value = value;
         this.value2 = value2;

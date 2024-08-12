@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1093693502562023765}
-  - component: {fileID: 9014410737490271077}
+  - component: {fileID: 5470686198244330508}
   m_Layer: 0
   m_Name: Spike Object Prefab
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 3547367347360246796}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9014410737490271077
+--- !u!114 &5470686198244330508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,15 +43,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4417234651763877470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da470ad8b4db32847a522353be9744ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ae2be587fd04bbb45a53ee7c9f588250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: 1
   position: 0
   leftRightObjects:
   - {fileID: 4976207248921790834}
   - {fileID: 3304330873148050882}
   value: 0
+  obstacle: 0
 --- !u!1 &5223775764346051114
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3004875416398333735}
-  - component: {fileID: 1044315134283328828}
+  - component: {fileID: 7851484129384770640}
   m_Layer: 0
   m_Name: Barrier Object Prefab
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 2190287311846684425}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1044315134283328828
+--- !u!114 &7851484129384770640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +43,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3836775563369017981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da470ad8b4db32847a522353be9744ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ae2be587fd04bbb45a53ee7c9f588250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: 0
   position: 0
   leftRightObjects:
   - {fileID: 986234272197237184}
@@ -54,6 +53,7 @@ MonoBehaviour:
   - {fileID: 7835747844818448326}
   - {fileID: 3452094904176882087}
   value: 0
+  obstacle: 0
 --- !u!1 &6248444004022175865
 GameObject:
   m_ObjectHideFlags: 0

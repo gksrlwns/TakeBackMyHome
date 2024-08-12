@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9144180515515732294}
-  - component: {fileID: 6830163146608443940}
+  - component: {fileID: 3209514410015267042}
   m_Layer: 0
   m_Name: Hammer Object Prefab
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 996879823234828758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6830163146608443940
+--- !u!114 &3209514410015267042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,15 +43,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6346548810766670703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da470ad8b4db32847a522353be9744ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ae2be587fd04bbb45a53ee7c9f588250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: 4
   position: 0
   leftRightObjects:
   - {fileID: 4939757654659355205}
   - {fileID: 4528082530323918410}
   value: 0
+  obstacle: 0
 --- !u!1 &7250570075642382821
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 516788529052430156, guid: 816e60df4bc0142b580d4ff43f6035d0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 893912579487495670, guid: 816e60df4bc0142b580d4ff43f6035d0,
         type: 3}
@@ -282,7 +282,7 @@ PrefabInstance:
     - target: {fileID: 516788529052430156, guid: 816e60df4bc0142b580d4ff43f6035d0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 893912579487495670, guid: 816e60df4bc0142b580d4ff43f6035d0,
         type: 3}
