@@ -5,7 +5,7 @@ public enum ObstacleType { Barrier, Barrier2, Spike, MovableSpin, SpinBlade, Ham
 
 public class ObstacleObjectController : ObjectDataController
 {
-    [SerializeField] ObstacleType obstacle;
+    [HideInInspector] public ObstacleType obstacle;
     [SerializeField] int value;
 
     public void SetObstacle(int obstacleIndex, int _value)

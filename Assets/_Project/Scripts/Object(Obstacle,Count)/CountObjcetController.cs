@@ -9,11 +9,21 @@ public class CountObjcetController : ObjectDataController
     private void Awake()
     {
         countObjects = GetComponentsInChildren<CountObject>(true);
+        for (int i = 0; i < countObjects.Length; i++) countObjects[i].InitiailizeComponent(this);
     }
 
     public void SetCountValue(int value, int value2)
     {
-        countObjects[0].value = value;
-        countObjects[1].value = value2;
+        countObjects[0].InitiailizeValue(value);
+        countObjects[1].InitiailizeValue(value2);
     }
+    public void SetCollider(bool isTrig)
+    {
+        for(int i = 0; i < countObjects.Length; i++)
+        {
+            countObjects[i].SetTrigger(isTrig);
+        }
+    }
+
+    
 }
