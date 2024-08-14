@@ -225,6 +225,17 @@
                 },
                 {
                     "name": "",
+                    "id": "85089c9f-9fcc-412e-acb7-60436a82a970",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch;Mobile",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ec0d3021-c15e-443e-9446-8462a34f038f",
                     "path": "<Keyboard>/space",
                     "interactions": "",

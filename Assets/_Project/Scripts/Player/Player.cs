@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Count"))
         {
             int addCount = other.GetComponent<CountObject>().CalculateCount(soldierCount);
-            soldierCount += addCount;
             CreateSoldier(addCount);
         }
     }

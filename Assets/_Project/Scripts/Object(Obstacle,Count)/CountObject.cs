@@ -30,10 +30,10 @@ public class CountObject : MonoBehaviour
         switch (countType)
         {
             case CountType.Add:
-                stringBuilder.Append("* ");
+                stringBuilder.Append("+ ");
                 break;
             case CountType.Multiply:
-                stringBuilder.Append("+ ");
+                stringBuilder.Append("X ");
                 break;
         }
 
