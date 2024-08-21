@@ -21,6 +21,7 @@ public class CountObjcetController : ObjectDataController
     {
         for(int i = 0; i < countObjects.Length; i++)
         {
+            if (!countObjects[i].gameObject.activeSelf) continue;
             countObjects[i].SetTrigger(isTrig);
         }
     }

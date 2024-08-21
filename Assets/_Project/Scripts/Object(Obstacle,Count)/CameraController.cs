@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
-    [SerializeField] int initPriority = 10;
+    [SerializeField] int initPriority = 9;
     [SerializeField] int setPriority = 11;
 
     private void Awake() => virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();

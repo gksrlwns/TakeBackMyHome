@@ -38,6 +38,8 @@ public class Projectile : MonoBehaviour
         Vector3 direction = target.position - transform.position;
 
         direction.Normalize();
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = targetRotation;
         rigid.velocity = direction * launchSpeed;
     }
 

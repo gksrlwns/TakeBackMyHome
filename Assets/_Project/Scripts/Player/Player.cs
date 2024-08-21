@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         targetSearch.enabled = false;
+        StartCoroutine(CheckSoldierCount());
     }
 
     #region Sort Soldier
@@ -66,6 +67,20 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+    IEnumerator CheckSoldierCount()
+    {
+        yield return CoroutineManager.DelaySeconds(3f);
+        while (true)
+        {
+            if (soldierCount <= 0)
+            {
+                GameManager.instance.FailedGame();
+                yield break;
+            }
+
+            yield return null;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

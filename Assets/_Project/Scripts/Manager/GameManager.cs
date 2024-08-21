@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-
 
 public class GameManager : MonoBehaviour
 {
@@ -17,16 +15,26 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isPause = false;
         player.CreateSoldier(startingSoldierCount);
+        StageManager.Instance.CreateStage();
     }
+    #region Game Over Event
 
-    private void Update()
+    public event Action OnGameClear;
+    public event Action OnGameFail;
+    public void CompleteGame()
     {
-        //if(Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    GameObject obj = PoolManager.instance.GetObject(PoolType.Zombie);
-        //    obj.transform.position = Vector3.zero;
-        //}
+        isPause = true;
+        StageManager.Instance.level++;
+        OnGameClear?.Invoke();
     }
 
+    public void FailedGame()
+    {
+        isPause = true;
+        OnGameFail?.Invoke();
+    }
+
+    #endregion
 }

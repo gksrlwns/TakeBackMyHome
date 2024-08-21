@@ -43,22 +43,18 @@ public class ZombieSpawnManager : MonoBehaviour
         };
         
     }
-    void TestSpawnZombie()
-    {
-        Zombie zombie = PoolManager.instance.GetPool<Zombie>(PoolType.ZombieA);
-        zombie.transform.position = spawnArea.SpawnPoint();
-        spawnCurCount++;
-    }
     public IEnumerator SpawnZombieLoop()
     {
         for (int i = 0; i < startSpawnCount; i++) SpawnZombie();
 
         while (true)
         {
-            if (spawnCurCount >= spawnMaxCount) yield break;
+            if (spawnCurCount >= spawnMaxCount) break;
             SpawnZombie();
             yield return CoroutineManager.DelaySeconds(spawnTime);
         }
+        
+        StartCoroutine(CheckZombieCount());
     }
 
     void SpawnZombie()
@@ -67,6 +63,20 @@ public class ZombieSpawnManager : MonoBehaviour
         zombie.transform.position = spawnArea.SpawnPoint();
         zombie.GetEndPoint(endPoint);
         spawnCurCount++;
+    }
+
+    IEnumerator CheckZombieCount()
+    {
+        while(true)
+        {
+            if (spawnCurCount <= 0)
+            {
+                GameManager.instance.CompleteGame();
+                yield break;
+            }
+
+            yield return CoroutineManager.DelaySeconds(1f);
+        }
     }
 
     PoolType RandomZombieSelect()

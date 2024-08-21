@@ -311,7 +311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: 0
   leftRightObjects: []
-  value: 0
   soldierFirstPos: {fileID: 5684975250739551378}
   navMeshManager: {fileID: 0}
   zombieSpawnManager: {fileID: 0}
@@ -351,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 0}
-  initPriority: 10
+  initPriority: 9
   setPriority: 11
 --- !u!114 &8808595660105192060
 MonoBehaviour:

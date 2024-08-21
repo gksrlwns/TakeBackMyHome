@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
-        Debug.Log($"Input Vector: {inputVec}");
     }
     private void FixedUpdate()
     {

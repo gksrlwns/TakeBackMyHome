@@ -32,6 +32,7 @@ public class Soldier : MonoBehaviour
     private void OnEnable() => InitializeSetUp();
     void InitializeSetUp()
     {
+        //soldierData.UpdateSoldierStatus(DataBaseManager.Instance.playerData);
         soldierAnimator.InitializeSetUp();
         soldierAttack.InitializeSetUp(soldierData);
         soldierMovement.InitializeSetUp(soldierData);
