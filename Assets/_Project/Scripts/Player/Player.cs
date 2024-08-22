@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         for (int i = 0;  i < soldierList.Count; i++)
         {
             //10칸을 맞추기 위함
-            Vector3 soldierPos = new Vector3(soldierFirstPos.x + (i % 10), soldierFirstPos.y, soldierFirstPos.z - (i / 10));
+            Vector3 soldierPos = new Vector3(soldierFirstPos.x + (i % 12), soldierFirstPos.y, soldierFirstPos.z - (i / 12));
             
             Debug.Log(soldierPos);
             

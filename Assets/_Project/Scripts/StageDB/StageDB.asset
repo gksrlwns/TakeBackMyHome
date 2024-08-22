@@ -17,7 +17,7 @@ MonoBehaviour:
     objectType: 0
     obstacleType: 0
     position: 2
-    value: 10
+    value: -10
     value2: 10
   - level: 1
     objectType: 0
@@ -48,13 +48,13 @@ MonoBehaviour:
     obstacleType: 0
     position: 2
     value: 10
-    value2: 5
+    value2: -5
   - level: 1
     objectType: 0
     obstacleType: 0
     position: 2
-    value: 5
-    value2: 10
+    value: -5
+    value2: -10
   - level: 1
     objectType: 1
     obstacleType: 3

@@ -4,7 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-public enum CountType { Add, Multiply };
+public enum CountType { Add, Multiply, Min, Div };
 
 public class CountObject : MonoBehaviour
 {
@@ -35,6 +35,10 @@ public class CountObject : MonoBehaviour
             case CountType.Multiply:
                 stringBuilder.Append("X ");
                 break;
+            case CountType.Min:
+                break;
+            case CountType.Div:
+                break;
         }
 
         stringBuilder.Append(value);
@@ -59,14 +63,22 @@ public class CountObject : MonoBehaviour
         switch(countType)
         {
             case CountType.Add: 
-                temp += value; 
+                temp += value;
+                temp -= soldierCount;
                 break;
             case CountType.Multiply:
                 temp *= value;
+                temp -= soldierCount;
                 break;
+        //    case CountType.Min:
+        //        temp -= value;
+        //        break;
+        //    case CountType.Div:
+        //        temp /= value;
+        //        break;
         }
         
-        return temp - soldierCount;
+        return temp;
     }
 
     public void SetTrigger(bool isTrig) => boxCollider.enabled = isTrig;
