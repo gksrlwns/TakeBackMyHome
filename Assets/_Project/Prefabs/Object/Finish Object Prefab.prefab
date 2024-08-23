@@ -329,10 +329,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnArea: {fileID: 0}
   endPoint: {fileID: 884388367608423182}
-  spawnTime: 1
+  spawnTime: 0.5
   spawnMaxCount: 30
   spawnCurCount: 0
-  startSpawnCount: 10
+  startSpawnCount: 30
   stageLevel: 1
   zombieBasicweight: 45
   zombieRunweight: 10

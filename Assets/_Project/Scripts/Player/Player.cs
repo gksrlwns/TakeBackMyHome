@@ -66,10 +66,21 @@ public class Player : MonoBehaviour
             soldier.transform.position = spawnArea.SpawnPoint();
         }
     }
+
+    void ReturnSoldier(int count)
+    {
+        for(int i = 0; i < count; i++)
+        {
+            PoolManager.instance.ReturnObject(PoolType.Soldier, soldierList[0].gameObject);
+            soldierList.Remove(soldierList[0]);
+            soldierCount--;
+            if (soldierCount <= 0) break;
+        }
+    }
     #endregion
     IEnumerator CheckSoldierCount()
     {
-        yield return CoroutineManager.DelaySeconds(3f);
+        yield return CoroutineManager.DelaySeconds(2f);
         while (true)
         {
             if (soldierCount <= 0)
@@ -86,8 +97,22 @@ public class Player : MonoBehaviour
     {
         if (other.CompareTag("Count"))
         {
-            int addCount = other.GetComponent<CountObject>().CalculateCount(soldierCount);
-            CreateSoldier(addCount);
+            (int calculateCount, CountType countType) = other.GetComponent<CountObject>().CalculateCount();
+            switch (countType)
+            {
+                case CountType.Add:
+                    CreateSoldier(calculateCount);
+                    break;
+                case CountType.Multiply:
+                    CreateSoldier((soldierCount * calculateCount) - soldierCount);
+                    break;
+                case CountType.Min:
+                    ReturnSoldier(calculateCount);
+                    break;
+                case CountType.Div:
+                    ReturnSoldier(soldierCount / calculateCount);
+                    break;
+            }
         }
     }
 

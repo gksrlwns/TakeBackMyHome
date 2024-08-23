@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Zombie : MonoBehaviour
 {
     [Header("Zombie Status Info")]
     [SerializeField] ZombieData zombieData;
+    [SerializeField] ZombieStats zombieStats;
     [SerializeField] Soldier target;
 
     CapsuleCollider zombieCollider;
@@ -37,12 +39,24 @@ public class Zombie : MonoBehaviour
 
     public void InitializeSetUp()
     {
+        InitializeSetUpZombieStats(StageManager.Instance.level);
         zombieAnimator.InitializeSetUp();
         zombieCustomizing.InitializeSetUp();
-        zombieMovement.InitializeSetUp(zombieData);
-        zombieAttack.InitializeSetUp(zombieData);
-        zombieHealth.InitializeSetUp(zombieData);
+        zombieMovement.InitializeSetUp(zombieStats);
+        zombieAttack.InitializeSetUp(zombieStats);
+        zombieHealth.InitializeSetUp(zombieStats);
         zombieCustomizing.SetZombieCustomizing();
+    }
+    void InitializeSetUpZombieStats(int stageLevel)
+    {
+        zombieStats = new ZombieStats
+        {
+            maxHp = zombieData.MaxHp + stageLevel,
+            damage = zombieData.Damage + (float)stageLevel/10,
+            attackRange = zombieData.AttackRange,
+            attackSpeed = zombieData.AttackSpeed,
+            moveSpeed = zombieData.MoveSpeed
+        };
     }
 
     private void OnEnable()
@@ -60,4 +74,13 @@ public class Zombie : MonoBehaviour
 
     public void GetEndPoint(Transform endPoint) => zombieMovement.GetEndPoint(endPoint);
 
+}
+[System.Serializable]
+public struct ZombieStats
+{
+    public float maxHp;
+    public float damage;
+    public float attackRange;
+    public float attackSpeed;
+    public float moveSpeed;
 }

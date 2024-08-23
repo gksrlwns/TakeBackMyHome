@@ -14,9 +14,9 @@ public class ZombieHealth : BaseHealth
         myCollider = _capsuleCollider;
         agent = _agent;
     }
-    public void InitializeSetUp(ZombieData zombieData)
+    public void InitializeSetUp(ZombieStats zombieStats)
     {
-        maxHp = zombieData.MaxHp;
+        maxHp = zombieStats.maxHp;
         curHp = maxHp;
         isDead = false;
         layer = LayerMask.NameToLayer("Zombie");

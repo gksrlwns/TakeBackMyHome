@@ -225,6 +225,12 @@ MonoBehaviour:
   countType: 0
   value: 0
   valueText: {fileID: 2091115630943961828}
+  mainCountEffect: {fileID: 6752791988509357439}
+  secondaryCountEffect: {fileID: 8745889134056230369}
+  mainPositiveColor: {r: 0.18431371, g: 0.37279126, b: 1, a: 1}
+  secondaryPositiveColor2: {r: 0.36470592, g: 0.4957506, b: 1, a: 1}
+  mainNegativeColor: {r: 1, g: 0.19130091, b: 0.18431371, a: 1}
+  secondaryNegativeColor2: {r: 1, g: 0.42608532, b: 0.36470592, a: 1}
 --- !u!1 &8427563937452877906
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,14 +429,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal blue
       objectReference: {fileID: 0}
+    - target: {fileID: 5898729871911122894, guid: 45e0f06c750176947862c10346226439,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898729871911122894, guid: 45e0f06c750176947862c10346226439,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.4957506
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898729871911122894, guid: 45e0f06c750176947862c10346226439,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.36470592
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445763112410648400, guid: 45e0f06c750176947862c10346226439,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445763112410648400, guid: 45e0f06c750176947862c10346226439,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.37279126
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445763112410648400, guid: 45e0f06c750176947862c10346226439,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.18431371
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45e0f06c750176947862c10346226439, type: 3}
+--- !u!198 &6752791988509357439 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8445763112410648400, guid: 45e0f06c750176947862c10346226439,
+    type: 3}
+  m_PrefabInstance: {fileID: 2919419171192289839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7209520099112748779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5516487406859467972, guid: 45e0f06c750176947862c10346226439,
+    type: 3}
+  m_PrefabInstance: {fileID: 2919419171192289839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8745889134056230369 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5898729871911122894, guid: 45e0f06c750176947862c10346226439,
     type: 3}
   m_PrefabInstance: {fileID: 2919419171192289839}
   m_PrefabAsset: {fileID: 0}

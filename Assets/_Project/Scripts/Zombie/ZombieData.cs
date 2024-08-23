@@ -20,4 +20,5 @@ public class ZombieData : ScriptableObject
     public float AttackRange { get => attackRange; }
     public ZombieType Type { get => type; }
 
+
 }

@@ -26,7 +26,7 @@ public class StageManager : MonoBehaviour
     
     private void Awake()
     {
-        if(Instance != null && instance != this)
+        if(instance != null && instance != this)
         {
             Destroy(gameObject);
         }
@@ -38,6 +38,10 @@ public class StageManager : MonoBehaviour
         {
             Debug.LogWarning("StageDB에 문제 있음");
             return;
+        }
+        if (stageDataDict == null)
+        {
+            stageDataDict = new Dictionary<int, List<StageData>>();
         }
 
         // 게임시작 시 한번만 분리
@@ -128,14 +132,13 @@ public class StageManager : MonoBehaviour
     /// </summary>
     void StageSeparation()
     {
-        stageDataDict = new Dictionary<int, List<StageData>>();
         List<StageData> list = new List<StageData>();
         int index = 1;
         for (int i = 0; i < stageDB.Stage.Count; i++)
         {
             if (index != stageDB.Stage[i].level)
             {
-                stageDataDict.Add(stageDB.Stage[i].level - 1, list);
+                stageDataDict.Add(stageDB.Stage[i].level - 1, new List<StageData>(list));
                 index = stageDB.Stage[i].level;
                 list.Clear();
             }

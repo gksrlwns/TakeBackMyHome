@@ -23,10 +23,10 @@ public class ZombieMovement : MonoBehaviour, IMovable
         zombieAttack = _zombieAttack;
         targetSearch = _targetSearch;
     }
-    public void InitializeSetUp(ZombieData zombieData)
+    public void InitializeSetUp(ZombieStats stats)
     {
-        agent.speed = zombieData.MoveSpeed;
-        attackRange = zombieData.AttackRange;
+        agent.speed = stats.moveSpeed;
+        attackRange = stats.attackRange;
     }
 
     private void Update()

@@ -19,11 +19,11 @@ public class ZombieAttack : MonoBehaviour, IAttackable
         zombieAnimator = _zombieAnimator;
         zombieMovement = _zombieMovement;
     }
-    public void InitializeSetUp(ZombieData _zombieData)
+    public void InitializeSetUp(ZombieStats zombieStats)
     {
-        attackRange = _zombieData.AttackRange;
-        attackSpeed = _zombieData.AttackSpeed;
-        damage = _zombieData.Damage;
+        attackRange = zombieStats.attackRange;
+        attackSpeed = zombieStats.attackSpeed;
+        damage = zombieStats.damage;
     }
     
     IEnumerator Attacking()

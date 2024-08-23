@@ -17,13 +17,13 @@ MonoBehaviour:
     objectType: 0
     obstacleType: 0
     position: 2
-    value: -10
+    value: -2
     value2: 10
   - level: 1
     objectType: 0
     obstacleType: 1
     position: 2
-    value: 2
+    value: 3
     value2: 1
   - level: 1
     objectType: 1
@@ -113,13 +113,13 @@ MonoBehaviour:
     objectType: 0
     obstacleType: 0
     position: 2
-    value: 10
+    value: -5
     value2: 5
   - level: 2
     objectType: 0
     obstacleType: 1
     position: 2
-    value: 3
+    value: 2
     value2: 1
   - level: 2
     objectType: 1
