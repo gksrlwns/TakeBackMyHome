@@ -104,7 +104,7 @@ MonoBehaviour:
     value: 0
     value2: 0
   - level: 1
-    objectType: 0
+    objectType: 2
     obstacleType: 0
     position: 0
     value: 50
@@ -200,7 +200,7 @@ MonoBehaviour:
     value: 0
     value2: 0
   - level: 2
-    objectType: 0
+    objectType: 2
     obstacleType: 0
     position: 0
     value: 50
@@ -296,7 +296,7 @@ MonoBehaviour:
     value: 0
     value2: 0
   - level: 3
-    objectType: 0
+    objectType: 2
     obstacleType: 0
     position: 0
     value: 100
@@ -392,7 +392,7 @@ MonoBehaviour:
     value: 0
     value2: 0
   - level: 4
-    objectType: 0
+    objectType: 2
     obstacleType: 5
     position: 0
     value: 50
@@ -488,7 +488,7 @@ MonoBehaviour:
     value: 0
     value2: 0
   - level: 5
-    objectType: 0
+    objectType: 2
     obstacleType: 5
     position: 0
     value: 50

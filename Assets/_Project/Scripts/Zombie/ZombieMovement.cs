@@ -41,7 +41,7 @@ public class ZombieMovement : MonoBehaviour, IMovable
         {
             target = targetSearch.NearTarget<SoldierHealth>(transform);
             zombieAttack.SetTarget(target);
-            yield return CoroutineManager.DelaySeconds(0.5f);
+            yield return CoroutineManager.DelaySeconds(0.1f);
         }
         
     }

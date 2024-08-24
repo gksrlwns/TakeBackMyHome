@@ -92,7 +92,8 @@ public class StageManager : MonoBehaviour
         List<StageData> list = stageDataDict[level];
         ObjectDataController objectDataController;
         GameObject parentTr = new GameObject("StageList");
-        for (int i = 0; i < list.Count; i++)
+        int listCount = list.Count - 1; // List의 마지막은 FinishObject에 대한 정보
+        for (int i = 0; i < listCount; i++)
         {
             //0 : CountObject
             if (list[i].objectType.Equals(0))
@@ -116,12 +117,12 @@ public class StageManager : MonoBehaviour
         for(int i = 1; i <= emptyCount; i++)
         {
             objectDataController = Instantiate(emptyPrefab, parentTr.transform).AddComponent<ObjectDataController>().GetComponent<ObjectDataController>();
-            objectDataController.SetPosition(list.Count + i);
+            objectDataController.SetPosition(listCount + i);
         }
 
         FinishObjcetController finishObjcet = Instantiate(finishLinePrefab, parentTr.transform).GetComponent<FinishObjcetController>();
-        finishObjcet.SetPosition(list.Count + emptyCount + 1);
-        finishObjcet.InitializeSetUp(list[list.Count-1].value, level);
+        finishObjcet.SetPosition(listCount + emptyCount + 1);
+        finishObjcet.InitializeSetUp(list[listCount].value, level);
     }
     public void RandomCreateStage()
     {
