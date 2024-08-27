@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Menu UI
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 21300000, guid: 88ac23b5a63ef8947903aef6c67fc825, type: 3}
+    - {fileID: 21300000, guid: 6360e2c11a14e6348b3f7f9274225a27, type: 3}
+    - {fileID: -388565954, guid: e6b19820fba637145991665f5b832942, type: 3}
+    - {fileID: 1927324546, guid: e6b19820fba637145991665f5b832942, type: 3}
+    - {fileID: -2050418869, guid: e6b19820fba637145991665f5b832942, type: 3}
+    - {fileID: -1405370736, guid: e6b19820fba637145991665f5b832942, type: 3}
+    - {fileID: 21300000, guid: 559b4b7c3ebf129479b10d2820f6820e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys: []
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
+  m_RenderDataMap: {}
+  m_Tag: Menu UI
+  m_IsVariant: 0
