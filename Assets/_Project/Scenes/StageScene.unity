@@ -4708,7 +4708,7 @@ GameObject:
   - component: {fileID: 1284646930}
   - component: {fileID: 1284646929}
   m_Layer: 5
-  m_Name: Coin Image
+  m_Name: Pause Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
