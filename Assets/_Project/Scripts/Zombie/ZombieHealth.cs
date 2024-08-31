@@ -8,6 +8,8 @@ public class ZombieHealth : BaseHealth
     ZombieAnimator zombieAnimator;
     NavMeshAgent agent;
 
+    ZombieSpawnManager spawnManager;
+
     public void InitializeComponents(ZombieAnimator _zombieAnimator, CapsuleCollider _capsuleCollider, NavMeshAgent _agent)
     {
         zombieAnimator = _zombieAnimator;
@@ -26,9 +28,12 @@ public class ZombieHealth : BaseHealth
     {
         base.Dead();
         agent.enabled = false;
+        spawnManager.SpawnCurCount--;
         zombieAnimator.OnDead(isDead);
         StartCoroutine(RetunrPool());
     }
+    public void GetSpawnManager(ZombieSpawnManager _zombieSpawnManager) => spawnManager = _zombieSpawnManager;
+
     /// <summary>
     /// 애니메이션 길이를 가져와 그 애니메이션이 끝난 후 Return하도록 구현
     /// </summary>

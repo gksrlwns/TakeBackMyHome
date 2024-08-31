@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainSceneUIManager : MonoBehaviour
@@ -34,13 +34,23 @@ public class MainSceneUIManager : MonoBehaviour
         exitBtn.onClick.AddListener(() => Application.Quit());
         settingsUI.backBtn.onClick.AddListener(() => HideSettingsUI());
     }
-    private void Start() => ShowMainUI();
 
-
+    private void Start()
+    {
+        ShowMainUI();
+    }
+    
     public void ShowMainUI()
     {
         titleText.transform.DOScale(1, 1);
         menuUI.transform.DOLocalMoveX(0, 1);
+    }
+    IEnumerator ShowMainUICoroutine()
+    {
+        titleText.transform.DOScale(1, 1);
+        menuUI.transform.DOLocalMoveX(0, 1);
+        yield return new WaitForSeconds(1); // 애니메이션 시간에 맞게 조정
+        Debug.Log("ShowMainUI 애니메이션 완료");
     }
     #region Store UI
     void ShowStoreUI()

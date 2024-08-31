@@ -20,6 +20,8 @@ public class Zombie : MonoBehaviour
     TargetSearch targetSearch;
     NavMeshAgent agent;
 
+    ZombieSpawnManager spawnManager;
+
     private void Awake()
     {
         targetSearch = GetComponent<TargetSearch>();
@@ -73,7 +75,12 @@ public class Zombie : MonoBehaviour
     }
 
     public void GetEndPoint(Transform endPoint) => zombieMovement.GetEndPoint(endPoint);
-
+    
+    public void GetSpawnManager(ZombieSpawnManager _zombieSpawnManager)
+    {
+        spawnManager = _zombieSpawnManager;
+        zombieHealth.GetSpawnManager(_zombieSpawnManager);
+    }
 }
 [System.Serializable]
 public struct ZombieStats

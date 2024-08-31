@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
             soldier.transform.parent = soldierTr;
             soldierList.Add(soldier);
             soldierCount++;
-            soldier.player = this;
+            soldier.GetPlayer(this);
             soldier.transform.position = spawnArea.SpawnPoint();
         }
     }

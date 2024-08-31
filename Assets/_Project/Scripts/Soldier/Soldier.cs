@@ -44,6 +44,11 @@ public class Soldier : MonoBehaviour
     }
     public void GetTargetSearch(TargetSearch _targetSearch) => soldierAttack.GetTargetSearch(_targetSearch);
 
+    public void GetPlayer(Player _player)
+    {
+        player = _player;
+        soldierHealth.GetPlayer(_player);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Obstacle"))

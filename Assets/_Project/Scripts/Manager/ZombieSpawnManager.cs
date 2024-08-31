@@ -14,6 +14,8 @@ public class ZombieSpawnManager : MonoBehaviour
     [SerializeField] int stageLevel = 1;
     [SerializeField] float zombieBasicweight = 45f;
     [SerializeField] float zombieRunweight = 10f;
+
+    public int SpawnCurCount { get { return spawnCurCount; } set { spawnCurCount = value; } }
     public int deathCount = 0;
 
     Dictionary<ZombieType, float> zombieWeightDict;
@@ -62,6 +64,7 @@ public class ZombieSpawnManager : MonoBehaviour
         Zombie zombie = PoolManager.instance.GetPool<Zombie>(RandomZombieSelect());
         zombie.transform.position = spawnArea.SpawnPoint();
         zombie.GetEndPoint(endPoint);
+        zombie.GetSpawnManager(this);
         spawnCurCount++;
     }
 

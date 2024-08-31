@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SoldierHealth : BaseHealth
 {
+    Player player;
     SoldierAnimator soldierAnimator;
     SoldierAttack soldierAttack;
     public void InitializeComponents(SoldierAnimator _soldierAnimator, SoldierAttack _soldierAttack, CapsuleCollider _capsuleCollider)
@@ -25,6 +26,7 @@ public class SoldierHealth : BaseHealth
         base.Dead();
         soldierAttack.GetIsDead();
         soldierAnimator.OnDead(isDead);
+        player.soldierCount--;
         StartCoroutine(RetunrPool());
     }
     /// <summary>
@@ -36,4 +38,8 @@ public class SoldierHealth : BaseHealth
         PoolManager.instance.ReturnObject(PoolType.Soldier, gameObject);
     }
 
+    public void GetPlayer(Player _player)
+    {
+        player = _player;
+    }
 }

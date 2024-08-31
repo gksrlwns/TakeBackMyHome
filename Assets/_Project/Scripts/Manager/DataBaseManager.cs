@@ -17,8 +17,14 @@ public class DataBaseManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
-        DontDestroyOnLoad(instance);
+        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {
