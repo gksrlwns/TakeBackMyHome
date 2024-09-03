@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class SoldierAttack : MonoBehaviour, IAttackable
 {
+    [SerializeField] float attackSpeed;
+    [SerializeField] float damage;
+
     [Header("Projectile Info")]
     [SerializeField] Transform projectilePos;
     [SerializeField] Transform target;
@@ -11,9 +14,6 @@ public class SoldierAttack : MonoBehaviour, IAttackable
     SoldierAnimator soldierAnimator;
     SoldierMovement soldierMovement;
     SoldierHealth soldierHealth;
-
-    float attackSpeed;
-    float damage;
 
     public void InitializeComponents(SoldierAnimator _soldierAnimator,SoldierHealth _soldierHealth , SoldierMovement _soldierMovement)
     {
@@ -24,8 +24,8 @@ public class SoldierAttack : MonoBehaviour, IAttackable
 
     public void InitializeSetUp(SoldierData soldierData)
     {
-        attackSpeed = soldierData.AttackSpeed;
-        damage = soldierData.Damage;
+        attackSpeed = soldierData.AttackSpeed + (DataBaseManager.Instance.playerData.soldierStatus.attackSpeed * 0.05f);
+        damage = soldierData.Damage + (DataBaseManager.Instance.playerData.soldierStatus.damage * 0.1f);
     }
 
     public IEnumerator AttackLoop()

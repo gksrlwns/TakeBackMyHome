@@ -12,7 +12,7 @@ public class DataBaseManager : MonoBehaviour
     public PlayerData playerData;
 
     const string PlayerDataKey = "PlayerData";
-    [SerializeField] const int CURRENT_VERSION = 1;
+    [SerializeField] const int CURRENT_VERSION = 2;
 
 
     private void Awake()
@@ -31,7 +31,7 @@ public class DataBaseManager : MonoBehaviour
         playerData = LoadPlayerData();
     }
 
-    public void SavePlayerData(PlayerData playerData)
+    public void SavePlayerData()
     {
         string json = JsonUtility.ToJson(playerData);
         PlayerPrefs.SetString(PlayerDataKey, json);
@@ -70,12 +70,13 @@ public class DataBaseManager : MonoBehaviour
 
             soldierStatus = new SoldierStatus
             {
-                attackSpeed = soldierData.AttackSpeed,
-                damage = soldierData.Damage,
-                maxHp = soldierData.MaxHp
+                attackSpeed = 1,
+                damage = 1,
+                maxHp = 1
             }
         };
-        SavePlayerData(playerData);
+        this.playerData = playerData;
+        SavePlayerData();
 
         return playerData;
     }
@@ -97,8 +98,8 @@ public struct PlayerData
 [System.Serializable]
 public struct SoldierStatus
 {
-    public float damage;
-    public float attackSpeed;
-    public float maxHp;
+    public int damage;
+    public int attackSpeed;
+    public int maxHp;
 }
 

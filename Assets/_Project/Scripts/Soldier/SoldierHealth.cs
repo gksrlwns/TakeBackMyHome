@@ -14,7 +14,7 @@ public class SoldierHealth : BaseHealth
     }
     public void InitializeSetUp(SoldierData soldierData)
     {
-        maxHp = soldierData.MaxHp;
+        maxHp = soldierData.MaxHp + (DataBaseManager.Instance.playerData.soldierStatus.maxHp * 0.1f);
         curHp = maxHp;
         isDead = false;
         layer = LayerMask.NameToLayer("Soldier");

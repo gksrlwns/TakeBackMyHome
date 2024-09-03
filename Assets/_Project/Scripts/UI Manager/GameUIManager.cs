@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,13 @@ public class GameUIManager : MonoBehaviour
 {
     [Header("Success UI")]
     [SerializeField] GameObject successUI;
+    [SerializeField] TMP_Text obstainCoinText;
     [SerializeField] Button nextStageBtn;
     [SerializeField] Button successBackToMenuBtn;
 
     [Header("Failed UI")]
     [SerializeField] GameObject failUI;
+    [SerializeField] TMP_Text failedObstainCoinText;
     [SerializeField] Button failRetryBtn;
     [SerializeField] Button failedBackToMenuBtn;
 
@@ -30,6 +33,9 @@ public class GameUIManager : MonoBehaviour
     [Header("Settings UI")]
     [SerializeField] SettingsUIManager settingsUI;
 
+    [Header("Coin UI")]
+    [SerializeField] TMP_Text coinText;
+    
     private void Awake()
     {
         settingsUI.backBtn.onClick.AddListener(HideSettingsUI);
@@ -49,6 +55,7 @@ public class GameUIManager : MonoBehaviour
         //이벤트 구독
         GameManager.instance.OnGameClear += ShowGameClearUI;
         GameManager.instance.OnGameFail += ShowGameFailedUI;
+        coinText.text = DataBaseManager.Instance.playerData.coin.ToString();
     }
     private void OnDestroy()
     {
@@ -89,7 +96,7 @@ public class GameUIManager : MonoBehaviour
     void ShowGameClearUI()
     {
         successUI.transform.DOScale(1, 1).OnComplete(() => Time.timeScale = 0);
-        
+        obstainCoinText.text = GameManager.instance.obtainCoin.ToString();
         //effect 넣으면 좋을 듯
     }
 
@@ -97,7 +104,7 @@ public class GameUIManager : MonoBehaviour
     {
         Debug.Log("FailedGame 함수 실행");
         failUI.transform.DOScale(1, 1).OnComplete(() => Time.timeScale = 0);
-        
+        failedObstainCoinText.text = GameManager.instance.obtainCoin.ToString();
     }
     #endregion
 

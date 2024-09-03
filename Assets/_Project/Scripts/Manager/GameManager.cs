@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Player player;
     public bool isPause;
-    [SerializeField]int startingSoldierCount = 5;
+    public int obtainCoin = 0;
+    [SerializeField] int startingSoldierCount = 5;
 
     private void Awake()
     {
@@ -27,12 +28,16 @@ public class GameManager : MonoBehaviour
     {
         isPause = true;
         StageManager.Instance.level++;
+        DataBaseManager.Instance.playerData.coin += obtainCoin;
+        DataBaseManager.Instance.SavePlayerData();
         OnGameClear?.Invoke();
     }
 
     public void FailedGame()
     {
         isPause = true;
+        DataBaseManager.Instance.playerData.coin += obtainCoin;
+        DataBaseManager.Instance.SavePlayerData();
         OnGameFail?.Invoke();
     }
 

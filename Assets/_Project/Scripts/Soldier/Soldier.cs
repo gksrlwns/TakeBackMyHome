@@ -5,7 +5,6 @@ public class Soldier : MonoBehaviour
 {
     [Header("Soldier Status Info")]
     [SerializeField] SoldierData soldierData;
-    
 
     [Header("etc")]
     public Player player;
@@ -38,6 +37,7 @@ public class Soldier : MonoBehaviour
         soldierMovement.InitializeSetUp(soldierData);
         soldierHealth.InitializeSetUp(soldierData);
     }
+    
     public void MoveDestination(Vector3 destination)
     {
         StartCoroutine(soldierMovement.MoveLoop(destination));

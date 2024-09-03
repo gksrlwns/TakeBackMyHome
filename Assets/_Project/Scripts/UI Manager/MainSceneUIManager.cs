@@ -20,7 +20,7 @@ public class MainSceneUIManager : MonoBehaviour
     [SerializeField] Button exitBtn;
 
     [Header("Store UI")]
-    [SerializeField] GameObject storeUI;
+    [SerializeField] StoreUIManager storeUI;
 
     [Header("Settings UI")]
     [SerializeField] SettingsUIManager settingsUI;
@@ -45,19 +45,14 @@ public class MainSceneUIManager : MonoBehaviour
         titleText.transform.DOScale(1, 1);
         menuUI.transform.DOLocalMoveX(0, 1);
     }
-    IEnumerator ShowMainUICoroutine()
-    {
-        titleText.transform.DOScale(1, 1);
-        menuUI.transform.DOLocalMoveX(0, 1);
-        yield return new WaitForSeconds(1); // 애니메이션 시간에 맞게 조정
-        Debug.Log("ShowMainUI 애니메이션 완료");
-    }
+
     #region Store UI
     void ShowStoreUI()
     {
         titleText.transform.DOScale(0, 1);
         menuUI.transform.DOLocalMoveX(550,1);
         storeUI.transform.DOLocalMoveX(0,1);
+        storeUI.UpdateText();
     }
 
     public void HideStoreUI()
