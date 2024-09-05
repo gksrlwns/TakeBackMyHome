@@ -38,6 +38,7 @@ public class MainSceneUIManager : MonoBehaviour
     private void Start()
     {
         ShowMainUI();
+        AudioManager.Instance.PlayBGM(true);
     }
     
     public void ShowMainUI()

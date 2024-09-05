@@ -53,6 +53,7 @@ public class Soldier : MonoBehaviour
     {
         if(other.CompareTag("Obstacle"))
         {
+            AudioManager.Instance.PlaySFX(SFX.Soldier_Die);
             PoolManager.instance.ReturnObject(PoolType.Soldier, gameObject);
             player.soldierList.Remove(this);
             player.soldierCount--;

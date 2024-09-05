@@ -29,6 +29,7 @@ public class FinishObjcetController : ObjectDataController
     {
         if(other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySFX(SFX.ZombieSpawn);
             GameManager.instance.player.ArriveDestination(soldierFirstPos.position);
             StartCoroutine(zombieSpawnManager.SpawnZombieLoop());
             cameraController.SetCamera();

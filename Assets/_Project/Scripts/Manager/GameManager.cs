@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     {
         isPause = false;
         player.CreateSoldier(startingSoldierCount);
+        AudioManager.Instance.PlayBGM(false);
+        AudioManager.Instance.PlaySFX(SFX.StartGame);
         StageManager.Instance.CreateStage();
     }
     #region Game Over Event
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     public void CompleteGame()
     {
         isPause = true;
+        AudioManager.Instance.PlaySFX(SFX.GameOver_Success);
         StageManager.Instance.level++;
         DataBaseManager.Instance.playerData.coin += obtainCoin;
         DataBaseManager.Instance.SavePlayerData();
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void FailedGame()
     {
         isPause = true;
+        AudioManager.Instance.PlaySFX(SFX.GameOver_Fail);
         DataBaseManager.Instance.playerData.coin += obtainCoin;
         DataBaseManager.Instance.SavePlayerData();
         OnGameFail?.Invoke();

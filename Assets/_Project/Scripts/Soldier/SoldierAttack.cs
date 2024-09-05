@@ -43,7 +43,7 @@ public class SoldierAttack : MonoBehaviour, IAttackable
     {
         if (soldierHealth.isDead) return;
         soldierAnimator.OnAttack();
-        Debug.Log($"{this.name} АјАн");
+        AudioManager.Instance.PlaySFX(SFX.Soldier_Fire);
         var projectile = PoolManager.instance.GetPool<Projectile>(PoolType.Projectile);
         projectile.SetProjectile(damage, projectilePos, target);
         projectile.LaunchProjectile();

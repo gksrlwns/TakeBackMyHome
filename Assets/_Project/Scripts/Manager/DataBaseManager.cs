@@ -59,7 +59,6 @@ public class DataBaseManager : MonoBehaviour
 
         return playerData;
     }
-    
     PlayerData CreatePlayerData()
     {
         var playerData = new PlayerData

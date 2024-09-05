@@ -11,7 +11,8 @@ public class TestManager : MonoBehaviour
     [SerializeField] int stageLevel = 1;
     [SerializeField] int spawnMaxCount = 50;
     [SerializeField] SpawnArea spawnArea;
-    //[SerializeField] FinishObjcet finishObjcet;
+    
+    [SerializeField] FinishObjcetController finishObjcet;
 
 
     //private void OnValidate()
@@ -25,9 +26,9 @@ public class TestManager : MonoBehaviour
         //var zom = PoolManager.instance.GetPool<Zombie>(PoolType.Zombie);
         //zom.transform.position = spawnArea.SpawnPoint();
         player.CreateSoldier(startingSoldierCount);
-        FinishObjcetController finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcetController>();
+        //FinishObjcetController finishObjcet = Instantiate(finishLinePrefab, transform).GetComponent<FinishObjcetController>();
         finishObjcet.InitializeSetUp(spawnMaxCount, stageLevel);
-        finishObjcet.SetPosition(2);
+        //finishObjcet.SetPosition(2);
 
     }
 

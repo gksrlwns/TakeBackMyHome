@@ -48,8 +48,10 @@ public class StoreUIManager : MonoBehaviour
         if(DataBaseManager.Instance.playerData.coin < d_RequiredCoin)
         {
             Debug.Log("µ·ÀÌ ºÎÁ·ÇÔ");
+            AudioManager.Instance.PlaySFX(SFX.Upgrade_None);
             return;
         }
+        AudioManager.Instance.PlaySFX(SFX.Upgrade);
         DataBaseManager.Instance.playerData.coin -= d_RequiredCoin;
         DataBaseManager.Instance.playerData.soldierStatus.damage++;
         DataBaseManager.Instance.SavePlayerData();
@@ -62,8 +64,10 @@ public class StoreUIManager : MonoBehaviour
         if (DataBaseManager.Instance.playerData.coin < a_RequiredCoin)
         {
             Debug.Log("µ·ÀÌ ºÎÁ·ÇÔ");
+            AudioManager.Instance.PlaySFX(SFX.Upgrade_None);
             return;
         }
+        AudioManager.Instance.PlaySFX(SFX.Upgrade);
         DataBaseManager.Instance.playerData.coin -= a_RequiredCoin;
         DataBaseManager.Instance.playerData.soldierStatus.attackSpeed++;
         DataBaseManager.Instance.SavePlayerData();
@@ -75,8 +79,10 @@ public class StoreUIManager : MonoBehaviour
         if (DataBaseManager.Instance.playerData.coin < h_RequiredCoin)
         {
             Debug.Log("µ·ÀÌ ºÎÁ·ÇÔ");
+            AudioManager.Instance.PlaySFX(SFX.Upgrade_None);
             return;
         }
+        AudioManager.Instance.PlaySFX(SFX.Upgrade);
         DataBaseManager.Instance.playerData.coin -= h_RequiredCoin;
         DataBaseManager.Instance.playerData.soldierStatus.maxHp++;
         DataBaseManager.Instance.SavePlayerData();

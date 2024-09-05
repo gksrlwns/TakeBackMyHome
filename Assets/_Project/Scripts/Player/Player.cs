@@ -98,19 +98,24 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Count"))
         {
             (int calculateCount, CountType countType) = other.GetComponent<CountObject>().CalculateCount();
+            
             switch (countType)
             {
                 case CountType.Add:
                     CreateSoldier(calculateCount);
+                    AudioManager.Instance.PlaySFX(SFX.Soldier_Create);
                     break;
                 case CountType.Multiply:
                     CreateSoldier((soldierCount * calculateCount) - soldierCount);
+                    AudioManager.Instance.PlaySFX(SFX.Soldier_Create);
                     break;
                 case CountType.Min:
                     ReturnSoldier(calculateCount);
+                    AudioManager.Instance.PlaySFX(SFX.Soldier_Remove);
                     break;
                 case CountType.Div:
                     ReturnSoldier(soldierCount / calculateCount);
+                    AudioManager.Instance.PlaySFX(SFX.Soldier_Remove);
                     break;
             }
         }
