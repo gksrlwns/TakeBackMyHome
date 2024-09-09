@@ -1,12 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
-public enum SFX { Soldier_Fire, Soldier_Create, Soldier_Die, Soldier_Remove, Upgrade, Upgrade_None, StartGame, GameOver_Success, GameOver_Fail, ZombieSpawn}
+public enum SFX { Soldier_Fire, Soldier_Create = 3, Soldier_Die_Obstacle, Soldier_Remove_Count, Upgrade, Upgrade_None, StartGame, GameOver_Success, GameOver_Fail, ZombieSpawn}
 
 public class AudioManager : MonoBehaviour
 {
     static AudioManager instance;
     public static AudioManager Instance { get { return instance; } }
+
+    [Header("MIX")]
+    [SerializeField] AudioMixer audioMixer;
 
     [Header("BGM")]
     [SerializeField] AudioClip bgmClip;
@@ -16,17 +20,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] sfxClips;
     [SerializeField] int channels;
     public AudioSource[] sfxPlayers;
+    [SerializeField] AudioSource fireSFXPlayer;
     int channelIndex;
-    bool isFire;
-    private float fireSoundCooldown = 0.3f;  // Soldier_Fire 사운드의 재생 주기
-    private float lastFireSoundTime = -1f;
-
+    bool isFirePlaying;
 
     private void Awake()
     {
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
+
             return;
         }
         instance = this;
@@ -36,6 +39,7 @@ public class AudioManager : MonoBehaviour
     
     void InitializeObject()
     {
+        bgmPlayer.outputAudioMixerGroup = audioMixer.FindMatchingGroups("BGM")[0];
         bgmPlayer.playOnAwake = true;
         bgmPlayer.loop = true;
         bgmPlayer.clip = bgmClip;
@@ -45,9 +49,14 @@ public class AudioManager : MonoBehaviour
         for(int i = 0; i < sfxPlayers.Length; i++)
         {
             sfxPlayers[i] = sfxObject.AddComponent<AudioSource>();
+            sfxPlayers[i].outputAudioMixerGroup = audioMixer.FindMatchingGroups("SFX")[0];
             sfxPlayers[i].playOnAwake = false;
             sfxPlayers[i].loop = false;
         }
+        // Soldier_Fire 전용 AudioSource 초기화
+        fireSFXPlayer = sfxObject.AddComponent<AudioSource>();
+        fireSFXPlayer.playOnAwake = false;
+        fireSFXPlayer.loop = false;
     }
     public void PlayBGM(bool isPlay)
     {
@@ -56,35 +65,42 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySFX(SFX sfx)
     {
-        for(int i = 0; i< sfxPlayers.Length;i++)
+        if (sfx == SFX.Soldier_Fire)
+        {
+            // Soldier_Fire 사운드가 이미 재생 중이라면 추가 재생을 막음
+            if (isFirePlaying) return;
+
+            
+            int randomIndex = Random.Range(0, 3);
+
+            // Soldier_Fire 사운드 재생
+            fireSFXPlayer.clip = sfxClips[(int)SFX.Soldier_Fire + randomIndex];
+            fireSFXPlayer.Play();
+            isFirePlaying = true;
+
+            // 사운드가 끝나면 다시 재생 가능하게 함
+            StartCoroutine(ResetFirePlaying(fireSFXPlayer.clip.length));
+        }
+        for (int i = 0; i< sfxPlayers.Length;i++)
         {
             int loopIndex = (i + channelIndex) % sfxPlayers.Length;
             if (sfxPlayers[i].isPlaying) continue;
 
             channelIndex = loopIndex;
+            
+
             sfxPlayers[loopIndex].clip = sfxClips[(int)sfx];
 
-            // 어떻게 플레이 되도록 할지 고민
-            if (sfx == SFX.Soldier_Fire)
-            {
-                if (Time.time - lastFireSoundTime < fireSoundCooldown) return;
+            sfxPlayers[loopIndex].Play();
 
-                sfxPlayers[loopIndex].Play();
-                lastFireSoundTime = Time.time;
-            }
-            else
-            {
-                sfxPlayers[loopIndex].Play();
-            }
             break;
 
         }
     }
-    
-    IEnumerator WaitFire()
+    private IEnumerator ResetFirePlaying(float delay)
     {
-        yield return CoroutineManager.DelaySeconds(1f);
-        isFire = false;
+        yield return new WaitForSeconds(delay);
+        isFirePlaying = false;
     }
-    
+
 }

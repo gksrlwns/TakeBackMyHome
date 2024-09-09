@@ -3298,6 +3298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b85abc0fb2c33b4f88ce37c6356da1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 24ec6b4d35855e747b9a14a8c8738c23, type: 2}
   bgmClip: {fileID: 8300000, guid: 458dd8822518c4f37bc3edba9b6c57d9, type: 3}
   bgmPlayer: {fileID: 474834296}
   sfxObject: {fileID: 854852058}
@@ -3314,6 +3315,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5cc7d08d8f8337a43a325fb8d580e899, type: 3}
   channels: 8
   sfxPlayers: []
+  fireSFXPlayer: {fileID: 0}
 --- !u!4 &1573959306
 Transform:
   m_ObjectHideFlags: 0

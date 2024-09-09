@@ -111,11 +111,11 @@ public class Player : MonoBehaviour
                     break;
                 case CountType.Min:
                     ReturnSoldier(calculateCount);
-                    AudioManager.Instance.PlaySFX(SFX.Soldier_Remove);
+                    AudioManager.Instance.PlaySFX(SFX.Soldier_Remove_Count);
                     break;
                 case CountType.Div:
                     ReturnSoldier(soldierCount / calculateCount);
-                    AudioManager.Instance.PlaySFX(SFX.Soldier_Remove);
+                    AudioManager.Instance.PlaySFX(SFX.Soldier_Remove_Count);
                     break;
             }
         }
