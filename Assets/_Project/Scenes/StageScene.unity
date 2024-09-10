@@ -3020,8 +3020,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1869361343}
-  m_Follow: {fileID: 1869361343}
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 70
     OrthographicSize: 5
@@ -7639,7 +7639,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6596530128647470819, guid: 751eb2538f8759e4898c4058c2ee94d6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1869361344}
   m_SourcePrefab: {fileID: 100100000, guid: 751eb2538f8759e4898c4058c2ee94d6, type: 3}
 --- !u!114 &1869361336 stripped
 MonoBehaviour:
@@ -7647,18 +7651,40 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1869361335}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1869361337}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6166056decab07a4c9be355a7b31aecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1869361337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6596530128647470819, guid: 751eb2538f8759e4898c4058c2ee94d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1869361335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1869361343 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 424054106203020365, guid: 751eb2538f8759e4898c4058c2ee94d6,
     type: 3}
   m_PrefabInstance: {fileID: 1869361335}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1869361344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869361337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf64f0f3cb86a2640bff38cafc153a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 803092660}
+  playerTr: {fileID: 1869361343}
+  initPos: {x: 0, y: 0, z: 0}
+  offSet: -7.5
 --- !u!1 &1901870397
 GameObject:
   m_ObjectHideFlags: 0

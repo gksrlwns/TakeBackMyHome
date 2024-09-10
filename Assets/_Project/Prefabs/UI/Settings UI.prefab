@@ -404,7 +404,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 8460894967923365388}
   m_HandleRect: {fileID: 6587413891654608192}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 3459264273252156114}
   m_HandleRect: {fileID: 8682330086097508446}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.54
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.54
+  m_FillAmount: 0.539954
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.54
+  m_FillAmount: 0.539954
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -1699,7 +1699,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1282237536189153778}
   m_HandleRect: {fileID: 2674764523158115136}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.54
@@ -2081,6 +2081,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backBtn: {fileID: 5507226202987192258}
+  masterSlider: {fileID: 4784557342462371141}
+  backGroundSlider: {fileID: 7440120008696965379}
+  sfxSlider: {fileID: 775197209178280256}
 --- !u!1 &8134365487156395986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,7 +2171,7 @@ GameObject:
   - component: {fileID: 2267948466270158934}
   - component: {fileID: 3992893080777461043}
   m_Layer: 5
-  m_Name: Effect
+  m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

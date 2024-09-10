@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class SettingsUIManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class SettingsUIManager : MonoBehaviour
 
     private void Awake()
     {
+        masterSlider.value = AudioManager.Instance.GetMasterVolume();
+        backGroundSlider.value = AudioManager.Instance.GetBGMVolume();
+        sfxSlider.value = AudioManager.Instance.GetSFXVolume();
         masterSlider.onValueChanged.AddListener(MasterVolumeChanged);
         backGroundSlider.onValueChanged.AddListener(BackGroundVolumeChanged);
         sfxSlider.onValueChanged.AddListener(sfxVolumeChanged);
@@ -19,20 +23,16 @@ public class SettingsUIManager : MonoBehaviour
 
     void MasterVolumeChanged(float volume)
     {
-        BackGroundVolumeChanged(volume);
-        sfxVolumeChanged(volume);
+        AudioManager.Instance.MasterVolume(volume);
     }
 
     void BackGroundVolumeChanged(float volume)
     {
-        AudioManager.Instance.bgmPlayer.volume = volume;
+        AudioManager.Instance.BGMVolume(volume);
     }
 
     void sfxVolumeChanged(float volume)
     {
-        for (int i = 0; i < AudioManager.Instance.sfxPlayers.Length; i++)
-        {
-            AudioManager.Instance.sfxPlayers[i].volume = volume;
-        }
+        AudioManager.Instance.SFXVolume(volume);
     }
 }

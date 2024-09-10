@@ -58,6 +58,7 @@ public class AudioManager : MonoBehaviour
         fireSFXPlayer.playOnAwake = false;
         fireSFXPlayer.loop = false;
     }
+    #region Play Sound
     public void PlayBGM(bool isPlay)
     {
         if (isPlay) bgmPlayer.Play();
@@ -102,5 +103,64 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         isFirePlaying = false;
     }
+    #endregion
 
+    #region VolumeController
+    public void MasterVolume(float volume)
+    {
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+    }
+    
+    public void BGMVolume(float volume)
+    {
+        audioMixer.SetFloat("BGMVolume", Mathf.Log10(volume) * 20);
+    }
+    public void SFXVolume(float volume)
+    {
+        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+    }
+
+    public float GetMasterVolume()
+    {
+        float volume;
+        if (audioMixer.GetFloat("MasterVolume", out volume))
+        {
+            volume = Mathf.Pow(10f, volume / 20f);
+            return volume;
+        }
+        else
+        {
+            Debug.Log("MasterVolume 파라미터가 없음");
+            return 0;
+        }
+    }
+    public float GetBGMVolume()
+    {
+        float volume;
+        if (audioMixer.GetFloat("BGMVolume", out volume))
+        {
+            volume = Mathf.Pow(10f, volume / 20f);
+            return volume;
+        }
+        else
+        {
+            Debug.Log("BGMVolume 파라미터가 없음");
+            return 0;
+        }
+    }
+    public float GetSFXVolume()
+    {
+        float volume;
+        if (audioMixer.GetFloat("SFXVolume", out volume))
+        {
+            volume = Mathf.Pow(10f, volume / 20f);
+            return volume;
+        }
+        else
+        {
+            Debug.Log("SFXVolume 파라미터가 없음");
+            return 0;
+        }
+    }
+    #endregion
 }
