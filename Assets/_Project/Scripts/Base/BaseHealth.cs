@@ -6,7 +6,6 @@ public class BaseHealth : MonoBehaviour
     [SerializeField] protected float maxHp;
     [SerializeField] protected float curHp;
     protected CapsuleCollider myCollider;
-    protected LayerMask layer;
     public virtual void SufferDamage(float damgage)
     {
         if(isDead) return;
@@ -18,6 +17,6 @@ public class BaseHealth : MonoBehaviour
     {
         myCollider.enabled = false;
         isDead = true;
-        layer = LayerMask.NameToLayer("Death");
+        gameObject.layer = LayerMask.NameToLayer("Death");
     }
 }

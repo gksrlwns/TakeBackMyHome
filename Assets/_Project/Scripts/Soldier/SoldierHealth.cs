@@ -17,7 +17,7 @@ public class SoldierHealth : BaseHealth
         maxHp = soldierData.MaxHp + (DataBaseManager.Instance.playerData.soldierStatus.maxHp * 0.1f);
         curHp = maxHp;
         isDead = false;
-        layer = LayerMask.NameToLayer("Soldier");
+        gameObject.layer = LayerMask.NameToLayer("Soldier");
         myCollider.enabled = true;
     }
 

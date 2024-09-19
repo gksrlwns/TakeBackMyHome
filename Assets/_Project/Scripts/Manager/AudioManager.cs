@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum SFX { Soldier_Fire, Soldier_Create = 3, Soldier_Die_Obstacle, Soldier_Remove_Count, Upgrade, Upgrade_None, StartGame, GameOver_Success, GameOver_Fail, ZombieSpawn}
+public enum SFX { Soldier_Fire, Soldier_Create, Soldier_Die_Obstacle, Soldier_Remove_Count, Upgrade, Upgrade_None, StartGame, GameOver_Success, GameOver_Fail, ZombieSpawn, Button_Click}
 
 public class AudioManager : MonoBehaviour
 {
@@ -72,10 +72,11 @@ public class AudioManager : MonoBehaviour
             if (isFirePlaying) return;
 
             
-            int randomIndex = Random.Range(0, 3);
+            //int randomIndex = Random.Range(0, 3);
 
             // Soldier_Fire 사운드 재생
-            fireSFXPlayer.clip = sfxClips[(int)SFX.Soldier_Fire + randomIndex];
+            //fireSFXPlayer.clip = sfxClips[(int)SFX.Soldier_Fire + randomIndex];
+            fireSFXPlayer.clip = sfxClips[(int)SFX.Soldier_Fire];
             fireSFXPlayer.Play();
             isFirePlaying = true;
 

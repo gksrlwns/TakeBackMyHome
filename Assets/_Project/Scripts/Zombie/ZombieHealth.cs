@@ -21,7 +21,7 @@ public class ZombieHealth : BaseHealth
         maxHp = zombieStats.maxHp;
         curHp = maxHp;
         isDead = false;
-        layer = LayerMask.NameToLayer("Zombie");
+        gameObject.layer = LayerMask.NameToLayer("Zombie");
         myCollider.enabled = true;
     }
     protected override void Dead()

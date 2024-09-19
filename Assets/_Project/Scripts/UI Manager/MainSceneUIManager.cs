@@ -30,6 +30,7 @@ public class MainSceneUIManager : MonoBehaviour
     {
         gameStartBtn.onClick.AddListener(() => SceneLoadManager.Instance.LoadScene("StageScene"));
         storeBtn.onClick.AddListener(() => ShowStoreUI());
+        storeBtn.onClick.AddListener(() =>AudioManager.Instance.PlaySFX(SFX.Button_Click));
         settingsBtn.onClick.AddListener(() => ShowSettingsUI());
         exitBtn.onClick.AddListener(() => Application.Quit());
         settingsUI.backBtn.onClick.AddListener(() => HideSettingsUI());
