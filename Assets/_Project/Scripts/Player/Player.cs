@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [Header("Player Info")]
     PlayerController playerController;
     TargetSearch targetSearch;
+    SphereCollider playerCollider;
+    [SerializeField] ParticleSystem floorEffect;
 
     public Vector3 targetPos;
     public Vector3 soldierFirstPos;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         spawnArea = GetComponent<SpawnArea>();
         targetSearch = GetComponent<TargetSearch>();
+        playerCollider = GetComponent<SphereCollider>();
     }
 
     private void Start()
@@ -40,10 +43,8 @@ public class Player : MonoBehaviour
         Vector3 soldierFirstPos = position;
         for (int i = 0;  i < soldierList.Count; i++)
         {
-            //10칸을 맞추기 위함
+            //12칸을 맞추기 위함
             Vector3 soldierPos = new Vector3(soldierFirstPos.x + (i % 12), soldierFirstPos.y, soldierFirstPos.z - (i / 12));
-            
-            Debug.Log(soldierPos);
             
             soldierList[i].MoveDestination(soldierPos);
             soldierList[i].GetTargetSearch(targetSearch);
@@ -93,6 +94,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PlayFloorEffect() => floorEffect.Play();
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Count"))
@@ -118,6 +122,8 @@ public class Player : MonoBehaviour
                     AudioManager.Instance.PlaySFX(SFX.Soldier_Remove_Count);
                     break;
             }
+
+            PlayFloorEffect();
         }
     }
 
