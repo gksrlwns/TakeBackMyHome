@@ -2660,6 +2660,7 @@ MonoBehaviour:
   titleMove: {fileID: 120652803}
   titleText: {fileID: 120652801}
   menuUI: {fileID: 601743927}
+  gameStartButtonInfo: {fileID: 2087030392}
   gameStartBtn: {fileID: 2087030391}
   storeBtn: {fileID: 1547634633}
   settingsBtn: {fileID: 1755563547}

@@ -15,7 +15,4 @@ public class ButtonInfo : MonoBehaviour
         MyButton = GetComponent<Button>();
         if(!ignore) MyButton.onClick.AddListener(() => AudioManager.Instance.PlaySFX(SFX.Button_Click));
     }
-
-    public void InitButton(UnityAction action) => MyButton.onClick.AddListener(action);
-    
 }

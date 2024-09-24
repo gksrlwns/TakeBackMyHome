@@ -14,6 +14,7 @@ public class MainSceneUIManager : MonoBehaviour
 
     [Header("Menu UI")]
     [SerializeField] GameObject menuUI;
+    [SerializeField] ButtonInfo gameStartButtonInfo;
     [SerializeField] Button gameStartBtn;
     [SerializeField] Button storeBtn;
     [SerializeField] Button settingsBtn;

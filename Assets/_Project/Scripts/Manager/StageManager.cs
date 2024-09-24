@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Properties;
-using UnityEditor.SceneTemplate;
+using Unity.Mathematics;
+using UnityEditor.Experimental.GraphView;
+using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 
 public class StageManager : MonoBehaviour
 {
@@ -89,9 +87,11 @@ public class StageManager : MonoBehaviour
     /// </summary>
     public void CreateStage()
     {
+        GameObject parentTr = new GameObject("StageList");
+        if (level > stageDataDict.Count) CreateqStageDBList(16, level);
+
         List<StageData> list = stageDataDict[level];
         ObjectDataController objectDataController;
-        GameObject parentTr = new GameObject("StageList");
         int listCount = list.Count - 1; // List의 마지막은 FinishObject에 대한 정보
         for (int i = 0; i < listCount; i++)
         {
@@ -112,9 +112,10 @@ public class StageManager : MonoBehaviour
 
             objectDataController.SetActiveSelf((ObjectSetActiveType)list[i].position);
 
-            objectDataController.SetPosition(i+1);
+            objectDataController.SetPosition(i + 1);
         }
-        for(int i = 1; i <= emptyCount; i++)
+
+        for (int i = 1; i <= emptyCount; i++)
         {
             objectDataController = Instantiate(emptyPrefab, parentTr.transform).AddComponent<ObjectDataController>().GetComponent<ObjectDataController>();
             objectDataController.SetPosition(listCount + i);
@@ -124,10 +125,40 @@ public class StageManager : MonoBehaviour
         finishObjcet.SetPosition(listCount + emptyCount + 1);
         finishObjcet.InitializeSetUp(list[listCount].value, level);
     }
-    public void RandomCreateStage()
+    /// <summary>
+    /// Excel의 Stage 정보를 초과한 레벨의 경우 Random하게 생성하도록 구현
+    /// </summary>
+    /// <param name="maxLength"></param>
+    /// <param name="level"></param>
+    void CreateqStageDBList(int maxLength, int level)
     {
+        List<StageData> list = new List<StageData>();
+        StageData stageData;
+        for (int i = 0; i < maxLength - 1; i++)
+        {
+            if (i % 5 < 2) //Count유형 생성
+            {
+                stageData = new StageData(0, 0,RandomValue(0, Enum.GetValues(typeof(ObjectSetActiveType)).Length), RandomValue(-10, 11), RandomValue(-10, 11));
+            }
+            else
+            {
+                stageData = new StageData(1, RandomValue(0, Enum.GetValues(typeof(ObstacleType)).Length), RandomValue(0, Enum.GetValues(typeof(ObjectSetActiveType)).Length), 0, 0);
+            }
 
+            list.Add(stageData);
+        }
+        stageData = new StageData(2, 0, 0, RandomValue(50, 101), 0);
+        list.Add(stageData);
+        stageDataDict.Add(level, list);
+
+        //StageDataDict를 DB에 저장하도록 하면 이전 Stage도 가능.
     }
+
+    int RandomValue(int min, int max)
+    {
+        return UnityEngine.Random.Range(min, max);
+    }
+    
     /// <summary>
     /// StageDB에는 모든 Stage에 대한 Data가 남겨있으므로 게임을 시작시 Level에 맞춰 Dictionary로 관리
     /// </summary>
