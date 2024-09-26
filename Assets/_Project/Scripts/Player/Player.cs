@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         targetSearch.enabled = false;
+        playerController.isArrive = false;
         StartCoroutine(CheckSoldierCount());
     }
 

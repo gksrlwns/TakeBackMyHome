@@ -5039,7 +5039,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 10
   sideSpeed: 5
+  smoothTime: 0.2
   isArrive: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &8142078267234480777
 MonoBehaviour:
   m_ObjectHideFlags: 0

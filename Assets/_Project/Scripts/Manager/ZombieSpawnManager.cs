@@ -9,13 +9,14 @@ public class ZombieSpawnManager : MonoBehaviour
     [SerializeField] Transform endPoint;
     [SerializeField] float spawnTime = 1;
     [SerializeField] int spawnMaxCount = 30;
-    [SerializeField] int spawnCurCount = 0;
+    [SerializeField] int spawnCount = 0;
+    [SerializeField] int zombieCount = 0;
     [SerializeField] int startSpawnCount = 10;
     [SerializeField] int stageLevel = 1;
     [SerializeField] float zombieBasicweight = 45f;
     [SerializeField] float zombieRunweight = 10f;
 
-    public int SpawnCurCount { get { return spawnCurCount; } set { spawnCurCount = value; } }
+    public int ZombieCount { get { return zombieCount; } set { zombieCount = value; } }
     public int deathCount = 0;
 
     Dictionary<ZombieType, float> zombieWeightDict;
@@ -28,7 +29,7 @@ public class ZombieSpawnManager : MonoBehaviour
 
     public void InitializeSetUp(int _spawnMaxCount, int _stageLevel)
     {
-        spawnCurCount = 0;
+        zombieCount = 0;
         deathCount = 0;
         spawnMaxCount = _spawnMaxCount;
         stageLevel = _stageLevel;
@@ -51,7 +52,7 @@ public class ZombieSpawnManager : MonoBehaviour
 
         while (true)
         {
-            if (spawnCurCount >= spawnMaxCount) break;
+            if (spawnCount >= spawnMaxCount) break;
             SpawnZombie();
             yield return CoroutineManager.DelaySeconds(spawnTime);
         }
@@ -65,14 +66,15 @@ public class ZombieSpawnManager : MonoBehaviour
         zombie.transform.position = spawnArea.SpawnPoint();
         zombie.GetEndPoint(endPoint);
         zombie.GetSpawnManager(this);
-        spawnCurCount++;
+        zombieCount++;
+        spawnCount++;
     }
 
     IEnumerator CheckZombieCount()
     {
         while(true)
         {
-            if (spawnCurCount <= 0)
+            if (zombieCount <= 0)
             {
                 GameManager.instance.CompleteGame();
                 yield break;

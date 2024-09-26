@@ -1,66 +1,65 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor.EditorTools;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float forwardSpeed = 10f;
     [SerializeField] float sideSpeed = 5f;
-    private Vector2 inputVec;
+    [SerializeField] LayerMask groundLayer;
     public bool isArrive;
-    Camera mainCamera;
-    Vector2 touchStartPosition;
-    Vector2 touchCurrentPosition;
-    Vector3 moveDirection;
 
-    private void Awake()
-    {
-        mainCamera = Camera.main;
-    }
+    Vector2 inputVec;
+    Vector3 targetPosition;
+
+    Camera mainCamera;
+    
+    bool isMoving;         
+    float targetXPosition;
+    
+    private void Awake() => mainCamera = Camera.main;
+
     private void FixedUpdate()
     {
         if (GameManager.instance.isPause) return;
         if (isArrive) return;
 #if UNITY_ANDROID
+        // 터치 시 Raycast를 이용하여 위치를 파악 후 플레이어를 이동
         if (Touchscreen.current.primaryTouch.press.isPressed)
         {
-            touchCurrentPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
 
-            if (touchStartPosition == Vector2.zero)
+            Ray ray = mainCamera.ScreenPointToRay(touchPosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
             {
-                // 터치가 시작된 위치를 기록
-                touchStartPosition = touchCurrentPosition;
+                // 터치한 지점의 x축만 사용
+                targetXPosition = hit.point.x;
+                isMoving = true;
             }
-
-            // 터치 이동 방향 벡터 계산
-            Vector2 touchDirection = touchCurrentPosition - touchStartPosition;
-
-            // X축 이동 벡터 계산
-            Vector3 sideVec = new Vector3(touchDirection.x, 0, 0).normalized * sideSpeed * Time.deltaTime;
-
-
-            // 플레이어 이동
-            transform.Translate(sideVec);
         }
-        else
-        {
-            // 터치가 끝나면 시작 위치 초기화
-            touchStartPosition = Vector2.zero;
-        }
+
 #endif
 #if UNITY_STANDALONE
         Vector3 editorSide = inputVec.normalized * Time.deltaTime * sideSpeed;
         transform.Translate(editorSide);
 #endif
+
+        if (isMoving)
+        {
+            Vector3 currentPosition = transform.position;
+            float newXPosition = Mathf.MoveTowards(currentPosition.x, targetXPosition, sideSpeed * Time.deltaTime);
+            transform.position = new Vector3(newXPosition, currentPosition.y, currentPosition.z);
+
+            if (Mathf.Abs(transform.position.x - targetXPosition) < 0.1f)
+            {
+                isMoving = false;
+            }
+        }
         Vector3 forVec = Vector3.forward * Time.deltaTime * forwardSpeed;
         transform.Translate (forVec);
 
-        Vector3 targetPosition = transform.position;
+        targetPosition = transform.position;
         targetPosition.x = Mathf.Clamp(targetPosition.x, -7f, 7f); // 예시 범위
         transform.position = targetPosition;
 

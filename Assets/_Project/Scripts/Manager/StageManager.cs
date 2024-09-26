@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour

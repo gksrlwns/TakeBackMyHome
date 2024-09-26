@@ -28,7 +28,7 @@ public class ZombieHealth : BaseHealth
     {
         base.Dead();
         agent.enabled = false;
-        spawnManager.SpawnCurCount--;
+        spawnManager.ZombieCount--;
         GameManager.instance.obtainCoin++;
         zombieAnimator.OnDead(isDead);
         StartCoroutine(RetunrPool());
