@@ -85,7 +85,5 @@ public class SoldierMovement : MonoBehaviour, IMovable
 
         Quaternion targetRotation = Quaternion.LookRotation(direction);
         transform.rotation = targetRotation;
-
-        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 20f * Time.deltaTime);
     }
 }

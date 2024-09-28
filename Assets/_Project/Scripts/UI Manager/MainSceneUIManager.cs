@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// MainScene의 UI를 관리하는 스크립트
+/// </summary>
 public class MainSceneUIManager : MonoBehaviour
 {
     [Header("Title UI")]

@@ -5,20 +5,15 @@ using UnityEngine;
 public class ZombieAttack : MonoBehaviour, IAttackable
 {
     ZombieAnimator zombieAnimator;
-    ZombieMovement zombieMovement;
     SoldierHealth target;
-    TargetSearch targetSearch;
 
     float attackSpeed;
     float attackRange;
     public float damage;
     public bool isAttacking;
 
-    public void InitializeComponents(ZombieAnimator _zombieAnimator, ZombieMovement _zombieMovement)
-    {
-        zombieAnimator = _zombieAnimator;
-        zombieMovement = _zombieMovement;
-    }
+    public void InitializeComponents(ZombieAnimator _zombieAnimator) => zombieAnimator = _zombieAnimator;
+
     public void InitializeSetUp(ZombieStats zombieStats)
     {
         attackRange = zombieStats.attackRange;

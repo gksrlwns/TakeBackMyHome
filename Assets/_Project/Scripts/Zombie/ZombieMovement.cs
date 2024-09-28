@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SocialPlatforms;
 
 public class ZombieMovement : MonoBehaviour, IMovable
 {
@@ -69,7 +67,6 @@ public class ZombieMovement : MonoBehaviour, IMovable
 
     }
 
-
     public void Rotate()
     {
         Vector3 direction = target.transform.position - transform.position;
@@ -81,7 +78,4 @@ public class ZombieMovement : MonoBehaviour, IMovable
     }
 
     public void GetEndPoint(Transform point) => endPoint = point;
-
-    //public void SetTarget(Transform _target) => target = _target;
-
 }

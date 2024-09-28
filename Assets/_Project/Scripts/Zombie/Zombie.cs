@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class Zombie : MonoBehaviour
 {
@@ -20,8 +18,6 @@ public class Zombie : MonoBehaviour
     TargetSearch targetSearch;
     NavMeshAgent agent;
 
-    ZombieSpawnManager spawnManager;
-
     private void Awake()
     {
         targetSearch = GetComponent<TargetSearch>();
@@ -36,7 +32,7 @@ public class Zombie : MonoBehaviour
         zombieAnimator.InitDict();
         zombieHealth.InitializeComponents(zombieAnimator, zombieCollider, agent);
         zombieMovement.InitializeComponents(zombieAttack, zombieAnimator,targetSearch ,agent);
-        zombieAttack.InitializeComponents(zombieAnimator, zombieMovement);
+        zombieAttack.InitializeComponents(zombieAnimator);
     }
 
     public void InitializeSetUp()
@@ -76,11 +72,8 @@ public class Zombie : MonoBehaviour
 
     public void GetEndPoint(Transform endPoint) => zombieMovement.GetEndPoint(endPoint);
     
-    public void GetSpawnManager(ZombieSpawnManager _zombieSpawnManager)
-    {
-        spawnManager = _zombieSpawnManager;
-        zombieHealth.GetSpawnManager(_zombieSpawnManager);
-    }
+    public void GetSpawnManager(ZombieSpawnManager _zombieSpawnManager) => zombieHealth.GetSpawnManager(_zombieSpawnManager);
+
 }
 [System.Serializable]
 public struct ZombieStats

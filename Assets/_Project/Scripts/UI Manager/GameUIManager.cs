@@ -4,7 +4,9 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// StageScene의 UI를 관리하는 스크립트
+/// </summary>
 public class GameUIManager : MonoBehaviour
 {
     [Header("Success UI")]

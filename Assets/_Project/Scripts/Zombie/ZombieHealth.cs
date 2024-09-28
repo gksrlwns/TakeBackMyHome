@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +6,6 @@ public class ZombieHealth : BaseHealth
 {
     ZombieAnimator zombieAnimator;
     NavMeshAgent agent;
-
     ZombieSpawnManager spawnManager;
 
     public void InitializeComponents(ZombieAnimator _zombieAnimator, CapsuleCollider _capsuleCollider, NavMeshAgent _agent)

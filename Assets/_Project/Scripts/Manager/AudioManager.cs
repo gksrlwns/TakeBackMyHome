@@ -14,12 +14,12 @@ public class AudioManager : MonoBehaviour
 
     [Header("BGM")]
     [SerializeField] AudioClip bgmClip;
-    public AudioSource bgmPlayer;
+    AudioSource bgmPlayer;
     [Header("SFX")]
     [SerializeField] GameObject sfxObject;
     [SerializeField] AudioClip[] sfxClips;
     [SerializeField] int channels;
-    public AudioSource[] sfxPlayers;
+    AudioSource[] sfxPlayers;
     [SerializeField] AudioSource fireSFXPlayer;
     int channelIndex;
     bool isFirePlaying;
