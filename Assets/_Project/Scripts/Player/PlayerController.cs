@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         }
 
 #endif
-#if UNITY_STANDALONE
+#if UNITY_STANDALONE || UNITY_EDITOR
         Vector3 editorSide = inputVec.normalized * Time.deltaTime * sideSpeed;
         transform.Translate(editorSide);
 #endif
