@@ -38,10 +38,7 @@ public class PlayerController : MonoBehaviour
                 targetXPosition = hit.point.x;
             }
         }
-        else
-        {
-            isMoving = false;
-        }
+        else isMoving = false;
 
 #endif
 #if UNITY_STANDALONE
