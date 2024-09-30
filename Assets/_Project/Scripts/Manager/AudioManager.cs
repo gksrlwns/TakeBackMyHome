@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("BGM")]
     [SerializeField] AudioClip bgmClip;
-    AudioSource bgmPlayer;
+    [SerializeField] AudioSource bgmPlayer;
     [Header("SFX")]
     [SerializeField] GameObject sfxObject;
     [SerializeField] AudioClip[] sfxClips;

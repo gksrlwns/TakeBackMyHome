@@ -31,16 +31,20 @@ public class PlayerController : MonoBehaviour
             Ray ray = mainCamera.ScreenPointToRay(touchPosition);
 
             RaycastHit hit;
+            isMoving = true;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
             {
                 // 터치한 지점의 x축만 사용
                 targetXPosition = hit.point.x;
-                isMoving = true;
             }
+        }
+        else
+        {
+            isMoving = false;
         }
 
 #endif
-#if UNITY_STANDALONE || UNITY_EDITOR
+#if UNITY_STANDALONE
         Vector3 editorSide = inputVec.normalized * Time.deltaTime * sideSpeed;
         transform.Translate(editorSide);
 #endif
