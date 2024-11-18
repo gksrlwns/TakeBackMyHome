@@ -37,7 +37,14 @@ public class Zombie : MonoBehaviour
 
     public void InitializeSetUp()
     {
-        InitializeSetUpZombieStats(StageManager.Instance.level);
+        if(StageManager.Instance != null)
+        {
+            InitializeSetUpZombieStats(StageManager.Instance.level);
+        }
+        else
+        {
+            InitializeSetUpZombieStats(1000);
+        }
         zombieAnimator.InitializeSetUp();
         zombieCustomizing.InitializeSetUp();
         zombieMovement.InitializeSetUp(zombieStats);

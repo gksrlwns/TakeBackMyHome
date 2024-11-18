@@ -15,7 +15,6 @@ public class ZombieSpawnManager : MonoBehaviour
     [SerializeField] int stageLevel = 1;
     [SerializeField] float zombieBasicweight = 45f;
     [SerializeField] float zombieRunweight = 10f;
-
     public int ZombieCount { get { return zombieCount; } set { zombieCount = value; } }
     public int deathCount = 0;
 
@@ -69,7 +68,6 @@ public class ZombieSpawnManager : MonoBehaviour
         zombieCount++;
         spawnCount++;
     }
-
     IEnumerator CheckZombieCount()
     {
         while(true)
